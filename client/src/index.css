@@ -55,3 +55,16 @@ html {
 .new-bet-btn {
   margin-right: 10%;
 }
+
+.cards-container {
+  padding: 5%;
+}
+
+.bet-detail-container {
+  padding: 3%;
+  text-align: center;
+}
+
+.details-btn-container {
+  margin-left: 1%;
+}
