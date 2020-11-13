@@ -34,6 +34,9 @@ const betSchema = new Schema({
     },
     betCode: {
         type: String
+    },
+    position: {
+        type: String
     }
 
     },{

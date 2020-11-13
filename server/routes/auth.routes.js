@@ -5,52 +5,119 @@ const passport = require("passport")
 const User = require("../models/user.model")
 
 const bcrypt = require("bcrypt")
-const bcryptSalt = 10
 
 
-// User signup
-router.get("/signup", (req, res) => res.render("auth/signup"))
-router.post("/signup", (req, res, next) => {
+router.post("/registro", (req, res, next) => {
 
-    const { username, password } = req.body
-
-    if (!username || !password) {
-        res.render("auth/signup", { errorMsg: "Rellena el usuario y la contraseña" })
-        return
+    const { username, password, name, lastName, email, phone, role } = req.body
+  
+    if ( !username || !password || !name || !email ) {
+      res.status(400).json({ message: "Rellene todos los campos solicitados." });
+      return;
     }
+  
+    if (password.length < 8) {
+      res
+        .status(400)
+        .json({
+          message:
+            "La contraseña debe tener más de 7 caracteres.",
+        });
+      return;
+    }
+  
+    User.findOne({ username }, (err, foundUser) => {
+      if (err) {
+        res.status(500).json({ message: "Usuario no encontrado." });
+        return;
+      }
+  
+      if (foundUser) {
+        res.status(400).json({ message: "Nombre de usuario en uso. Elija otro." });
+        return;
+      }
+  
+      const salt = bcrypt.genSaltSync(10);
+      const hashPass = bcrypt.hashSync(password, salt);
+  
+      const aNewUser = new User({
+        username: username,
+        password: hashPass,
+        name: name,
+        lastName: lastName,
+        email: email,
+        phone: phone,
+        role: role,
 
-    User.findOne({ username })
-        .then(user => {
-            if (user) {
-                res.render("auth/signup", { errorMsg: "El usuario ya existe en la BBDD" })
-                return
-            }
-            const salt = bcrypt.genSaltSync(bcryptSalt)
-            const hashPass = bcrypt.hashSync(password, salt)
+      });
+  
+      aNewUser.save((err) => {
+        if (err) {
+          res
+            .status(400)
+            .json({ message: "El usuario no se pudo guardar en la Base de Datos." });
+          return;
+        }
+  
+        // Automatically log in user after sign up
+        // .login() here is actually predefined passport method
+        req.login(aNewUser, (err) => {
+          if (err) {
+            res.status(500).json({ message: "No se pudo iniciar sesión." });
+            return;
+          }
+  
+          // Send the user's information to the frontend
+          // We can use also: res.status(200).json(req.user);
+          res.status(200).json(aNewUser);
+        });
+      });
+    });
+  });
 
-            User.create({ username, password: hashPass })
-                .then(() => res.redirect("/"))
-                .catch(() => res.render("auth/signup", { errorMsg: "No se pudo crear el usuario" }))
-        })
-        .catch(error => next(error))
-})
+
+router.post("/iniciar-sesion", (req, res, next) => {
+    passport.authenticate("local", (err, theUser, failureDetails) => {
+        if (err) {
+        res
+            .status(500)
+            .json({ message: "Hubo un problema durante el proceso de autenticación del usuario." });
+        return;
+        }
+
+        if (!theUser) {
+        // "failureDetails" contains the error messages
+        // from our logic in "LocalStrategy" { message: '...' }.
+        res.status(401).json(failureDetails);
+        return;
+        }
+
+        // save user in session
+        req.login(theUser, (err) => {
+        if (err) {
+            res.status(500).json({ message: "No se pudo guardar la sesión." });
+            return;
+        }
+
+        // We are now logged in (that's why we can also send req.user)
+        res.status(200).json(theUser);
+        });
+    })(req, res, next);
+});
 
 
-// User login
-router.get('/login', (req, res) => res.render('auth/login', { "errorMsg": req.flash("error") }))
-router.post('/login', passport.authenticate("local", {
-    successRedirect: "/",
-    failureRedirect: "/login",
-    failureFlash: true,
-    passReqToCallback: true,
-    badRequestMessage: 'Rellena todos los campos'
-}))
+router.post("/cerrar-sesion", (req, res, next) => {
+    // req.logout() is defined by passport
+    req.logout();
+    res.status(200).json({ message: "Sesión cerrada con éxito." });
+});
 
-
-// User logout
-router.get("/logout", (req, res) => {
-    req.logout()
-    res.redirect("/login")
-})
+router.get("/loggedin", (req, res, next) => {
+    if (req.isAuthenticated()) {
+      res.status(200).json(req.user);
+      return;
+    }
+    res.status(403).json({ message: "No autorizado." });
+});
 
 module.exports = router

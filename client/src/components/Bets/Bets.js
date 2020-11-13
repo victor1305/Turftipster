@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Button, Row } from 'react-bootstrap'
+import React, { useState, useEffect } from 'react';
+import { Row } from 'react-bootstrap'
 import BetService from '../../service/BetService'
 import BetCard from './BetCard';
 import BetModal from './BetModal';
@@ -10,27 +10,24 @@ const Bets = (props) => {
 
     const [ betList, loadBetList ] = useState([])
 
-    const showBets = () => {
+    useEffect(() => {
 
         betservice
             .getAllBets()
             .then(response => loadBetList(response.data))
             .catch(err => console.log(err))
-    }
+    
+    }, [])
 
     return (
         
         <div className = "bets-buttons-container">
-            <Button 
-                variant="outline-info"
-                onClick = {showBets} 
-                className = "new-bet-btn"   
-            >Cargar Apuestas</Button>
             <BetModal {...props}/>
+            
             {betList &&
             <div className = "cards-container">
-                <Row>
-                    {betList.map(elm => <BetCard key = {elm._id} {...elm} />)}
+                <Row className = "justify-content-center">
+                    {betList.map(elm => <BetCard key = {elm._id} {...elm} {...props}/>)}
                 </Row>
             </div>}
         </div>

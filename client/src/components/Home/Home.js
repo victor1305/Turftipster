@@ -1,8 +1,26 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+
+import { Row } from 'react-bootstrap'
+import BetService from '../../service/BetService'
+import BetCard from '../Bets/BetCard'
 
 import homeImage from '../../images/horse-1394093_1920.jpg'
 
-const Home = () => {
+const Home = (props) => {
+
+    const betservice = new BetService()
+
+    const [ betList, loadBetList ] = useState([])
+
+    useEffect(() => {
+
+        betservice
+            .getHomeBets()
+            .then(response => loadBetList(response.data))
+            .catch(err => console.log(err))
+    
+    }, [])
+
     return (
         <div>
             <div className = "home-image-container">
@@ -10,7 +28,12 @@ const Home = () => {
             </div>
             <article className = "home-article">
                 <h2 className = "home-last-bets">Últimas Apuestas</h2>
-                <p className = "home-last-bets">Aqui se carga el componente con las últimas 5 Apuestas</p>
+                {betList &&
+                    <div className = "cards-container">
+                        <Row className = "justify-content-center">
+                            {betList.map(elm => <BetCard key = {elm._id} {...elm} {...props}/>)}
+                        </Row>
+                    </div>}
                 <h3 className = "home-join-us-h"><a className = "home-join-us-a" href = "#Telegram">Únete en Telegram</a></h3>
             </article>
         </div>

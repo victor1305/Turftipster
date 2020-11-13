@@ -1,22 +1,32 @@
-import React, { useState, Fragment } from 'react';
+import React, { useState, Fragment, useEffect } from 'react';
 import { Button, Modal, Form } from 'react-bootstrap'
 import BetService from '../../service/BetService'
 
-const BetModal = () => {
-    
+const BetModal = (props) => {
+
     const betservice = new BetService()
 
     const [ modal, openModal ] = useState(false)
 
     const [ bet, createBet] = useState({
-        bookie: '',
-        racecourse: '',
-        race: '',
-        betName: '',
-        stake: '',
-        price: '',
-        betCode: ''
-    })
+        
+    })    
+
+    useEffect(() => {
+        
+        createBet ({
+            bookie: props.bookie,
+            racecourse: props.racecourse,
+            race: props.race,
+            betName: props.betName,
+            price: props.price,
+            stake: props.stake,
+            status: props.status,
+            position: props.position,
+            date: props.date,
+            betCode: props.betCode
+        })
+    }, [props])
 
     const handleClose = () => openModal(false)
     const handleShow = () => openModal(true)
@@ -33,7 +43,22 @@ const BetModal = () => {
 
         betservice
             .saveBet(bet)
-            .then (() => props.history.push('/'))
+            .then (() => props.history.value.push('/apuestas'))
+            .catch(err => console.log(err))
+    }
+
+    const updateBet = () => {
+
+        const id = props.match.params.id
+
+        createBet({
+            bookie: props.bookie
+            
+        })
+
+        betservice
+            .updateBet(id, bet)
+            .then (() => props.history.value.push('/apuestas'))
             .catch(err => console.log(err))
     }
 
@@ -112,55 +137,65 @@ const BetModal = () => {
 
     return (
         <Fragment>
-            <Button 
-                     
-                    variant="outline-dark"
-                    onClick = {handleShow}
-                >Nueva Apuesta
-            </Button>
+            {props.match.path.includes('detalle') ?
+            <Button       
+                variant="outline-dark"
+                className = "details-btn-container"
+                onClick = {handleShow}
+            >Editar Apuesta</Button>
+            :
+            <Button   
+                variant="outline-dark"
+                onClick = {handleShow}
+            >Nueva Apuesta</Button>
+            }
             <Modal  show={modal} onHide={handleClose} animation={false}>
                 <Modal.Header closeButton>
-                    <Modal.Title>Crear una Apuesta</Modal.Title>
+                    {props.match.path.includes('detalle') ?
+                    <Modal.Title>Editar Apuesta</Modal.Title>
+                    :
+                    <Modal.Title>Crear Apuesta</Modal.Title>
+                    }
                 </Modal.Header>
                 <Modal.Body>
                     <Form
-                        onSubmit = {saveBet}
+                        onSubmit = { props.match.path.includes('detalle') ? updateBet : saveBet}
                     >
                         <Form.Group onChange = {updateBetState}>
                             <Form.Label>Bookie:</Form.Label>
-                            <Form.Control required name = "bookie" onChange = {updateBetState}/>
+                            <Form.Control required name = "bookie" onChange = {updateBetState} defaultValue = {props.bookie}/>
                         </Form.Group>
                         <Form.Group>
                             <Form.Label>Hipódromo:</Form.Label>
-                            <Form.Control as = "select" required name = "racecourse" onChange = {updateBetState}>
+                            <Form.Control as = "select" required name = "racecourse" onChange = {updateBetState} defaultValue = {props.racecourse}>
                                 {racecoursesArray.map(elm => (
-                                    <option>{elm}</option>
+                                    <option key = {elm}>{elm}</option>
                                 ))}  
                             </Form.Control>
                         </Form.Group>
                         <Form.Group>
                             <Form.Label>Carrera:</Form.Label>
-                            <Form.Control required name = "race" onChange = {updateBetState}/>
+                            <Form.Control required name = "race" onChange = {updateBetState} defaultValue = {props.race}/>
                         </Form.Group>
                         <Form.Group>
                             <Form.Label>Apuesta:</Form.Label>
-                            <Form.Control required name = "betName" onChange = {updateBetState}/>
+                            <Form.Control required name = "betName" onChange = {updateBetState} defaultValue = {props.betName}/>
                         </Form.Group>
                         <Form.Group>
                             <Form.Label>Stake:</Form.Label>
-                            <Form.Control as = "select" required name = "stake" onChange = {updateBetState}>
+                            <Form.Control as = "select" required name = "stake" onChange = {updateBetState} defaultValue = {props.stake}>
                                 {stakeArray.map(elm => (
-                                        <option>{elm}</option>
+                                        <option key = {elm}>{elm}</option>
                                     ))}
                             </Form.Control>
                         </Form.Group>
                         <Form.Group>
                             <Form.Label>Cuota:</Form.Label>
-                            <Form.Control required name = "price" onChange = {updateBetState}/>
+                            <Form.Control required name = "price" onChange = {updateBetState} defaultValue = {props.price}/>
                         </Form.Group>
                         <Form.Group>
                             <Form.Label>Código:</Form.Label>
-                            <Form.Control as = "select" required name = "betCode" onChange = {updateBetState}>
+                            <Form.Control as = "select" required name = "betCode" onChange = {updateBetState} defaultValue = {props.betCode}>
                                 <option>--- Selecciona un Código ---</option>
                                 <option>PF 2A</option>
                                 <option>PF 3A</option>
@@ -176,18 +211,29 @@ const BetModal = () => {
                                 <option>HDCP MIX</option>
                                 <option>COMBI</option>
                             </Form.Control>    
-                        </Form.Group>        
-                        {/* <Form.Group>
+                        </Form.Group>      
+                        {props.match.path.includes('detalle') &&  
+                        <Form.Group>
                             <Form.Label>Fecha:</Form.Label>
-                            <DatePicker 
-                                selected={startDate} 
-                                onChange={date => setStartDate(date)} 
-                                name = "date"
-                                dateFormat= "MM/dd/yyyy" 
-                            />
-                        </Form.Group> */}
+                            <Form.Control name = "date" onChange = {updateBetState} defaultValue = {props.date}/>
+                        </Form.Group>
+                        }
+                        <Form.Group>
+                            <Form.Label>Posición:</Form.Label>
+                            <Form.Control name = "position" onChange = {updateBetState} defaultValue = {props.position}/>
+                        </Form.Group>
+                        <Form.Group>
+                            <Form.Label>Estado:</Form.Label>
+                            <Form.Control as = "select" required name = "status" onChange = {updateBetState} defaultValue = {props.status}>
+                                <option>--- Selecciona un Estado ---</option>
+                                <option>win</option>
+                                <option>loss</option>
+                                <option>void</option>
+                                <option>pending</option>
+                            </Form.Control>    
+                        </Form.Group>
                         <Button variant="success" type = "submit">
-                            Crear
+                            {props.match.path.includes('detalle') ? "Editar" : "Crear"}
                         </Button>
                     </Form>
                 </Modal.Body>

@@ -26,14 +26,14 @@ html {
 }
 
 .home-last-bets {
-  padding-top: 5%;
+  padding-top: 3rem;
   text-align: center;
-  padding-bottom: 2%;
+  padding-bottom: 1rem;
 }
 
 .home-join-us-h {
   text-align: center;
-  margin-top: 5%;
+  margin-top: 1rem;
   padding-bottom: 5%;
   
 }
@@ -57,7 +57,12 @@ html {
 }
 
 .cards-container {
-  padding: 5%;
+  padding: 2rem;
+  text-align: center;
+}
+
+.detail-title{
+  padding-bottom: 2rem;
 }
 
 .bet-detail-container {
@@ -66,5 +71,30 @@ html {
 }
 
 .details-btn-container {
-  margin-left: 1%;
+  margin-left: 1rem;
+  margin-bottom: 2rem;
+}
+
+.details-btn-container-win {
+  margin-bottom: 2rem;
+}
+
+.detail-status-pending {
+  font-weight: bold;
+  color: #ffc107;
+}
+
+.detail-status-win {
+  font-weight: bold;
+  color: #28a745;
+}
+
+.detail-status-loss {
+  font-weight: bold;
+  color: #dc3545;
+}
+
+.detail-status-void {
+  font-weight: bold;
+  color: #007bff;
 }

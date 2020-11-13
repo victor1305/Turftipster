@@ -11,9 +11,16 @@ router.post('/crear-apuesta', (req, res, next) => {
         .catch(err => next(err))
 })
 
+router.get('/', (req, res, next) => {
+
+    Bet.find({status: { "$ne": "pending"}}).sort({date: -1}).limit(6)
+        .then(response => res.json(response))
+        .catch(err => next(err))
+})
+
 router.get('/lista-apuestas', (req, res, next) => {
 
-    Bet.find()
+    Bet.find().sort({date: -1})
         .then(response => res.json(response))
         .catch(err => next(err))
 })
@@ -39,7 +46,7 @@ router.put('/detalle-apuesta/:id/edit-status', (req, res, next) =>{
         statusProcessed = {status: 'loss', profit: profitValue}
     
     } else if (req.body.status === "void") {
-        statusProcessed = {status: 'void'}
+        statusProcessed = {status: 'void', profit: profitValue}
 
     } else {
         statusProcessed = {status: 'pending', profit: profitValue}
@@ -50,5 +57,34 @@ router.put('/detalle-apuesta/:id/edit-status', (req, res, next) =>{
         .catch(err => next(err))
 
 })
+
+router.put('/detalle-apuesta/:id/edit', (req, res, next) =>{
+
+
+    let statusProcessed = {}
+    let profitValue = 0
+
+    if(req.body.status === "win") {
+        profitValue = (req.body.stake * req.body.price) - req.body.stake
+        statusProcessed = {profit: profitValue}
+
+    } else if (req.body.status === "loss") {
+        profitValue =- req.body.stake
+        statusProcessed = {profit: profitValue}
+    
+    } else if (req.body.status === "void") {
+        statusProcessed = {profit: profitValue}
+
+    } else {
+        statusProcessed = {profit: profitValue}
+    }
+
+    const newBody = Object.assign(req.body, statusProcessed)
+
+    Bet.findByIdAndUpdate(req.params.id, newBody, {new: true})
+        .then((bet) => res.json(bet))
+        .catch(err => next(err))
+})
+
 
 module.exports = router
