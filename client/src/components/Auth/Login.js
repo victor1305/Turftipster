@@ -5,10 +5,20 @@ import { Button, Form, Container, Row, Col } from 'react-bootstrap'
 
 const Login = (props) => {
 
-    const [ user, updateUser ] = useState({})
+    const [ user, updateUser ] = useState({
+        username: "",
+        password: ""
+    })
 
-    const errorMessage = ""
-    const authservice = new AuthService()
+    const [ error, updateError ] = useState({
+        errorMessage: ""
+    })
+
+    const { username, password } = user
+
+    const { errorMessage } = error
+
+    const authService = new AuthService()
 
     const updateUserState = e => {
 
@@ -18,15 +28,19 @@ const Login = (props) => {
         })
     }
 
-    const loginForm = () => {
+    const loginForm = (e) => {
 
-        authservice
+        e.preventDefault()
+
+        authService
             .login(user)
             .then((response) => {
-                props.setTheUser(response.data)
+                updateUser(response.data)
                 props.history.push('/')
             })
-            .catch(err => errorMessage = err.response.data.message)
+            .catch(err => updateError({
+                errorMessage: err.response.data.message
+            }))
     }
     
     return (
@@ -41,6 +55,7 @@ const Login = (props) => {
                             <Form.Control
                                 onChange={updateUserState}
                                 name="username"
+                                value = {username}
                                 type="text"
                                 />
                         </Form.Group>
@@ -49,6 +64,7 @@ const Login = (props) => {
                             <Form.Control
                                 onChange={updateUserState}
                                 name="password"
+                                value = {password}
                                 type="password"
                             />
                         </Form.Group>

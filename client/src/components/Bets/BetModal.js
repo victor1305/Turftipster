@@ -39,15 +39,20 @@ const BetModal = (props) => {
         })
     }
 
-    const saveBet = () => {
+    const saveBet = e => {
+
+        e.preventDefault()
 
         betservice
             .saveBet(bet)
-            .then (() => props.history.value.push('/apuestas'))
+            .then (() => handleClose(),
+            props.history.push('/apuestas'))
             .catch(err => console.log(err))
     }
 
-    const updateBet = () => {
+    const updateBet = e => {
+
+        e.preventDefault()
 
         const id = props.match.params.id
 
@@ -58,7 +63,7 @@ const BetModal = (props) => {
 
         betservice
             .updateBet(id, bet)
-            .then (() => props.history.value.push('/apuestas'))
+            .then (() => handleClose(), props.history.push('/apuestas'))
             .catch(err => console.log(err))
     }
 

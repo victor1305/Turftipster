@@ -19,9 +19,9 @@ const NavBar = () => {
             <Nav.Link style = {linkStyle} href="/apuestas">Apuestas</Nav.Link>
             </Nav>
             <Nav>
-                <Nav.Link href="/iniciar-sesion">Iniciar Sesión</Nav.Link>
-                <Nav.Link href="/registro">Registro</Nav.Link>
-                <Nav.Link href="/cerrar-sesion">Cerrar Sesión</Nav.Link>
+                <Nav.Link href = "/iniciar-sesion">Iniciar Sesión</Nav.Link>
+                <Nav.Link href = "/registro">Registro</Nav.Link>
+                <Nav.Link href = "/cerrar-sesion">Cerrar Sesión</Nav.Link>
             </Nav>
         </Navbar.Collapse>
         </Navbar>

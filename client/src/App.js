@@ -9,6 +9,7 @@ import Home from './components/Home/Home'
 import Bets from './components/Bets/Bets'
 import BetDetail from './components/Bets/BetDetail'
 import Login from './components/Auth/Login'
+import UserForm from './components/Auth/UserForm'
 
 function App() {
 
@@ -19,6 +20,7 @@ function App() {
       <Switch>
         <Route exact path = "/" render = { props => <Home {...props}/>} />
         <Route path = "/iniciar-sesion" render = { props => <Login {...props}/>} />
+        <Route path = "/registro" render = { props => <UserForm {...props}/>} />
         <Route path = "/apuestas" render = { props => <Bets {...props}/>} />
         <Route path="/detalle-apuesta/:id" render = { props => <BetDetail  {...props}/>} />
         {/* <Route path = "/tipos-apuestas" render = { () => <BetTypes />} />

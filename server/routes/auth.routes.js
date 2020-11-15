@@ -9,6 +9,8 @@ const bcrypt = require("bcrypt")
 
 router.post("/registro", (req, res, next) => {
 
+    console.log(req.body)
+
     const { username, password, name, lastName, email, phone, role } = req.body
   
     if ( !username || !password || !name || !email ) {
