@@ -142,17 +142,16 @@ const BetModal = (props) => {
 
     return (
         <Fragment>
-            {props.match.path.includes('detalle') ?
+            {props.loggedInUser &&
+            <div>
+            {props.loggedInUser.role === "admin" &&
             <Button       
                 variant="outline-dark"
-                className = "details-btn-container"
+                className = {props.match.path.includes('detalle') ? "details-btn-container" : ""}
                 onClick = {handleShow}
-            >Editar Apuesta</Button>
-            :
-            <Button   
-                variant="outline-dark"
-                onClick = {handleShow}
-            >Nueva Apuesta</Button>
+            >{props.match.path.includes('detalle') ? "Editar Apuesta" : "Nueva Apuesta"}</Button>
+            }
+            </div>
             }
             <Modal  show={modal} onHide={handleClose} animation={false}>
                 <Modal.Header closeButton>

@@ -38,7 +38,10 @@ const UserForm = (props) => {
 
         authService
             .signUp(newUser)
-            .then (() => props.history.push('/'))
+            .then (() => {
+                props.fetchUser()
+                props.history.push('/')
+            })
             .catch(err => updateError({
                 errorMessage: err.response.data.message
             }))
@@ -46,10 +49,10 @@ const UserForm = (props) => {
 
     
     return (
-        <Container as = "main">
+        <Container as = "main" className = "forms-container">
             <Row>
                 <Col md = {{ offset: 3, span: 6 }}>
-                    <h3>Formulario de Registro</h3>
+                    <h3 className = "form-titles">Formulario de Registro</h3>
                     <hr/>
                     <Form onSubmit = {handleFormSubmit}>
                         <Form.Group>
@@ -80,7 +83,12 @@ const UserForm = (props) => {
                         {errorMessage &&
                             <p className = "errorMessage">{errorMessage}</p>
                         }
-                        <Button variant="dark" type="submit">Enviar</Button>
+                        <div className = "row" className = "text-center">
+                        <Button 
+                            variant="dark"  
+                            type="submit"
+                        >Enviar</Button>
+                        </div>
                     </Form>
                 </Col>
             </Row>

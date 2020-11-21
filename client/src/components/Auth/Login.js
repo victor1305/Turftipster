@@ -36,6 +36,7 @@ const Login = (props) => {
             .login(user)
             .then((response) => {
                 updateUser(response.data)
+                props.fetchUser()
                 props.history.push('/')
             })
             .catch(err => updateError({
@@ -44,10 +45,10 @@ const Login = (props) => {
     }
     
     return (
-        <Container as = "main">
+        <Container as = "main" className = "forms-container">
             <Row>
                 <Col md = {{ offset: 3, span: 6}}>
-                    <h3>Inicio de sesión</h3>
+                    <h3 className = "form-titles">Inicio de sesión</h3>
                     <hr/>
                     <Form onSubmit = {loginForm}>
                         <Form.Group>
@@ -71,9 +72,11 @@ const Login = (props) => {
                         {errorMessage &&
                             <p className = "errorMessage">{errorMessage}</p>
                         }
+                        <div className = "row" className = "text-center">
                         <Button variant="dark" type="submit">
                             Iniciar sesión
                         </Button>
+                        </div>
                     </Form>
                 </Col>
             </Row>

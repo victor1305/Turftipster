@@ -3,7 +3,7 @@ import React from 'react';
 import { Link } from 'react-router-dom'
 import { Card } from 'react-bootstrap'
 
-const BetCard = ({ _id, status, bookie, racecourse, race, betName, stake, price, profit, match }) => {
+const BetCard = ({ _id, status, bookie, racecourse, race, betName, stake, price, profit, loggedInUser }) => {
 
     let bgCard = ""
     let textCard = ""
@@ -44,7 +44,7 @@ const BetCard = ({ _id, status, bookie, racecourse, race, betName, stake, price,
                     <Card.Text><strong>Stake: </strong>{stake}</Card.Text>
                     <Card.Text><strong>Cuota: </strong>{price}</Card.Text>
                     <Card.Text><strong>Ganancia: </strong>{profit} Uds</Card.Text>
-                    {match.path.includes("apuestas") &&
+                    {loggedInUser &&
                     <Link to={`/detalle-apuesta/${_id}`} className="btn btn-dark btn-block btn-sm">Detalles</Link>
                     }
                 </Card.Body>

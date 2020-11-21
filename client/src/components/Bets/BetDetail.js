@@ -83,6 +83,12 @@ const BetDetail = (props) => {
         statusClass = "detail-status-pending"
     }
 
+    let dateFormated = ""
+
+    if (date) {
+        dateFormated = new Date(date).toLocaleDateString()
+    } 
+
     
     return (
         
@@ -97,7 +103,7 @@ const BetDetail = (props) => {
             <p><strong>Stake: </strong>{stake}</p>   
             <p><strong>Resultado: </strong>{position}</p>
             <p><strong>Beneficio: </strong>{profit} Uds</p>
-            <p><strong>Fecha: </strong>{date}</p>
+            <p><strong>Fecha: </strong>{dateFormated}</p>
             <p><strong>Código: </strong>{betCode}</p> 
             <p className = {statusClass}>{statusClient}</p>        
             <div >
