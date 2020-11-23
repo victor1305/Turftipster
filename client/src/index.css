@@ -145,12 +145,12 @@ body {
 }
 
 .stats-red {
-  color: red;
+  color: rgb(253, 79, 67);
   font-weight: bold;
 }
 
 .stats-green {
-  color: green;
+  color: rgb(0, 209, 0);
   font-weight: bold;
 }
 
@@ -189,10 +189,6 @@ body {
   padding-top: 4%;
 }
 
-/* .type-bets-container{
-
-} */
-
 .about-us-container {
   text-align: center;
   padding: 5% 15% ;
@@ -218,12 +214,17 @@ body {
 
 .section-subtitle {
   padding-bottom: 4%;
+  font-size: 1.2rem;
   text-align: center;
 }
 
 .items-container {
   text-align: center;
+}
+
+.next-step-btn-container {
   margin-bottom: 15%;
+  margin-top: 8%;
 }
 
 .btn-contaniner {
@@ -231,6 +232,10 @@ body {
   align-items: center;
   justify-content: center;
   margin-bottom: 2%;
+}
+
+.terminology-container {
+  margin-bottom: 14%;
 }
 
 .item-title {
@@ -243,4 +248,5 @@ body {
   text-align: left;
   margin-bottom: 0px;
 }
+
 

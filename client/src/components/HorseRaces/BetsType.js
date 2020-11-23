@@ -8,6 +8,8 @@ import Trio from './BetsType/Trio'
 import WFav from './BetsType/WFav'
 import Insure from './BetsType/Insure'
 
+import horseChantilly from '../../images/jockeyCha.jpg'
+
 const BetsType = () => {
     
     const [ betsType, updateBetsType ] = useState({
@@ -64,66 +66,72 @@ const BetsType = () => {
             <p className = "section-subtitle">En las carreras de caballos tenemos varios tipos de apuestas, a continuación citaremos y explicaremos cada una de ellas:</p>
             <Container>
                 <Row>
-                    <Col sm = {12} md = {{ span: 6, order: 2}}>
-                        <div className = "items-container">
-                            {!betsType.state && 
-                            <Win/>
-                            }
-                            {betsType.state === "win" &&
-                            <Win/>
-                            }
-                            {betsType.state === "place" &&
-                            <Place/>
-                            }
-                            {betsType.state === "ordre" &&
-                            <Ordre/>
-                            }
-                            {betsType.state === "trio" &&
-                            <Trio/>
-                            }
-                            {betsType.state === "wfav" &&
-                            <WFav/>
-                            }
-                            {betsType.state === "insure" &&
-                            <Insure/>
-                            }
-                        </div>
-                    </Col>
-                    <Col sm = {12} md = {{ span: 6, order: 1}}>
+                    <Col lg = {12} xl = {{ span: 6, order: 1}}>
                         <Container>
                             <Row>
-                                <Col md = {12} xl = {6} className = "btn-contaniner">
+                                <Col className = "items-container">
+                                    {betsType.state === "win" &&
+                                    <Win/>
+                                    }
+                                    {betsType.state === "place" &&
+                                    <Place/>
+                                    }
+                                    {betsType.state === "ordre" &&
+                                    <Ordre/>
+                                    }
+                                    {betsType.state === "trio" &&
+                                    <Trio/>
+                                    }
+                                    {betsType.state === "wfav" &&
+                                    <WFav/>
+                                    }
+                                    {betsType.state === "insure" &&
+                                    <Insure/>
+                                    }
+                                </Col>
+                            </Row>
+                            <Row className = "next-step-btn-container">
+                                <Col xs = {6} sm = {6} md = {4} xl = {4} className = "btn-contaniner">
                                     <Button
                                         onClick = {submitWin}
+                                        variant = "dark" 
                                     >Ganador</Button>
                                 </Col>
-                                <Col md = {12} xl = {6} className = "btn-contaniner">
+                                <Col xs = {6} sm = {6} md = {4} xl = {4} className = "btn-contaniner">
                                     <Button
                                         onClick = {submitPlace}
+                                        variant = "dark" 
                                     >Colocado</Button>
                                 </Col>
-                                <Col md = {12} xl = {6} className = "btn-contaniner">
+                                <Col xs = {6} sm = {6} md = {4} xl = {4} className = "btn-contaniner">
                                     <Button
                                         onClick = {submitOrdre}
+                                        variant = "dark" 
                                     >Gemela</Button>
                                 </Col>
-                                <Col md = {12} xl = {6} className = "btn-contaniner">
+                                <Col xs = {6} sm = {6} md = {4} xl = {4} className = "btn-contaniner">
                                     <Button
                                         onClick = {submitTrio}
+                                        variant = "dark" 
                                     >Trio</Button>
                                 </Col>
-                                <Col md = {12} xl = {6} className = "btn-contaniner">
+                                <Col xs = {6} sm = {6} md = {4} xl = {4} className = "btn-contaniner">
                                     <Button
                                         onClick = {submitWFav}
-                                    >Ganador Sin Favorito</Button>
+                                        variant = "dark" 
+                                    >Sin Fav</Button>
                                 </Col>
-                                <Col md = {12} xl = {6} className = "btn-contaniner">
+                                <Col xs = {6} sm = {6} md = {4} xl = {4} className = "btn-contaniner">
                                     <Button
                                         onClick = {submitInsure}
-                                    >Ganador con Seguro</Button>
+                                        variant = "dark" 
+                                    >Seguro</Button>
                                 </Col>
                             </Row>
                         </Container>
+                    </Col>
+                    <Col lg = {12} xl = {{ span: 6, order: 2}} className = "items-container">
+                        <img src = {horseChantilly} atl = "caballo" className = "stats-image"/>
                     </Col>
                 </Row>
             </Container>

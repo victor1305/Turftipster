@@ -1,5 +1,5 @@
 import React from 'react';
-import { Navbar, Nav } from 'react-bootstrap'
+import { Navbar, Nav, NavDropdown } from 'react-bootstrap'
 import AuthService from '../../service/AuthService';
 
 const NavBar = (props) => {
@@ -29,9 +29,9 @@ const NavBar = (props) => {
             <Nav.Link style = {linkStyle} href="/quienes-somos">Quiénes Somos</Nav.Link>
             <Nav.Link style = {linkStyle} href="/carreras-de-caballos">Carreras de Caballos</Nav.Link>
             <Nav.Link style = {linkStyle} href="/stats">Nuestras Stats</Nav.Link>
-            {props.loggedInUser &&
+            
             <Nav.Link style = {linkStyle} href="/apuestas">Apuestas</Nav.Link>
-            }
+            
             </Nav>
             {props.loggedInUser ?
             <Nav>

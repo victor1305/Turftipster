@@ -6,6 +6,8 @@ import Bank from './Terminology/Bank'
 import Stake from './Terminology/Stake'
 import Yield from './Terminology/Yield'
 
+import horseHeadImage from '../../images/horseHead.jpg'
+
 const NextStep = () => {
 
     const [ terminology, updateTerminology ] = useState({
@@ -42,43 +44,44 @@ const NextStep = () => {
             <p className = "section-subtitle">Si vas a empezar a apostar tanto a caballos como a cualquier deporte hay una serie de términos que debes tener claros: El bank, la unidad, el stake y el yield.</p>
             <Container>
                 <Row>
-                    <Col sm = {12} md = {{ span: 6, order: 2}} className = "items-container">
-                        {terminology.state === "bank" &&
-                        <Bank/>
-                        }
-                        {terminology.state === "unit" &&
-                        <Unit/>
-                        }
-                        {terminology.state === "yield" &&
-                        <Yield/>
-                        }
-                        {terminology.state === "stake" &&
-                        <Stake/>
-                        }
-                    </Col>
-                    <Col sm = {12} md = {{ span: 6, order: 1}}>
+                    <Col lg = {12} xl = {{ span: 6, order: 1}}>
                         <Container>
                             <Row>
-                                <Col md = {12} xl = {12} className = "btn-contaniner">
+                                <Col className = "terminology-container">
+                                    {terminology.state === "bank" &&
+                                    <Bank/>
+                                    }
+                                    {terminology.state === "unit" &&
+                                    <Unit/>
+                                    }
+                                    {terminology.state === "yield" &&
+                                    <Yield/>
+                                    }
+                                    {terminology.state === "stake" &&
+                                    <Stake/>
+                                    }
+                                </Col>
+                            </Row>
+                            <Row className = "next-step-btn-container">
+                                <Col xs = {6} sm = {6} md = {3} xl = {3} className = "btn-contaniner">
                                     <Button 
                                         variant = "dark" 
                                         onClick = {showBank}
-                                        className = "bg-transparent"
                                     >Bank</Button>
                                 </Col>
-                                <Col md = {12} xl = {12}  className = "btn-contaniner">
+                                <Col xs = {6} sm = {6} md = {3} xl = {3} className = "btn-contaniner">
                                     <Button 
                                         variant = "dark" 
                                         onClick = {showUnit}
                                     >Unidad</Button>
                                 </Col>
-                                <Col md = {12} xl = {12}  className = "btn-contaniner">
+                                <Col xs = {6} sm = {6} md = {3} xl = {3} className = "btn-contaniner">
                                     <Button 
                                         variant = "dark" 
                                         onClick = {showStake}
                                     >Stake</Button>
                                 </Col>
-                                <Col md = {12} xl = {12}  className = "btn-contaniner">
+                                <Col xs = {6} sm = {6} md = {3} xl = {3} className = "btn-contaniner">
                                     <Button 
                                         variant = "dark" 
                                         onClick = {showYield}
@@ -86,6 +89,9 @@ const NextStep = () => {
                                 </Col>
                             </Row>
                         </Container>
+                    </Col>
+                    <Col lg = {12} xl = {{ span: 6, order: 2}} className = "items-container">
+                        <img src = {horseHeadImage} atl = "caballo" className = "stats-image"/>   
                     </Col>
                 </Row>
             </Container>
