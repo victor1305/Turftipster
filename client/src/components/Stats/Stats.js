@@ -78,7 +78,7 @@ const Stats = (props) => {
             </div>
             {!statsYear.statYear &&
             <div className = "stats-image-container">
-                <img src = {horseImage} alt = "caballo-de-pie" className = "stats-image" />
+                <img src = {horseImage} alt = "caballo-de-manos" className = "stats-image" />
             </div>
             }
         </Fragment>

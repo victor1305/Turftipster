@@ -146,18 +146,29 @@ const Stats2020 = (props) => {
 
     useEffect(() => {
 
-        betservice
-            .getBetsYear()
-            .then(response => {
-                loadBetList(response.data)
-                updateValues(response.data)
-                
-            })
-            .catch(err => console.log(err))
+        loadData()       
 
-        
-    
-    }, [props, props.statYear])
+    // eslint-disable-next-line
+    }, [props])
+
+    useEffect(() => {
+
+        updateValues()
+
+    // eslint-disable-next-line
+    }, [betList])
+
+    const loadData = () => {
+
+        betservice
+        .getBetsYear()
+        .then(response => (
+            loadBetList(response.data)
+            
+        ))
+        .catch(err => console.log(err))
+
+    }
 
     const updateValues = () => {
 
@@ -412,6 +423,8 @@ const Stats2020 = (props) => {
                 yield: ((decemberProfitUds * 100) / totalStakeDecember).toFixed(2)
             }
         })
+
+
 
     }
     
