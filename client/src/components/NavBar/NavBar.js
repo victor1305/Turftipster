@@ -22,7 +22,7 @@ const NavBar = (props) => {
  
     return (
         <Navbar className = "header" collapseOnSelect expand="lg" variant ="dark">
-        <Navbar.Brand className = "brand" href="/">TurfTipster</Navbar.Brand>
+        <Navbar.Brand className = "brand" href="/" id="nav">TurfTipster</Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="mr-auto">

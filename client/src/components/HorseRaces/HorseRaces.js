@@ -42,14 +42,15 @@ const HorseRaces = () => {
             }
             {!horseRacesState.state &&
             <Container>
-                <Row className = "horse-races-section">
+                <Row className = "horse-races-first-section">
                     <Col sm = {12} md = {{span: 6, order: 1}} className = "horse-races-image-container">
                         <img className = "horse-races-first-image" src = {startImage} alt = "start"/>
                     </Col>
                     <Col sm = {12} md = {{span: 6, order: 2}}>
                         <div className = "horse-races-text-container">
                             <h3>Lo que debes saber antes de empezar.</h3>
-                            <Button variant = "dark" onClick = {start}>Ir a la página</Button>
+                            {/* <Button variant = "dark" onClick = {start}>Ir a la página</Button> */}
+                            <button className = "horse-race-btn" onClick = {start}><span>Leer más</span></button>
                         </div>
                     </Col>
                 </Row>
@@ -60,7 +61,7 @@ const HorseRaces = () => {
                     <Col sm = {12} md = {{span: 6, order: 1}}>
                         <div className = "horse-races-text-container">
                             <h3>El bank, la unidad, el stake y el yield.</h3>
-                            <Button variant = "dark" onClick = {nextStep}>Ir a la página</Button>
+                            <button className = "horse-race-btn" onClick = {nextStep}><span>Leer más</span></button>
                         </div>
                     </Col>    
                 </Row>
@@ -71,7 +72,7 @@ const HorseRaces = () => {
                     <Col sm = {12} md = {{span: 6, order: 2}}>
                         <div className = "horse-races-text-container">
                             <h3>Tipos de apuestas</h3>
-                            <Button variant = "dark" onClick = {betsType}>Ir a la página</Button>
+                            <button className = "horse-race-btn" onClick = {betsType}><span>Leer más</span></button>
                         </div>
                     </Col>
                 </Row>

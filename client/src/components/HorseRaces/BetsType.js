@@ -63,7 +63,7 @@ const BetsType = () => {
     return (
         <div className = "section-container">
             <h1 className = "section-title">Tipos de Apuestas</h1>
-            <p className = "section-subtitle">En las carreras de caballos tenemos varios tipos de apuestas, a continuación citaremos y explicaremos cada una de ellas:</p>
+            <p className = "section-subtitle" id = "title">En las carreras de caballos tenemos varios tipos de apuestas, a continuación citaremos y explicaremos cada una de ellas:</p>
             <Container>
                 <Row>
                     <Col lg = {12} xl = {{ span: 6, order: 1}}>
@@ -92,40 +92,22 @@ const BetsType = () => {
                             </Row>
                             <Row className = "next-step-btn-container">
                                 <Col xs = {6} sm = {6} md = {4} xl = {4} className = "btn-contaniner">
-                                    <Button
-                                        onClick = {submitWin}
-                                        variant = "dark" 
-                                    >Ganador</Button>
+                                    <a href = "#title"><button className = "horse-race-btn" onClick = {submitWin}>Ganador</button></a>
                                 </Col>
                                 <Col xs = {6} sm = {6} md = {4} xl = {4} className = "btn-contaniner">
-                                    <Button
-                                        onClick = {submitPlace}
-                                        variant = "dark" 
-                                    >Colocado</Button>
+                                    <a href = "#title"><button className = "horse-race-btn" onClick = {submitPlace}>Colocado</button></a>
                                 </Col>
                                 <Col xs = {6} sm = {6} md = {4} xl = {4} className = "btn-contaniner">
-                                    <Button
-                                        onClick = {submitOrdre}
-                                        variant = "dark" 
-                                    >Gemela</Button>
+                                    <a href = "#title"><button className = "horse-race-btn" onClick = {submitOrdre}>Gemela</button></a>
                                 </Col>
                                 <Col xs = {6} sm = {6} md = {4} xl = {4} className = "btn-contaniner">
-                                    <Button
-                                        onClick = {submitTrio}
-                                        variant = "dark" 
-                                    >Trio</Button>
+                                    <a href = "#title"><button className = "horse-race-btn" onClick = {submitTrio}>Trio</button></a>
                                 </Col>
                                 <Col xs = {6} sm = {6} md = {4} xl = {4} className = "btn-contaniner">
-                                    <Button
-                                        onClick = {submitWFav}
-                                        variant = "dark" 
-                                    >Sin Fav</Button>
+                                    <a href = "#title"><button className = "horse-race-btn" onClick = {submitWFav}>Sin Fav</button></a>
                                 </Col>
                                 <Col xs = {6} sm = {6} md = {4} xl = {4} className = "btn-contaniner">
-                                    <Button
-                                        onClick = {submitInsure}
-                                        variant = "dark" 
-                                    >Seguro</Button>
+                                    <a href = "#title"><button className = "horse-race-btn" onClick = {submitInsure}>Seguro</button></a>
                                 </Col>
                             </Row>
                         </Container>

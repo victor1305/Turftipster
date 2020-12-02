@@ -13,6 +13,7 @@ import UserForm from './components/Auth/UserForm'
 import HorseRaces from './components/HorseRaces/HorseRaces'
 import Stats from './components/Stats/Stats';
 import AboutUs from './components/AboutUs/AboutUs'
+import Footer from './components/Footer/Footer'
 
 function App(props) {
 
@@ -52,6 +53,7 @@ function App(props) {
         <Route path = "/stats" render = { props => <Stats {...props}/>} />
         <Route path = "/quienes-somos" render = { () => <AboutUs />} />
       </Switch>
+      <Footer />
     </Fragment>
 
   );

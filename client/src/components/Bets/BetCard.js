@@ -1,54 +1,39 @@
 import React from 'react';
+import { Button } from 'react-bootstrap';
 
 import { Link } from 'react-router-dom'
-import { Card } from 'react-bootstrap'
 
 const BetCard = ({ _id, status, bookie, racecourse, race, betName, stake, price, profit, loggedInUser }) => {
 
-    let bgCard = ""
-    let textCard = ""
+    let betstate = ""
 
     if (status === "pending") {
-        bgCard = "warning"
-        textCard = "dark"
+        betstate = "card-p-pending"
     }
     if (status === "win") {
-        bgCard = "success"
-        textCard = "dark"
+        betstate = "card-p-win"
     }
     if (status === "loss") {
-        bgCard = "danger"
-        textCard = "white"
+        betstate = "card-p-loss"
     }
     if (status === "void") {
-        bgCard = "primary"
-        textCard = "white"
+        betstate = "card-p-void"
     }
 
 
     return (
         
-            <Card
-                bg = {bgCard}
-                text = {textCard}
-                className = "mb-4 mr-4"
-                style={{ width: '15rem' }}
-            >
-                <Card.Body>
-                    <Card.Title>
-                        <strong>{bookie}</strong>
-                    </Card.Title>
-                    <Card.Text><strong>{racecourse}</strong></Card.Text>
-                    <Card.Text><strong>Carrera: </strong>{race}</Card.Text>
-                    <Card.Text><strong>{betName}</strong></Card.Text>
-                    <Card.Text><strong>Stake: </strong>{stake}</Card.Text>
-                    <Card.Text><strong>Cuota: </strong>{price}</Card.Text>
-                    <Card.Text><strong>Ganancia: </strong>{profit} Uds</Card.Text>
-                    {loggedInUser &&
-                    <Link to={`/detalle-apuesta/${_id}`} className="btn btn-dark btn-block btn-sm">Detalles</Link>
-                    }
-                </Card.Body>
-            </Card>
+        <div className = "card">
+            <h4 className = "card-title"><strong>{bookie}</strong></h4>
+            <p className = "card-p"><strong>Pick:</strong></p>
+            <p className = "card-p">{betName}</p>
+            <p className = "card-p"><strong>Stake: </strong>{stake}</p>
+            <p className = "card-p"><strong>Cuota: </strong>{price}</p>
+            <p className = {betstate}><strong className = "card-strong">Ganancia: </strong>{profit} Uds</p>            
+            <div>
+            <Link to={`/detalle-apuesta/${_id}`} className = "card-a"><button className = "card-btn">Detalles</button></Link>     
+            </div>
+        </div>
         
     );
 }

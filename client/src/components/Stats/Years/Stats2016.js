@@ -6,7 +6,7 @@ const Stats2016 = () => {
     
     return (
         <Fragment>
-            <h1 className = "stats-title">Stats 2016</h1>
+            <h2 className = "stats-title">Stats 2016</h2>
             <div className = "table-stats-container">
             <Table striped bordered hover variant="dark" size = "sm" className = "table" responsive = "md">
                 <thead
@@ -179,7 +179,7 @@ const Stats2016 = () => {
                         <td>34.31%</td>
                         <td>0.70</td>
                         <td>942.30</td>
-                        <td className = "stats-green">22.32%</td>
+                        <td className = "stats-green">32.03%</td>
                         <td className = "stats-green">301.87</td>
                     </tr>
                 </tbody>

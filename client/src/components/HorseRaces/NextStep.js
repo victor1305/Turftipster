@@ -39,15 +39,15 @@ const NextStep = () => {
     }
 
     return (
-        <div className = "section-container">
-            <h1 className = "section-title">Terminología</h1>
-            <p className = "section-subtitle">Si vas a empezar a apostar tanto a caballos como a cualquier deporte hay una serie de términos que debes tener claros: El bank, la unidad, el stake y el yield.</p>
+        <div className = "section-container" >
+            <h1 className = "section-title" >Terminología</h1>
+            <p className = "section-subtitle" id = "title">Si vas a empezar a apostar tanto a caballos como a cualquier deporte hay una serie de términos que debes tener claros: El bank, la unidad, el stake y el yield.</p>
             <Container>
                 <Row>
                     <Col lg = {12} xl = {{ span: 6, order: 1}}>
                         <Container>
                             <Row>
-                                <Col className = "terminology-container">
+                                <Col className = "terminology-container" >
                                     {terminology.state === "bank" &&
                                     <Bank/>
                                     }
@@ -63,29 +63,17 @@ const NextStep = () => {
                                 </Col>
                             </Row>
                             <Row className = "next-step-btn-container">
-                                <Col xs = {6} sm = {6} md = {3} xl = {3} className = "btn-contaniner">
-                                    <Button 
-                                        variant = "dark" 
-                                        onClick = {showBank}
-                                    >Bank</Button>
+                                <Col xs = {12} sm = {6} md = {6} xl = {3} className = "btn-contaniner">
+                                    <a href = "#title"><button className = "horse-race-btn" onClick = {showBank}><span>Bank</span></button></a>
                                 </Col>
-                                <Col xs = {6} sm = {6} md = {3} xl = {3} className = "btn-contaniner">
-                                    <Button 
-                                        variant = "dark" 
-                                        onClick = {showUnit}
-                                    >Unidad</Button>
+                                <Col xs = {12} sm = {6} md = {6} xl = {3} className = "btn-contaniner">
+                                    <a href = "#title"><button className = "horse-race-btn" onClick = {showUnit}><span>Unidad</span></button></a>
                                 </Col>
-                                <Col xs = {6} sm = {6} md = {3} xl = {3} className = "btn-contaniner">
-                                    <Button 
-                                        variant = "dark" 
-                                        onClick = {showStake}
-                                    >Stake</Button>
+                                <Col xs = {12} sm = {6} md = {6} xl = {3} className = "btn-contaniner">
+                                    <a href = "#title"><button className = "horse-race-btn" onClick = {showYield}><span>Yield</span></button></a>
                                 </Col>
-                                <Col xs = {6} sm = {6} md = {3} xl = {3} className = "btn-contaniner">
-                                    <Button 
-                                        variant = "dark" 
-                                        onClick = {showYield}
-                                    >Yield</Button>
+                                <Col xs = {12} sm = {6} md = {6} xl = {3} className = "btn-contaniner">
+                                    <a href = "#title"><button className = "horse-race-btn" onClick = {showStake}><span>Stake</span></button></a>
                                 </Col>
                             </Row>
                         </Container>

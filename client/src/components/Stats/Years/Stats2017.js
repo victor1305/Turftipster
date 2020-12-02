@@ -6,7 +6,7 @@ const Stats2017 = () => {
     
     return (
         <Fragment>
-            <h1 className = "stats-title">Stats 2017</h1>
+            <h2 className = "stats-title">Stats 2017</h2>
             <div className = "table-stats-container">
             <Table striped bordered hover variant="dark" size = "sm" className = "table" responsive = "md">
                 <thead

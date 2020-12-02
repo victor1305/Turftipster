@@ -25,20 +25,14 @@ router.get('/lista-apuestas', (req, res, next) => {
         .catch(err => next(err))
 })
 
-router.get('/stats', (req, res, next) => {
+router.get('/stats/:year', (req, res, next) => {
 
-    // console.log(req.body)
+    console.log("PARAAAAAAMS", req.params)
+    console.log("body", req.body)
 
-    // const yearInterval = {}
+    let year = req.params.year
 
-    // if(req.body.year === ""){
-    //     yearInterval = {date:{$gte: "2020-01-01T00:00:00Z",$lte: "2020-12-31T23:59:59Z"}}
-    
-    // }else if(req.body.year === "2019"){
-    //     yearInterval = {date:{$gte: "2019-01-01T00:00:00Z",$lte: "2019-12-31T23:59:59Z"}}
-    // }
-
-    Bet.find({date:{$gte: "2020-01-01T00:00:00Z",$lte: "2020-12-31T23:59:59Z"}, status: { "$ne": "pending"}})
+    Bet.find({date:{$gte: `${year}-01-01T00:00:00Z`,$lte: `${year}-12-31T23:59:59Z`}, status: { "$ne": "pending"}})
         .then(response => res.json(response))
         .catch(err => next(err))
 })
