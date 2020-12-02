@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Button, Form } from 'react-bootstrap'
+import { Button } from 'react-bootstrap'
 import { Link } from 'react-router-dom';
 import BetService from '../../service/BetService'
 import BetModal from './BetModal';
@@ -63,6 +63,16 @@ const BetDetail = (props) => {
             .catch(err => console.log(err))
     }
 
+    const deleteBet = () => {
+
+        const id = props.match.params.id
+
+        betservice
+            .deleteBet(id)
+            .then(() => props.history.push('/apuestas'))
+            .catch(err => console.log(err))
+    }
+
     let statusClient = ""
     let statusClass = ""
 
@@ -104,8 +114,17 @@ const BetDetail = (props) => {
             <p><strong>Resultado: </strong>{position}</p>
             <p><strong>Beneficio: </strong>{profit} Uds</p>
             <p><strong>Fecha: </strong>{dateFormated}</p>
+            {props.loggedInUser && 
             <p><strong>Código: </strong>{betCode}</p> 
-            <p className = {statusClass}>{statusClient}</p>        
+            }
+            <p className = {statusClass}>{statusClient}</p>
+            {props.loggedInUser && 
+            <BetModal {...betDetail} {...props}/>
+            }
+            {props.loggedInUser &&
+                <Button variant = "outline-danger" onClick = {deleteBet}>Borrar</Button>
+            }
+            {props.loggedInUser &&        
             <div >
                 <Button
                     variant = "success"
@@ -129,12 +148,17 @@ const BetDetail = (props) => {
                 >Pendiente</Button>
                 
             </div>
+            }
             <div className = "details-edit-btn">
+                {props.loggedInUser ?
                 <Link
-                    className = "btn btn-dark btn-md details-btn-container mr-3"
                     to='/apuestas'
-                >Atrás</Link>
-                <BetModal {...betDetail} {...props}/>
+                ><button className = "detail-back-btn">Atrás</button></Link>
+                :
+                <Link
+                    to='/'
+                ><button className = "detail-back-btn">Atrás</button></Link>
+                }
             </div>
         </div>
         

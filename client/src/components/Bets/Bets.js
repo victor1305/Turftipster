@@ -15,7 +15,7 @@ const Bets = (props) => {
         betservice
             .getAllBets()
             .then(response => loadBetList(response.data))
-            .catch(err => console.log(err))
+            .catch((err) => console.log(err))
     
     }, [])
 
@@ -26,9 +26,11 @@ const Bets = (props) => {
             
             {betList &&
             <div className = "cards-container">
+                {props.loggedInUser &&
                 <Row className = "justify-content-center">
                     {betList.map(elm => <BetCard key = {elm._id} {...elm} {...props}/>)}
                 </Row>
+                }
             </div>}
         </div>
     );

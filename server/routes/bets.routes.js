@@ -2,9 +2,9 @@ const express = require("express")
 const router = express.Router()
 
 const Bet = require("../models/Bet.model")
-const checkAuth = (req, res, next) => req.isAuthenticated() ? next() : res.redirect('/login')
+const checkAuth = (req, res, next) => req.isAuthenticated() ? next() : res.redirect('/')
 
-router.post('/crear-apuesta', (req, res, next) => {
+router.post('/crear-apuesta', checkAuth, (req, res, next) => {
 
     Bet.create(req.body)
         .then(response => res.json(response))
@@ -27,9 +27,6 @@ router.get('/lista-apuestas', (req, res, next) => {
 
 router.get('/stats/:year', (req, res, next) => {
 
-    console.log("PARAAAAAAMS", req.params)
-    console.log("body", req.body)
-
     let year = req.params.year
 
     Bet.find({date:{$gte: `${year}-01-01T00:00:00Z`,$lte: `${year}-12-31T23:59:59Z`}, status: { "$ne": "pending"}})
@@ -44,7 +41,7 @@ router.get('/detalle-apuesta/:id', (req, res, next) => {
         .catch(err => next(err))
 })
 
-router.put('/detalle-apuesta/:id/edit-status', (req, res, next) =>{
+router.put('/detalle-apuesta/:id/edit-status', checkAuth, (req, res, next) =>{
 
     let statusProcessed = ""
     let profitValue = 0
@@ -70,7 +67,7 @@ router.put('/detalle-apuesta/:id/edit-status', (req, res, next) =>{
 
 })
 
-router.put('/detalle-apuesta/:id/edit', (req, res, next) =>{
+router.put('/detalle-apuesta/:id/edit', checkAuth, (req, res, next) =>{
 
 
     let statusProcessed = {}
@@ -95,6 +92,13 @@ router.put('/detalle-apuesta/:id/edit', (req, res, next) =>{
 
     Bet.findByIdAndUpdate(req.params.id, newBody, {new: true})
         .then((bet) => res.json(bet))
+        .catch(err => next(err))
+})
+
+router.delete('/detalle-apuesta/:id/delete', checkAuth, (req, res, next) => {
+
+    Bet.findByIdAndDelete(req.params.id)
+        .then(response => res.json(response))
         .catch(err => next(err))
 })
 

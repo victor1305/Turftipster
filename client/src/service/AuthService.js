@@ -12,7 +12,7 @@ export default class AuthService {
         });
     }
 
-    login = credentials => this.service.post('/iniciar-sesion', credentials)
+    login = credentials => this.service.post('/iniciar-sesion-turftipster', credentials)
     getUser = (id) => this.service.get(`/perfil/${id}/edit`)
     signUp = credentials => this.service.post('/registro', credentials)
     logout = () => this.service.post('/cerrar-sesion')

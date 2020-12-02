@@ -4,7 +4,7 @@ import { Row } from 'react-bootstrap'
 import BetService from '../../service/BetService'
 import BetCard from '../Bets/BetCard'
 
-import homeImage from '../../images/horse-1394093_1920.jpg'
+import homeImage from '../../images/horse-home.jpg'
 
 const Home = (props) => {
 
@@ -34,10 +34,6 @@ const Home = (props) => {
                             {betList.map(elm => <BetCard key = {elm._id} {...elm} {...props}/>)}
                         </Row>
                     </div>}
-                {/* <h3 className = "home-btn"><a className = "home-join-us-a" href = "#Telegram">Únete en Telegram</a></h3> */}
-                {/* <div className = "home-btn-container">
-                    <a href = "https://telegram.me/turftipster"><button className = "home-btn"><span>Únete en Telegram</span></button></a>
-                </div> */}
             </article>
         </div>
     );

@@ -45,10 +45,10 @@ function App(props) {
       <NavBar {...userState} {...props}/>
       <Switch>
         <Route exact path = "/" render = { props => <Home {...userState} {...props}/>} />
-        <Route path = "/iniciar-sesion" render = { props => <Login fetchUser = {fetchUser} {...props}/>} />
-        <Route path = "/registro" render = { props => <UserForm {...props} fetchUser = {fetchUser}/>} />
+        <Route path = "/iniciar-sesion-turftipster" render = { props => <Login fetchUser = {fetchUser} {...props}/>} />
+        {/* <Route path = "/registro" render = { props => <UserForm {...props} fetchUser = {fetchUser}/>} /> */}
         <Route path = "/apuestas" render = { props => <Bets {...userState} {...props}/>} />
-        <Route path="/detalle-apuesta/:id" render = { props => <BetDetail {...userState} {...props}/>} />
+        <Route path = "/detalle-apuesta/:id" render = { props => <BetDetail {...userState} {...props}/>} />
         <Route path = "/carreras-de-caballos" render = { () => <HorseRaces />} />
         <Route path = "/stats" render = { props => <Stats {...props}/>} />
         <Route path = "/quienes-somos" render = { () => <AboutUs />} />
