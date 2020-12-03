@@ -18,9 +18,19 @@ router.get('/', (req, res, next) => {
         .catch(err => next(err))
 })
 
-router.get('/lista-apuestas', (req, res, next) => {
+router.get('/lista-apuestas/total', (req, res, next) => {
 
-    Bet.find().sort({date: -1})
+    Bet.find().count()
+        .then(response => res.json(response))
+        .catch(err => next(err))
+})
+
+router.get('/lista-apuestas/', (req, res, next) => {
+
+    const limit = parseInt(req.query.limit)
+    const skip = parseInt(req.query.skip)
+
+    Bet.find().sort({date: -1}).skip(skip).limit(limit)
         .then(response => res.json(response))
         .catch(err => next(err))
 })

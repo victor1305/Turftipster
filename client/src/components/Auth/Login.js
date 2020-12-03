@@ -72,7 +72,7 @@ const Login = (props) => {
                         {errorMessage &&
                             <p className = "errorMessage">{errorMessage}</p>
                         }
-                        <div className = "row" className = "text-center">
+                        <div className = "row text-center">
                         <Button variant="dark" type="submit">
                             Iniciar sesión
                         </Button>

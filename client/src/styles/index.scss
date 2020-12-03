@@ -77,6 +77,32 @@ body {
   padding-bottom: 2rem;
 }
 
+.bet-pages-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.previous-page {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background-image: url('../images/back.png');
+  background-position: center;
+  background-size: contain;
+  margin-right: 1rem;
+}
+
+.next-page {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background-image: url('../images/next.png');
+  background-position: center;
+  background-size: contain;
+  margin-left: 1rem;
+}
+
 .new-bet-btn {
   margin-right: 10%;
 }

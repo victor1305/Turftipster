@@ -4,7 +4,7 @@ import { Row } from 'react-bootstrap'
 import BetService from '../../service/BetService'
 import BetCard from '../Bets/BetCard'
 
-import homeImage from '../../images/horse-home.jpg'
+import homeImage from '../../images/turfHome.jpg'
 
 const Home = (props) => {
 
@@ -18,7 +18,7 @@ const Home = (props) => {
             .getHomeBets()
             .then(response => loadBetList(response.data))
             .catch(err => console.log(err))
-    
+        // eslint-disable-next-line
     }, [])
 
     return (

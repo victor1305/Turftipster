@@ -1,5 +1,5 @@
 import React, { Fragment, useState } from 'react';
-import { Container, Row, Col, Button } from 'react-bootstrap'
+import { Container, Row, Col } from 'react-bootstrap'
 
 import startImage from '../../images/start.jpg'
 import nextStepImage from '../../images/nextstep.jpg'

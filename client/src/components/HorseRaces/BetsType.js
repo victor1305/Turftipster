@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button, Container, Row, Col } from 'react-bootstrap';
+import { Container, Row, Col } from 'react-bootstrap';
 
 import Win from './BetsType/Win'
 import Place from './BetsType/Place'
@@ -113,7 +113,7 @@ const BetsType = () => {
                         </Container>
                     </Col>
                     <Col lg = {12} xl = {{ span: 6, order: 2}} className = "items-container">
-                        <img src = {horseChantilly} atl = "caballo" className = "stats-image"/>
+                        <img src = {horseChantilly} alt = "caballo" className = "stats-image"/>
                     </Col>
                 </Row>
             </Container>

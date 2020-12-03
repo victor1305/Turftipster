@@ -9,7 +9,7 @@ import Home from './components/Home/Home'
 import Bets from './components/Bets/Bets'
 import BetDetail from './components/Bets/BetDetail'
 import Login from './components/Auth/Login'
-import UserForm from './components/Auth/UserForm'
+//import UserForm from './components/Auth/UserForm'
 import HorseRaces from './components/HorseRaces/HorseRaces'
 import Stats from './components/Stats/Stats';
 import AboutUs from './components/AboutUs/AboutUs'
@@ -28,6 +28,7 @@ function App(props) {
   useEffect (() => {
     
     fetchUser()
+    // eslint-disable-next-line
   }, [props])
 
   const fetchUser = () => {

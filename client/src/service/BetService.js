@@ -12,7 +12,8 @@ export default class BetService {
     }
 
     saveBet = bet => this.service.post(`/apuestas/crear-apuesta`, bet)
-    getAllBets = () => this.service.get('/apuestas/lista-apuestas')
+    getNumberBets = () => this.service.get('/apuestas/lista-apuestas/total')
+    getAllBets = (limit, skip) => this.service.get(`/apuestas/lista-apuestas?limit=${limit}&skip=${skip}`)
     getHomeBets = () => this.service.get('/apuestas')
     getBetsYear = year => this.service.get(`/apuestas/stats/${year}`)
     getOneBet = id => this.service.get(`/apuestas/detalle-apuesta/${id}`)

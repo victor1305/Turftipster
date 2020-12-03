@@ -22,7 +22,7 @@ const betSchema = new Schema({
     },
     date: {
         type: Date,
-        default: new Date()
+        default:  Date.now
     },
     status: {
         type: String,

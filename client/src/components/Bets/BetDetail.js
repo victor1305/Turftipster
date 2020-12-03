@@ -19,6 +19,7 @@ const BetDetail = (props) => {
             .then(response => loadBetDetail(response.data))
             .catch(err => console.log(err))
         }
+        // eslint-disable-next-line
     }, [id])
 
     const { date, status, bookie, racecourse, race, betName, stake, price, profit, betCode, position } = betDetail
@@ -112,7 +113,7 @@ const BetDetail = (props) => {
             <p><strong>Cuota: </strong>{price}</p>
             <p><strong>Stake: </strong>{stake}</p>   
             <p><strong>Resultado: </strong>{position}</p>
-            <p><strong>Beneficio: </strong>{profit} Uds</p>
+            <p><strong>Beneficio: </strong>{profit.toFixed(2)} Uds</p>
             <p><strong>Fecha: </strong>{dateFormated}</p>
             {props.loggedInUser && 
             <p><strong>Código: </strong>{betCode}</p> 
