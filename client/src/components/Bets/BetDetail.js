@@ -22,7 +22,7 @@ const BetDetail = (props) => {
         // eslint-disable-next-line
     }, [id])
 
-    const { date, status, bookie, racecourse, race, betName, stake, price, profit, betCode, position } = betDetail
+    let { date, status, bookie, racecourse, race, betName, stake, price, profit, betCode, position } = betDetail
 
     const betWin = () => {
 
@@ -100,6 +100,10 @@ const BetDetail = (props) => {
         dateFormated = new Date(date).toLocaleDateString()
     } 
 
+    if (profit) {
+        profit = profit.toFixed(2)
+    }
+
     
     return (
         
@@ -113,7 +117,7 @@ const BetDetail = (props) => {
             <p><strong>Cuota: </strong>{price}</p>
             <p><strong>Stake: </strong>{stake}</p>   
             <p><strong>Resultado: </strong>{position}</p>
-            <p><strong>Beneficio: </strong>{profit.toFixed(2)} Uds</p>
+            <p><strong>Beneficio: </strong>{profit} Uds</p>
             <p><strong>Fecha: </strong>{dateFormated}</p>
             {props.loggedInUser && 
             <p><strong>Código: </strong>{betCode}</p> 

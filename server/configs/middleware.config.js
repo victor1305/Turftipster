@@ -7,7 +7,11 @@ const cors = require('cors')
 const whitelist = [
     process.env.DOMAIN, 
     "http://localhost:3000",
-    "http://localhost:5000"   
+    "http://localhost:5000",
+    "https://turftipster.es",
+    "https://turftipster.com",
+    "http://turftipster.es",
+    "http://turftipster.com"  
 ];
 
 const corsOptions = {
