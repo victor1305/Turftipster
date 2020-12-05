@@ -6,8 +6,8 @@ export default class AuthService {
 
         this.service = axios.create({
 
-          baseURL: 'http://localhost:5000/api', //CAMBIAR PARA DEPLOY
-          // baseURL: process.env.REACT_APP_API_URL,
+          baseURL: 'http://localhost:5000/api', //PARA LOCAL
+          // baseURL: process.env.REACT_APP_API_URL, //PARA DEPLOY
           withCredentials: true,
         });
     }

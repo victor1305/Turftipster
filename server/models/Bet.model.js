@@ -9,7 +9,7 @@ const betSchema = new Schema({
         type: String
     },
     race: {
-        type: Number
+        type: String
     },
     betName: {
         type: String

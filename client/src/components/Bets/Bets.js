@@ -75,12 +75,19 @@ const Bets = (props) => {
                 }
             </div>
             }
+            {props.loggedInUser &&
             <div className = "bet-pages-container"> 
+                {page > 0 &&
                 <button onClick={previousPage} className = "previous-page"/>
+                }
+                {totalPage > 0 &&
                 <span>Página {page} de {totalPage}</span>
+                }
+                {page < totalPage &&
                 <button onClick={nextPage} className = "next-page"/> 
+                }
             </div>
-            
+            }
         </div>
     );
 }
