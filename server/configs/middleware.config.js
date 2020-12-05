@@ -6,6 +6,8 @@ const cors = require('cors')
 
 const whitelist = [
     process.env.DOMAIN, 
+    process.env.DOMAIN_REMOTE,
+    process.env.DOMAIN_LOCAL,
     "http://localhost:3000",
     "http://localhost:5000",
     "https://turftipster.es",
