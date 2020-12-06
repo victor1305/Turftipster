@@ -3,8 +3,8 @@ import React from 'react';
 const WFav = () => {
     return (
         <article>
-            <h2 className = "item-title">Ganador Sin Favorito</h2>
-            <p className = "item-p-text">Este tipo de apuesta es como la de ganador con la salvedad de que el favorito no cuenta de cara a apuestas, es decir, si apostamos por un caballo sin favorito y gana el favorito y el nuestro queda segundo, nuestra apuesta sería ganadora.</p>
+            <h2 className = "item-title">Ganador Sin El Favorito o Sin Los Favoritos</h2>
+            <p className = "item-p-text">Nuestra apuesta será ganadora si nuestra caballo gana o finaliza batido solamente por el favorito o favoritos (En función de los que hayamos jugado) designados por el bookie.</p>
         </article>
     );
 }

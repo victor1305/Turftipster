@@ -6,6 +6,16 @@ const checkAuth = (req, res, next) => req.isAuthenticated() ? next() : res.redir
 
 router.post('/crear-apuesta', checkAuth, (req, res, next) => {
 
+    if (req.body.status === "win") {
+
+        req.body.profit = (req.body.stake * req.body.price) - req.body.stake
+    }
+
+    else if (req.body.status === "loss") {
+
+        req.body.profit = - req.body.stake
+    }
+
     Bet.create(req.body)
         .then(response => res.json(response))
         .catch(err => next(err))
@@ -79,28 +89,34 @@ router.put('/detalle-apuesta/:id/edit-status', checkAuth, (req, res, next) =>{
 
 router.put('/detalle-apuesta/:id/edit', checkAuth, (req, res, next) =>{
 
+    console.log(req.body)
+
 
     let statusProcessed = {}
     let profitValue = 0
 
     if(req.body.status === "win") {
         profitValue = (req.body.stake * req.body.price) - req.body.stake
-        statusProcessed = {profit: profitValue}
 
     } else if (req.body.status === "loss") {
         profitValue =- req.body.stake
-        statusProcessed = {profit: profitValue}
-    
-    } else if (req.body.status === "void") {
-        statusProcessed = {profit: profitValue}
-
-    } else {
-        statusProcessed = {profit: profitValue}
     }
 
-    const newBody = Object.assign(req.body, statusProcessed)
+    statusProcessed = {
+        profit: profitValue,
+        bookie: req.body.bookie,
+        racecourse: req.body.racecourse,
+        race: req.body.race,
+        betName: req.body.betName,
+        price: req.body.price,
+        stake: req.body.stake,
+        status: req.body.status,
+        position: req.body.position,
+        date: req.body.date,
+        betCode: req.body.betCode
+    }
 
-    Bet.findByIdAndUpdate(req.params.id, newBody, {new: true})
+    Bet.findByIdAndUpdate(req.params.id, statusProcessed, {new: true})
         .then((bet) => res.json(bet))
         .catch(err => next(err))
 })
