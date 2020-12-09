@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import Stats2020 from './Years/Stats2020'
 import Stats2019 from './Years/Stats2019'
@@ -8,11 +8,18 @@ import Stats2016 from './Years/Stats2016';
 import StatsNextYears from './Years/StatsNextYears';
 
 import horseImage from '../../images/horse-1165103_1920full.jpg'
+import AOS from "aos";
+import "aos/dist/aos.css"
 
 
 const Stats = (props) => {
 
     const [ statsYear, updateYear ] = useState({})
+
+    useEffect(() => {
+        AOS.init();
+        AOS.refresh();
+    });
 
     const changeYear = (e) => {
         updateYear({
@@ -36,22 +43,34 @@ const Stats = (props) => {
             </div>
             <div className = "stats-table-container">
             {statsYear.statYear === 2021 &&
-            <StatsNextYears {...props}{...statsYear}/>
+            <div data-aos="fade-right" data-aos-duration="1500" >
+                <StatsNextYears {...props}{...statsYear}/>
+            </div>
             }
             {statsYear.statYear === 2020 &&
-            <Stats2020/>
+            <div data-aos="fade-right" data-aos-duration="1500" >
+                <Stats2020 data-aos="fade-right"/>
+            </div>
             }
             {statsYear.statYear === 2019 &&
-            <Stats2019/>
+            <div data-aos="fade-right" data-aos-duration="1500" >
+                <Stats2019/>
+            </div>
             }
             {statsYear.statYear === 2018 &&
-            <Stats2018/>
+            <div data-aos="fade-right" data-aos-duration="1500" >
+                <Stats2018/>
+            </div>
             }
             {statsYear.statYear === 2017 &&
-            <Stats2017/>
+            <div data-aos="fade-right" data-aos-duration="1500" >
+                <Stats2017/>
+            </div>
             }
             {statsYear.statYear === 2016 &&
-            <Stats2016/>
+            <div data-aos="fade-right" data-aos-duration="1500" >
+                <Stats2016/>
+            </div>
             }
             </div>
             {!statsYear.statYear &&

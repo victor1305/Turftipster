@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
 
 import Unit from './Terminology/Unit'
@@ -8,35 +8,27 @@ import Yield from './Terminology/Yield'
 
 import horseHeadImage from '../../images/horseHead.jpg'
 
+import AOS from "aos";
+import "aos/dist/aos.css"
+
 const NextStep = () => {
 
-    const [ terminology, updateTerminology ] = useState({
-        state: ""
-    })
+    const [ terminology, updateTerminology ] = useState({})
 
-    const showBank = () => {
+    useEffect(() => {
+        AOS.init();
+        AOS.refresh();
+    });
+
+    const show = (e) => {
+
+        e.preventDefault()
+
         updateTerminology({
-            state: "bank"
+            state: e.target.innerHTML
         })
     }
 
-    const showUnit = () => {
-        updateTerminology({
-            state: "unit"
-        })
-    }
-
-    const showStake = () => {
-        updateTerminology({
-            state: "stake"
-        })
-    }
-
-    const showYield = () => {
-        updateTerminology({
-            state: "yield"
-        })
-    }
 
     return (
         <div className = "section-container" >
@@ -48,32 +40,55 @@ const NextStep = () => {
                         <Container>
                             <Row>
                                 <Col className = "terminology-container" >
-                                    {terminology.state === "bank" &&
+                                    {terminology.state === "Bank" &&
+                                    <div 
+                                        data-aos="fade-down"
+                                        data-aos-offset="500"
+                                        data-aos-duration="1000">
                                     <Bank/>
+                                    </div>
                                     }
-                                    {terminology.state === "unit" &&
+                                    {terminology.state === "Unidad" &&
+                                    <div
+                                        data-aos="fade-down"
+                                        data-aos-offset="500"
+                                        data-aos-duration="1000"
+                                    >
                                     <Unit/>
+                                    </div>
                                     }
-                                    {terminology.state === "yield" &&
+                                    {terminology.state === "Yield" &&
+                                    <div
+                                        data-aos="fade-down"
+                                        data-aos-offset="500"
+                                        data-aos-duration="1000"
+                                    >
                                     <Yield/>
+                                    </div>
                                     }
-                                    {terminology.state === "stake" &&
+                                    {terminology.state === "Stake" &&
+                                    <div
+                                        data-aos="fade-down"
+                                        data-aos-offset="500"
+                                        data-aos-duration="1000"
+                                    >
                                     <Stake/>
+                                    </div>
                                     }
                                 </Col>
                             </Row>
                             <Row className = "next-step-btn-container">
                                 <Col xs = {12} sm = {6} md = {6} xl = {3} className = "btn-contaniner">
-                                    <a href = "#title"><button className = "horse-race-btn" onClick = {showBank}><span>Bank</span></button></a>
+                                    <a href = "#title"><button className = "horse-race-btn" onClick = {show}>Bank</button></a>
                                 </Col>
                                 <Col xs = {12} sm = {6} md = {6} xl = {3} className = "btn-contaniner">
-                                    <a href = "#title"><button className = "horse-race-btn" onClick = {showUnit}><span>Unidad</span></button></a>
+                                    <a href = "#title"><button className = "horse-race-btn" onClick = {show}>Unidad</button></a>
                                 </Col>
                                 <Col xs = {12} sm = {6} md = {6} xl = {3} className = "btn-contaniner">
-                                    <a href = "#title"><button className = "horse-race-btn" onClick = {showYield}><span>Yield</span></button></a>
+                                    <a href = "#title"><button className = "horse-race-btn" onClick = {show}>Yield</button></a>
                                 </Col>
                                 <Col xs = {12} sm = {6} md = {6} xl = {3} className = "btn-contaniner">
-                                    <a href = "#title"><button className = "horse-race-btn" onClick = {showStake}><span>Stake</span></button></a>
+                                    <a href = "#title"><button className = "horse-race-btn" onClick = {show}>Stake</button></a>
                                 </Col>
                             </Row>
                         </Container>

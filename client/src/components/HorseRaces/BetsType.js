@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 
 import Win from './BetsType/Win'
@@ -10,53 +10,25 @@ import Insure from './BetsType/Insure'
 
 import horseChantilly from '../../images/jockeyCha.jpg'
 
+import AOS from "aos";
+import "aos/dist/aos.css"
+
 const BetsType = () => {
     
-    const [ betsType, updateBetsType ] = useState({
-        state: ""
-    })
+    const [ betsType, updateBetsType ] = useState({})
+
+    useEffect(() => {
+        AOS.init();
+        AOS.refresh();
+    });
 
     // When the user press a button
 
-    const submitWin = () => {
+    const submit = (e) => {
 
+        e.preventDefault()
         updateBetsType({
-            state: "win"
-        })
-    }
-
-    const submitPlace = () => {
-
-        updateBetsType({
-            state: "place"
-        })
-    }
-
-    const submitOrdre = () => {
-
-        updateBetsType({
-            state: "ordre"
-        })
-    }
-
-    const submitTrio = () => {
-
-        updateBetsType({
-            state: "trio"
-        })
-    }
-
-    const submitWFav = () => {
-
-        updateBetsType({
-            state: "wfav"
-        })
-    }
-
-    const submitInsure = () => {
-
-        updateBetsType({
-            state: "insure"
+            state: e.target.value
         })
     }
 
@@ -71,43 +43,55 @@ const BetsType = () => {
                             <Row>
                                 <Col className = "items-container">
                                     {betsType.state === "win" &&
-                                    <Win/>
+                                    <div data-aos="zoom-in">
+                                        <Win/>
+                                    </div>    
                                     }
                                     {betsType.state === "place" &&
-                                    <Place/>
+                                    <div data-aos="zoom-in">
+                                        <Place/>
+                                    </div>
                                     }
                                     {betsType.state === "ordre" &&
-                                    <Ordre/>
+                                    <div data-aos="zoom-in">
+                                        <Ordre/>
+                                    </div>
                                     }
                                     {betsType.state === "trio" &&
-                                    <Trio/>
+                                    <div data-aos="zoom-in">
+                                        <Trio/>
+                                    </div>
                                     }
                                     {betsType.state === "wfav" &&
-                                    <WFav/>
+                                    <div data-aos="zoom-in">
+                                        <WFav/>
+                                    </div>
                                     }
                                     {betsType.state === "insure" &&
-                                    <Insure/>
+                                    <div data-aos="zoom-in">
+                                        <Insure/>
+                                    </div>
                                     }
                                 </Col>
                             </Row>
                             <Row className = "next-step-btn-container">
                                 <Col xs = {6} sm = {6} md = {4} xl = {4} className = "btn-contaniner">
-                                    <a href = "#title"><button className = "horse-race-btn" onClick = {submitWin}>Ganador</button></a>
+                                    <a href = "#title"><button className = "horse-race-btn" value = "win" onClick = {submit}>Ganador</button></a>
                                 </Col>
                                 <Col xs = {6} sm = {6} md = {4} xl = {4} className = "btn-contaniner">
-                                    <a href = "#title"><button className = "horse-race-btn" onClick = {submitPlace}>Colocado</button></a>
+                                    <a href = "#title"><button className = "horse-race-btn" value = "place" onClick = {submit}>Colocado</button></a>
                                 </Col>
                                 <Col xs = {6} sm = {6} md = {4} xl = {4} className = "btn-contaniner">
-                                    <a href = "#title"><button className = "horse-race-btn" onClick = {submitOrdre}>Gemela</button></a>
+                                    <a href = "#title"><button className = "horse-race-btn" value = "ordre" onClick = {submit}>Gemela</button></a>
                                 </Col>
                                 <Col xs = {6} sm = {6} md = {4} xl = {4} className = "btn-contaniner">
-                                    <a href = "#title"><button className = "horse-race-btn" onClick = {submitTrio}>Trio</button></a>
+                                    <a href = "#title"><button className = "horse-race-btn" value = "trio" onClick = {submit}>Trio</button></a>
                                 </Col>
                                 <Col xs = {6} sm = {6} md = {4} xl = {4} className = "btn-contaniner">
-                                    <a href = "#title"><button className = "horse-race-btn" onClick = {submitWFav}>Sin Fav</button></a>
+                                    <a href = "#title"><button className = "horse-race-btn" value = "wfav" onClick = {submit}>Sin Fav</button></a>
                                 </Col>
                                 <Col xs = {6} sm = {6} md = {4} xl = {4} className = "btn-contaniner">
-                                    <a href = "#title"><button className = "horse-race-btn" onClick = {submitInsure}>Seguro</button></a>
+                                    <a href = "#title"><button className = "horse-race-btn" value = "insure" onClick = {submit}>Seguro</button></a>
                                 </Col>
                             </Row>
                         </Container>
