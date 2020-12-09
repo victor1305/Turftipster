@@ -14,39 +14,9 @@ const Stats = (props) => {
 
     const [ statsYear, updateYear ] = useState({})
 
-    const changeYear2016 = () => {
+    const changeYear = (e) => {
         updateYear({
-            statYear: 2016
-        })
-    }
-
-    const changeYear2017 = () => {
-        updateYear({
-            statYear: 2017
-        })
-    }
-
-    const changeYear2018 = () => {
-        updateYear({
-            statYear: 2018
-        })
-    }
-
-    const changeYear2019 = () => {
-        updateYear({
-            statYear: 2019
-        })
-    }
-
-    const changeYear2020 = () =>{
-        updateYear({
-            statYear: 2020
-        })
-    }
-
-    const changeYear2021 = () => {
-        updateYear({
-            statYear: 2021
+            statYear: parseInt(e.target.value)
         })
     }
     
@@ -57,12 +27,12 @@ const Stats = (props) => {
             <h6 className = "stats-subtitle">Ponemos a tu disposición nuestros números desde que empezamos a pronosticar publicamente en el año 2016.</h6>
             <h4 className = "stats-h4">Selecciona un Año</h4>
             <div className = "stats-btn-container">
-                <button className = "stats-btn" onClick = {changeYear2016}><span>2016</span></button>
-                <button className = "stats-btn" onClick = {changeYear2017}><span>2017</span></button>
-                <button className = "stats-btn" onClick = {changeYear2018}><span>2018</span></button>
-                <button className = "stats-btn" onClick = {changeYear2019}><span>2019</span></button>
-                <button className = "stats-btn" onClick = {changeYear2020}><span>2020</span></button>
-                <button className = "stats-btn" onClick = {changeYear2021}><span>2021</span></button>
+                <button className = "stats-btn" value = "2016" onClick = {changeYear}>2016</button>
+                <button className = "stats-btn" value = "2017" onClick = {changeYear}>2017</button>
+                <button className = "stats-btn" value = "2018" onClick = {changeYear}>2018</button>
+                <button className = "stats-btn" value = "2019" onClick = {changeYear}>2019</button>
+                <button className = "stats-btn" value = "2020" onClick = {changeYear}>2020</button>
+                <button className = "stats-btn" value = "2021" onClick = {changeYear}>2021</button>
             </div>
             <div className = "stats-table-container">
             {statsYear.statYear === 2021 &&

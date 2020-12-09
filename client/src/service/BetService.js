@@ -8,7 +8,7 @@ export default class BetService {
 
             baseURL: 'http://localhost:5000/api', //PARA LOCAL
             // baseURL: process.env.REACT_APP_API_URL, //PARA DEPLOY
-            // baseURL: 'https://turftipsterserver.herokuapp.com/api', //PRUEBA
+            //baseURL: 'https://turftipsterserver.herokuapp.com/api', //PRUEBA
             withCredentials: true
         })
     }

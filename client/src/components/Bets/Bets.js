@@ -26,7 +26,7 @@ const Bets = (props) => {
     useEffect(() => {
         fetchUsers(limit, skip)
         // eslint-disable-next-line
-    }, [skip, limit])
+    }, [skip, limit, totalBet])
 
     useEffect(() => {
         loadBets()

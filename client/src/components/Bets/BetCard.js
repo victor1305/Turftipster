@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Link } from 'react-router-dom'
 
-const BetCard = ({ _id, status, bookie, racecourse, race, betName, stake, price, profit, loggedInUser }) => {
+const BetCard = ({ _id, status, bookie, racecourse, race, betName, stake, price, profit, date }) => {
 
     let betstate = ""
 
@@ -19,6 +19,12 @@ const BetCard = ({ _id, status, bookie, racecourse, race, betName, stake, price,
         betstate = "card-p-void"
     }
 
+    let dateFormated = ""
+
+    if (date) {
+        dateFormated = new Date(date).toLocaleDateString()
+    } 
+
 
     return (
         
@@ -28,7 +34,8 @@ const BetCard = ({ _id, status, bookie, racecourse, race, betName, stake, price,
             <p className = "card-p">{betName}</p>
             <p className = "card-p"><strong>Stake: </strong>{stake}</p>
             <p className = "card-p"><strong>Cuota: </strong>{price}</p>
-            <p className = {betstate}><strong className = "card-strong">Ganancia: </strong>{profit.toFixed(2)} Uds</p>            
+            <p className = {betstate}><strong className = "card-strong">Ganancia: </strong>{profit.toFixed(2)} Uds</p>       
+            <p className = "card-p"><strong>{dateFormated}</strong></p>     
             <div>
             <Link to={`/detalle-apuesta/${_id}`} className = "card-a"><button className = "card-btn">Detalles</button></Link>     
             </div>

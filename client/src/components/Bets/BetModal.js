@@ -56,11 +56,6 @@ const BetModal = (props) => {
 
         const id = props.match.params.id
 
-        createBet({
-            bookie: props.bookie
-            
-        })
-
         betservice
             .updateBet(id, bet)
             .then (() => handleClose(), props.history.push('/apuestas'))
