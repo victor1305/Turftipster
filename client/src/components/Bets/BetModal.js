@@ -94,6 +94,7 @@ const BetModal = (props) => {
         'Machecoul',
         'Marseille Borely',
         'Marseille Vivaux',
+        'Meydan',
         'Mont de Marsan',
         'Moulins',
         'Nancy',

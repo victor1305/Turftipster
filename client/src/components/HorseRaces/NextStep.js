@@ -43,7 +43,6 @@ const NextStep = () => {
                                     {terminology.state === "Bank" &&
                                     <div 
                                         data-aos="fade-down"
-                                        data-aos-offset="500"
                                         data-aos-duration="1000">
                                     <Bank/>
                                     </div>
@@ -51,7 +50,6 @@ const NextStep = () => {
                                     {terminology.state === "Unidad" &&
                                     <div
                                         data-aos="fade-down"
-                                        data-aos-offset="500"
                                         data-aos-duration="1000"
                                     >
                                     <Unit/>
@@ -60,7 +58,6 @@ const NextStep = () => {
                                     {terminology.state === "Yield" &&
                                     <div
                                         data-aos="fade-down"
-                                        data-aos-offset="500"
                                         data-aos-duration="1000"
                                     >
                                     <Yield/>
@@ -69,7 +66,6 @@ const NextStep = () => {
                                     {terminology.state === "Stake" &&
                                     <div
                                         data-aos="fade-down"
-                                        data-aos-offset="500"
                                         data-aos-duration="1000"
                                     >
                                     <Stake/>

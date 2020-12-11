@@ -42,6 +42,15 @@ body {
   border: 2px solid  #38A700;
 }
 
+.spinner-container {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+.spinner {
+  text-align: center;
+}
+
 .forms-container {
   padding-top: 2%;
   min-height: 100vh;
@@ -293,6 +302,28 @@ body {
 }
 
 .stats-btn:hover { 
+  margin-top: 0px;
+  margin-bottom: 0px;
+  border: 2px solid  #38A700;
+}
+
+.stats-type-btn {
+  width: 125px;
+  font-size: 1rem;
+  background-color: transparent;
+  border-color: #212529;
+  border-width: 1px;
+  justify-content: center;
+  padding-bottom: calc(0.5em - 1px);
+  padding-left: 1em;
+  padding-right: 1em;
+  padding-top: calc(0.5em - 1px);
+  text-align: center;
+  border-radius: 0.75rem;
+  margin: 5px
+}
+
+.stats-type-btn:hover { 
   margin-top: 0px;
   margin-bottom: 0px;
   border: 2px solid  #38A700;

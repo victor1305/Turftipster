@@ -12,7 +12,7 @@ const Bets = (props) => {
     const [ betList, loadBetList ] = useState([])
     const [ totalBet, loadTotalBetList ] = useState(0)
     // eslint-disable-next-line
-    const [limit, setLimit] = useState(50);
+    const [limit, setLimit] = useState(42);
     const [skip, setSkip] = useState(0);
 
     const nextPage = () => {

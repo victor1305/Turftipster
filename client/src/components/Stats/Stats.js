@@ -6,10 +6,14 @@ import Stats2018 from './Years/Stats2018'
 import Stats2017 from './Years/Stats2017'
 import Stats2016 from './Years/Stats2016';
 import StatsNextYears from './Years/StatsNextYears';
+import StatsRaceCourses from './Years/StatsRaceCourses';
+import StatsCategory from './Years/StatsCategory'
+import StatsStakes from './Years/StatsStakes'
 
 import horseImage from '../../images/horse-1165103_1920full.jpg'
 import AOS from "aos";
 import "aos/dist/aos.css"
+
 
 
 const Stats = (props) => {
@@ -22,10 +26,27 @@ const Stats = (props) => {
     });
 
     const changeYear = (e) => {
+
         updateYear({
             statYear: parseInt(e.target.value)
         })
     }
+
+    const changeType = (e) => {
+
+        e.preventDefault()
+        updateYear({
+            statYear: statsYear.statYear,
+            statType: e.target.value
+        })
+
+    }
+
+    let today = new Date()
+    let todayms = Date.parse(today)
+
+    let button2021 = "2021-01-01T00:00:00.951+00:00"
+    let button2021ms = Date.parse(button2021)
     
     return (
 
@@ -39,17 +60,42 @@ const Stats = (props) => {
                 <button className = "stats-btn" value = "2018" onClick = {changeYear}>2018</button>
                 <button className = "stats-btn" value = "2019" onClick = {changeYear}>2019</button>
                 <button className = "stats-btn" value = "2020" onClick = {changeYear}>2020</button>
+                {todayms > button2021ms &&
                 <button className = "stats-btn" value = "2021" onClick = {changeYear}>2021</button>
+                }
             </div>
+            {statsYear.statYear >= 2021 &&
+            <div className = "stats-btn-container">
+                <button className = "stats-type-btn" value = "months" onClick = {changeType}>Meses</button>
+                <button className = "stats-type-btn" value = "racecourses" onClick = {changeType}>Hipódromos</button>
+                <button className = "stats-type-btn" value = "category" onClick = {changeType}>Categorías</button>
+                <button className = "stats-type-btn" value = "stakes" onClick = {changeType}>Stakes</button>
+            </div>
+            }
             <div className = "stats-table-container">
-            {statsYear.statYear === 2021 &&
+            {((statsYear.statYear >= 2021 && !statsYear.statType) || (statsYear.statYear >= 2021 && statsYear.statType === "months"))&&
             <div data-aos="fade-right" data-aos-duration="1500" >
                 <StatsNextYears {...props}{...statsYear}/>
             </div>
             }
+            {(statsYear.statYear >= 2021 && statsYear.statType === "racecourses")&&
+            <div data-aos="fade-right" data-aos-duration="1500" >
+                <StatsRaceCourses {...props}{...statsYear}/>
+            </div>
+            }
+            {(statsYear.statYear >= 2021 && statsYear.statType === "category")&&
+            <div data-aos="fade-right" data-aos-duration="1500" >
+                <StatsCategory {...props}{...statsYear}/>
+            </div>
+            }
+            {(statsYear.statYear >= 2021 && statsYear.statType === "stakes")&&
+            <div data-aos="fade-right" data-aos-duration="1500" >
+                <StatsStakes {...props}{...statsYear}/>
+            </div>
+            }
             {statsYear.statYear === 2020 &&
             <div data-aos="fade-right" data-aos-duration="1500" >
-                <Stats2020 data-aos="fade-right"/>
+                <Stats2020/>
             </div>
             }
             {statsYear.statYear === 2019 &&
