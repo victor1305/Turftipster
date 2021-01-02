@@ -317,7 +317,7 @@ const StatsNextYears = (props) => {
                 void: betsVoidJanuary.length,
                 percent: ((betsWinJanuary.length / (betsLossJanuary.length + betsWinJanuary.length)) * 100).toFixed(2),
                 averageStake: (totalStakeJanuary / betsJanuary.length).toFixed(2),
-                totalUds: totalStakeJanuary,
+                totalUds: totalStakeJanuary.toFixed(2),
                 profitUds: januaryProfitUds.toFixed(2),
                 yield: ((januaryProfitUds * 100) / totalStakeJanuary).toFixed(2)
             },
@@ -328,7 +328,7 @@ const StatsNextYears = (props) => {
                 void: betsVoidFebruary.length,
                 percent: ((betsWinFebruary.length / (betsLossFebruary.length + betsWinFebruary.length)) * 100).toFixed(2),
                 averageStake: (totalStakeFebruary / betsFebruary.length).toFixed(2),
-                totalUds: totalStakeFebruary,
+                totalUds: totalStakeFebruary.toFixed(2),
                 profitUds: februaryProfitUds.toFixed(2),
                 yield: ((februaryProfitUds * 100) / totalStakeFebruary).toFixed(2)
             },
@@ -339,7 +339,7 @@ const StatsNextYears = (props) => {
                 void: betsVoidMarch.length,
                 percent: ((betsWinMarch.length / (betsLossMarch.length + betsWinMarch.length)) * 100).toFixed(2),
                 averageStake: (totalStakeMarch / betsMarch.length).toFixed(2),
-                totalUds: totalStakeMarch,
+                totalUds: totalStakeMarch.toFixed(2),
                 profitUds: marchProfitUds.toFixed(2),
                 yield: ((marchProfitUds * 100) / totalStakeMarch).toFixed(2)
                 
@@ -351,7 +351,7 @@ const StatsNextYears = (props) => {
                 void: betsVoidApril.length,
                 percent: ((betsWinApril.length / (betsLossApril.length + betsWinApril.length)) * 100).toFixed(2),
                 averageStake: (totalStakeApril / betsApril.length).toFixed(2),
-                totalUds: totalStakeApril,
+                totalUds: totalStakeApril.toFixed(2),
                 profitUds: aprilProfitUds.toFixed(2),
                 yield: ((aprilProfitUds * 100) / totalStakeApril).toFixed(2)
             },
@@ -362,7 +362,7 @@ const StatsNextYears = (props) => {
                 void: betsVoidMay.length,
                 percent: ((betsWinMay.length / (betsLossMay.length + betsWinMay.length)) * 100).toFixed(2),
                 averageStake: (totalStakeMay / betsMay.length).toFixed(2),
-                totalUds: totalStakeMay,
+                totalUds: totalStakeMay.toFixed(2),
                 profitUds: mayProfitUds.toFixed(2),
                 yield: ((mayProfitUds * 100) / totalStakeMay).toFixed(2)
             },
@@ -373,7 +373,7 @@ const StatsNextYears = (props) => {
                 void: betsVoidJune.length,
                 percent: ((betsWinJune.length / (betsLossJune.length + betsWinJune.length)) * 100).toFixed(2),
                 averageStake: (totalStakeJune / betsJune.length).toFixed(2),
-                totalUds: totalStakeJune,
+                totalUds: totalStakeJune.toFixed(2),
                 profitUds: juneProfitUds.toFixed(2),
                 yield: ((juneProfitUds * 100) / totalStakeJune).toFixed(2)
             },
@@ -384,7 +384,7 @@ const StatsNextYears = (props) => {
                 void: betsVoidJuly.length,
                 percent: ((betsWinJuly.length / (betsLossJuly.length + betsWinJuly.length)) * 100).toFixed(2),
                 averageStake: (totalStakeJuly / betsJuly.length).toFixed(2),
-                totalUds: totalStakeJuly,
+                totalUds: totalStakeJuly.toFixed(2),
                 profitUds: julyProfitUds.toFixed(2),
                 yield: ((julyProfitUds * 100) / totalStakeJuly).toFixed(2)
             },
@@ -395,7 +395,7 @@ const StatsNextYears = (props) => {
                 void: betsVoidAugust.length,
                 percent: ((betsWinAugust.length / (betsLossAugust.length + betsWinAugust.length)) * 100).toFixed(2),
                 averageStake: (totalStakeAugust / betsAugust.length).toFixed(2),
-                totalUds: totalStakeAugust,
+                totalUds: totalStakeAugust.toFixed(2),
                 profitUds: augustProfitUds.toFixed(2),
                 yield: ((augustProfitUds * 100) / totalStakeAugust).toFixed(2)
             },
@@ -406,7 +406,7 @@ const StatsNextYears = (props) => {
                 void: betsVoidSeptember.length,
                 percent: ((betsWinSeptember.length / (betsLossSeptember.length + betsWinSeptember.length)) * 100).toFixed(2),
                 averageStake: (totalStakeSeptember / betsSeptember.length).toFixed(2),
-                totalUds: totalStakeSeptember,
+                totalUds: totalStakeSeptember.toFixed(2),
                 profitUds: septemberProfitUds.toFixed(2),
                 yield: ((septemberProfitUds * 100) / totalStakeSeptember).toFixed(2)
             },
@@ -417,7 +417,7 @@ const StatsNextYears = (props) => {
                 void: betsVoidOctober.length,
                 percent: ((betsWinOctober.length / (betsLossOctober.length + betsWinOctober.length)) * 100).toFixed(2),
                 averageStake: (totalStakeOctober / betsOctober.length).toFixed(2),
-                totalUds: totalStakeOctober,
+                totalUds: totalStakeOctober.toFixed(2),
                 profitUds: octoberProfitUds.toFixed(2),
                 yield: ((octoberProfitUds * 100) / totalStakeOctober).toFixed(2)
             },
@@ -428,7 +428,7 @@ const StatsNextYears = (props) => {
                 void: betsVoidNovember.length,
                 percent: ((betsWinNovember.length / (betsLossNovember.length + betsWinNovember.length)) * 100).toFixed(2),
                 averageStake: (totalStakeNovember / betsNovember.length).toFixed(2),
-                totalUds: totalStakeNovember,
+                totalUds: totalStakeNovember.toFixed(2),
                 profitUds: novemberProfitUds.toFixed(2),
                 yield: ((novemberProfitUds * 100) / totalStakeNovember).toFixed(2)
 
@@ -440,7 +440,7 @@ const StatsNextYears = (props) => {
                 void: betsVoidDecember.length,
                 percent: ((betsWinDecember.length / (betsLossDecember.length + betsWinDecember.length)) * 100).toFixed(2),
                 averageStake: (totalStakeDecember / betsDecember.length).toFixed(2),
-                totalUds: totalStakeDecember,
+                totalUds: totalStakeDecember.toFixed(2),
                 profitUds: decemberProfitUds.toFixed(2),
                 yield: ((decemberProfitUds * 100) / totalStakeDecember).toFixed(2)
             },
@@ -451,7 +451,7 @@ const StatsNextYears = (props) => {
                 void: betsVoidYear.length,
                 percent: ((betsWinYear.length / (betsLossYear.length + betsWinYear.length)) * 100).toFixed(2),
                 averageStake: (totalStakeYear / betsYear).toFixed(2),
-                totalUds: totalStakeYear,
+                totalUds: totalStakeYear.toFixed(2),
                 profitUds: yearProfitUds.toFixed(2),
                 yield: ((yearProfitUds * 100) / totalStakeYear).toFixed(2)
             }
