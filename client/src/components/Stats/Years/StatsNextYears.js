@@ -493,7 +493,7 @@ const StatsNextYears = (props) => {
                         <td>{year.january.percent !== "NaN" ? `${year.january.percent}%` : "Sin datos"}</td>
                         <td>{year.january.averageStake === "NaN" ? "Sin Datos" : year.january.averageStake}</td>
                         <td>{year.january.totalUds}</td>
-                        <td className = {year.january.yield >= 0 ? "stats-green" : "stats-red"}>{year.january.yield !== "NaN" ? `${year.january.yield}%` : "Sin datos"}</td>
+                        <td className = {year.january.yield >= 0 ? "stats-green" : (year.january.yield < 0 ? "stats-red" : "stats-blue")}>{year.january.yield !== "NaN" ? `${year.january.yield}%` : "Sin datos"}</td>
                         <td className = {year.january.profitUds >= 0 ? "stats-green" : "stats-red"}>{year.january.profitUds}</td>
                     </tr>
                     <tr>
@@ -505,7 +505,7 @@ const StatsNextYears = (props) => {
                         <td>{year.february.percent !== "NaN" ? `${year.february.percent}%` : "Sin datos"}</td>
                         <td>{year.february.averageStake === "NaN" ? "Sin Datos" : year.february.averageStake}</td>
                         <td>{year.february.totalUds}</td>
-                        <td className = {year.february.yield >= 0 ? "stats-green" : "stats-red"}>{year.february.yield !== "NaN" ? `${year.february.yield}%` : "Sin datos"}</td>
+                        <td className = {year.february.yield >= 0 ? "stats-green" : (year.february.yield < 0 ? "stats-red" : "stats-blue")}>{year.february.yield !== "NaN" ? `${year.february.yield}%` : "Sin datos"}</td>
                         <td className = {year.february.profitUds >= 0 ? "stats-green" : "stats-red"}>{year.february.profitUds}</td>
                     </tr>
                     <tr>
@@ -517,7 +517,7 @@ const StatsNextYears = (props) => {
                         <td>{year.march.percent !== "NaN" ? `${year.march.percent}%` : "Sin datos"}</td>
                         <td>{year.march.averageStake === "NaN" ? "Sin Datos" : year.march.averageStake}</td>
                         <td>{year.march.totalUds}</td>
-                        <td className = {year.march.yield >= 0 ? "stats-green" : "stats-red"}>{year.march.yield !== "NaN" ? `${year.march.yield}%` : "Sin datos"}</td>
+                        <td className = {year.march.yield >= 0 ? "stats-green" : (year.march.yield < 0 ? "stats-red" : "stats-blue")}>{year.march.yield !== "NaN" ? `${year.march.yield}%` : "Sin datos"}</td>
                         <td className = {year.march.profitUds >= 0 ? "stats-green" : "stats-red"}>{year.march.profitUds}</td>
                     </tr>
                     <tr>
@@ -529,7 +529,7 @@ const StatsNextYears = (props) => {
                         <td>{year.april.percent !== "NaN" ? `${year.april.percent}%` : "Sin datos"}</td>
                         <td>{year.april.averageStake === "NaN" ? "Sin Datos" : year.april.averageStake}</td>
                         <td>{year.april.totalUds}</td>
-                        <td className = {year.april.yield >= 0 ? "stats-green" : "stats-red"}>{year.april.yield !== "NaN" ? `${year.april.yield}%` : "Sin datos"}</td>
+                        <td className = {year.april.yield >= 0 ? "stats-green" : (year.april.yield < 0 ? "stats-red" : "stats-blue")}>{year.april.yield !== "NaN" ? `${year.april.yield}%` : "Sin datos"}</td>
                         <td className = {year.april.profitUds >= 0 ? "stats-green" : "stats-red"}>{year.april.profitUds}</td>
                     </tr>
                     <tr>
@@ -541,7 +541,7 @@ const StatsNextYears = (props) => {
                         <td>{year.may.percent !== "NaN" ? `${year.may.percent}%` : "Sin datos"}</td>
                         <td>{year.may.averageStake === "NaN" ? "Sin Datos" : year.may.averageStake}</td>
                         <td>{year.may.totalUds}</td>
-                        <td className = {year.may.yield >= 0 ? "stats-green" : "stats-red"}>{year.may.yield !== "NaN" ? `${year.may.yield}%` : "Sin datos"}</td>
+                        <td className = {year.may.yield >= 0 ? "stats-green" : (year.may.yield < 0 ? "stats-red" : "stats-blue")}>{year.may.yield !== "NaN" ? `${year.may.yield}%` : "Sin datos"}</td>
                         <td className = {year.may.profitUds >= 0 ? "stats-green" : "stats-red"}>{year.may.profitUds}</td>
                     </tr>
                     <tr>
@@ -553,7 +553,7 @@ const StatsNextYears = (props) => {
                         <td>{year.june.percent  !== "NaN" ? `${year.june.percent}%` : "Sin datos"}</td>
                         <td>{year.june.averageStake === "NaN" ? "Sin Datos" : year.june.averageStake}</td>
                         <td>{year.june.totalUds}</td>
-                        <td className = {year.june.yield >= 0 ? "stats-green" : "stats-red"}>{year.june.yield !== "NaN" ? `${year.june.yield}%` : "Sin datos"}</td>
+                        <td className = {year.june.yield >= 0 ? "stats-green" : (year.june.yield < 0 ? "stats-red" : "stats-blue")}>{year.june.yield !== "NaN" ? `${year.june.yield}%` : "Sin datos"}</td>
                         <td className = {year.june.profitUds >= 0 ? "stats-green" : "stats-red"}>{year.june.profitUds}</td>
                     </tr>
                     <tr>
@@ -565,7 +565,7 @@ const StatsNextYears = (props) => {
                         <td>{year.july.percent !== "NaN" ? `${year.july.percent}%` : "Sin datos"}</td>
                         <td>{year.july.averageStake === "NaN" ? "Sin Datos" : year.july.averageStake}</td>
                         <td>{year.july.totalUds}</td>
-                        <td className = {year.july.yield >= 0 ? "stats-green" : "stats-red"}>{year.july.yield !== "NaN" ? `${year.july.yield}%` : "Sin datos"}</td>
+                        <td className = {year.july.yield >= 0 ? "stats-green" : (year.july.yield < 0 ? "stats-red" : "stats-blue")}>{year.july.yield !== "NaN" ? `${year.july.yield}%` : "Sin datos"}</td>
                         <td className = {year.july.profitUds >= 0 ? "stats-green" : "stats-red"}>{year.july.profitUds}</td>
                     </tr>
                     <tr>
@@ -577,7 +577,7 @@ const StatsNextYears = (props) => {
                         <td>{year.august.percent !== "NaN" ? `${year.august.percent}%` : "Sin datos"}</td>
                         <td>{year.august.averageStake === "NaN" ? "Sin Datos" : year.august.averageStake}</td>
                         <td>{year.august.totalUds}</td>
-                        <td className = {year.august.yield >= 0 ? "stats-green" : "stats-red"}>{year.august.yield !== "NaN" ? `${year.august.yield}%` : "Sin datos"}</td>
+                        <td className = {year.august.yield >= 0 ? "stats-green" : (year.august.yield < 0 ? "stats-red" : "stats-blue")}>{year.august.yield !== "NaN" ? `${year.august.yield}%` : "Sin datos"}</td>
                         <td className = {year.august.profitUds >= 0 ? "stats-green" : "stats-red"}>{year.august.profitUds}</td>
                     </tr>
                     <tr>
@@ -589,7 +589,7 @@ const StatsNextYears = (props) => {
                         <td>{year.september.percent !== "NaN" ? `${year.september.percent}%` : "Sin datos"}</td>
                         <td>{year.september.averageStake === "NaN" ? "Sin Datos" : year.september.averageStake}</td>
                         <td>{year.september.totalUds}</td>
-                        <td className = {year.september.yield >= 0 ? "stats-green" : "stats-red"}>{year.september.yield !== "NaN" ? `${year.september.yield}%` : "Sin datos"}</td>
+                        <td className = {year.september.yield >= 0 ? "stats-green" : (year.september.yield < 0 ? "stats-red" : "stats-blue")}>{year.september.yield !== "NaN" ? `${year.september.yield}%` : "Sin datos"}</td>
                         <td className = {year.september.profitUds >= 0 ? "stats-green" : "stats-red"}>{year.september.profitUds}</td>
                     </tr>
                     <tr>
@@ -601,7 +601,7 @@ const StatsNextYears = (props) => {
                         <td>{year.october.percent !== "NaN" ? `${year.october.percent}%` : "Sin datos"}</td>
                         <td>{year.october.averageStake === "NaN" ? "Sin Datos" : year.october.averageStake}</td>
                         <td>{year.october.totalUds}</td>
-                        <td className = {year.october.yield >= 0 ? "stats-green" : "stats-red"}>{year.october.yield !== "NaN" ? `${year.october.yield}%` : "Sin datos"}</td>
+                        <td className = {year.october.yield >= 0 ? "stats-green" : (year.october.yield < 0 ? "stats-red" : "stats-blue")}>{year.october.yield !== "NaN" ? `${year.october.yield}%` : "Sin datos"}</td>
                         <td className = {year.october.profitUds >= 0 ? "stats-green" : "stats-red"}>{year.october.profitUds}</td>
                     </tr>
                     <tr>
@@ -613,7 +613,7 @@ const StatsNextYears = (props) => {
                         <td>{year.november.percent !== "NaN" ? `${year.november.percent}%` : "Sin datos"}</td>
                         <td>{year.november.averageStake === "NaN" ? "Sin Datos" : year.november.averageStake}</td>
                         <td>{year.november.totalUds}</td>
-                        <td className = {year.november.yield >= 0 ? "stats-green" : "stats-red"}>{year.november.yield !== "NaN" ? `${year.november.yield}%` : "Sin datos"}</td>
+                        <td className = {year.november.yield >= 0 ? "stats-green" : (year.november.yield < 0 ? "stats-red" : "stats-blue")}>{year.november.yield !== "NaN" ? `${year.november.yield}%` : "Sin datos"}</td>
                         <td className = {year.november.profitUds >= 0 ? "stats-green" : "stats-red"}>{year.november.profitUds}</td>
                     </tr>
                     <tr>
@@ -625,7 +625,7 @@ const StatsNextYears = (props) => {
                         <td>{year.december.percent !== "NaN" ? `${year.december.percent}%` : "Sin datos"}</td>
                         <td>{year.december.averageStake === "NaN" ? "Sin Datos" : year.december.averageStake}</td>
                         <td>{year.december.totalUds}</td>
-                        <td className = {year.december.yield >= 0 ? "stats-green" : "stats-red"}>{year.december.yield !== "NaN" ? `${year.december.yield}%` : "Sin datos"}</td>
+                        <td className = {year.december.yield >= 0 ? "stats-green" : (year.december.yield < 0 ? "stats-red" : "stats-blue")}>{year.december.yield !== "NaN" ? `${year.december.yield}%` : "Sin datos"}</td>
                         <td className = {year.december.profitUds >= 0 ? "stats-green" : "stats-red"}>{year.december.profitUds}</td>
                     </tr>
                     <tr>
@@ -637,7 +637,7 @@ const StatsNextYears = (props) => {
                         <td>{year.total.percent !== "NaN" ? `${year.total.percent}%` : "Sin Datos"}</td>
                         <td>{year.total.averageStake === "NaN" ? "Sin Datos" : year.total.averageStake}</td>
                         <td>{year.total.totalUds}</td>
-                        <td className = {year.total.yield >= 0 ? "stats-green" : "stats-red"}>{year.total.yield !== "NaN" ? `${year.total.yield}%` : "Sin datos"}</td>
+                        <td className = {year.total.yield >= 0 ? "stats-green" : (year.total.yield < 0 ? "stats-red" : "stats-blue")}>{year.total.yield !== "NaN" ? `${year.total.yield}%` : "Sin datos"}</td>
                         <td className = {year.total.profitUds >= 0 ? "stats-green" : "stats-red"}>{year.total.profitUds}</td>
                     </tr>
                 </tbody>
