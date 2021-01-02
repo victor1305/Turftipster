@@ -160,27 +160,27 @@ const Stats2020 = () => {
                     </tr>
                     <tr>
                         <td>Diciembre</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>---</td>
-                        <td>---</td>
-                        <td>0</td>
-                        <td className = "stats-blue">---</td>
-                        <td className = "stats-blue">0</td>
+                        <td>258</td>
+                        <td>81</td>
+                        <td>170</td>
+                        <td>7</td>
+                        <td>32.27%</td>
+                        <td>0.24</td>
+                        <td>61.7</td>
+                        <td className = "stats-green">27.61%</td>
+                        <td className = "stats-green">17.03</td>
                     </tr>
                     <tr>
                         <td>Total Año</td>
-                        <td>2086</td>
-                        <td>543</td>
-                        <td>1484</td>
-                        <td>59</td>
-                        <td>26.79%</td>
+                        <td>2344</td>
+                        <td>624</td>
+                        <td>1654</td>
+                        <td>66</td>
+                        <td>27.39%</td>
                         <td>0.21</td>
-                        <td>437.55</td>
-                        <td className = "stats-green">24.43%</td>
-                        <td className = "stats-green">106.87</td>
+                        <td>499.25</td>
+                        <td className = "stats-green">24.82%</td>
+                        <td className = "stats-green">123.91</td>
                     </tr>
                 </tbody>
             </Table>

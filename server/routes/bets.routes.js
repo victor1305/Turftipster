@@ -87,10 +87,7 @@ router.put('/detalle-apuesta/:id/edit-status', checkAuth, (req, res, next) =>{
 
 })
 
-router.put('/detalle-apuesta/:id/edit', checkAuth, (req, res, next) =>{
-
-    console.log(req.body)
-
+router.put('/detalle-apuesta/:id/edit', checkAuth, (req, res, next) => {
 
     let statusProcessed = {}
     let profitValue = 0
