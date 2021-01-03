@@ -26,6 +26,8 @@ body {
 
 .home-image {
   width: 100%;
+  // height: calc(100vh - 101px);
+  // object-fit: cover;
 }
 
 .home-article {
