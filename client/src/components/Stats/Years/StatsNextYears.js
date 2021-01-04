@@ -347,9 +347,10 @@ const StatsNextYears = (props) => {
                     <th>Uds Ganadas</th>
                     </tr>
                 </thead>
-                {monthsTotalArray.map((item => (
-                <tbody key = {item.month}>
-                    <tr>
+                
+                <tbody>
+                    {monthsTotalArray.map((item => (
+                    <tr key = {item.month}>
                         <td>{item.month}</td>
                         <td>{item.bets}</td>
                         <td>{item.wins}</td>
@@ -361,8 +362,9 @@ const StatsNextYears = (props) => {
                         <td className = {item.yield >= 0 ? "stats-green" : (item.yield < 0 ? "stats-red" : "stats-green")}>{item.yield !== "NaN" ? `${item.yield}%` : "N/A"}</td>
                         <td className = {item.profitUds >= 0 ? "stats-green" : "stats-red"}>{item.profitUds}</td>
                     </tr>
+                    )))}
                 </tbody>
-                )))}
+                
             </Table>
             </div>
         </Fragment>

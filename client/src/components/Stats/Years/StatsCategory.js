@@ -343,9 +343,10 @@ const StatsCategory = (props) => {
                         <th>Uds Ganadas</th>
                         </tr>
                     </thead>
-                    {categoryArray.map((item => (
-                    <tbody key = {item.category}>
-                        <tr>
+                    
+                    <tbody>
+                        {categoryArray.map((item => (
+                        <tr key = {item.category}>
                             <td>{item.category}</td>
                             <td>{item.bets}</td>
                             <td>{item.wins}</td>
@@ -357,8 +358,9 @@ const StatsCategory = (props) => {
                             <td className = {item.yield >= 0 ? "stats-green" : item.yield < 0 ? "stats-red" : ""}>{item.yield !== "NaN" ? `${item.yield}%` : "Sin datos"}</td>
                             <td className = {item.profitUds >= 0 ? "stats-green" : "stats-red"}>{item.profitUds}</td>
                         </tr>
+                        )))}
                     </tbody>
-                    )))}
+                    
                 </Table>
             </div>
         </>

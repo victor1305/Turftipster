@@ -340,9 +340,10 @@ const StatsStakes = (props) => {
                         <th>Uds Ganadas</th>
                         </tr>
                     </thead>
-                    {stakesArray.map((item => (
-                    <tbody key = {item.stake}>
-                        <tr>
+                    
+                    <tbody >
+                        {stakesArray.map((item => (
+                        <tr key = {item.stake}>
                             <td>{item.stake}</td>
                             <td>{item.bets}</td>
                             <td>{item.wins}</td>
@@ -353,8 +354,8 @@ const StatsStakes = (props) => {
                             <td className = {item.yield >= 0 ? "stats-green" : item.yield < 0 ? "stats-red" : ""}>{item.yield !== "NaN" ? `${item.yield}%` : "Sin datos"}</td>
                             <td className = {item.profitUds >= 0 ? "stats-green" : "stats-red"}>{item.profitUds}</td>
                         </tr>
+                        )))}
                     </tbody>
-                    )))}
                 </Table>
             </div>
         </>
