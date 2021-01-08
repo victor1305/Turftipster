@@ -41,12 +41,6 @@ const Stats = (props) => {
         })
 
     }
-
-    let today = new Date()
-    let todayms = Date.parse(today)
-
-    let button2021 = "2021-01-01T00:00:00.951+00:00"
-    let button2021ms = Date.parse(button2021)
     
     return (
 
@@ -60,9 +54,7 @@ const Stats = (props) => {
                 <button className = "stats-btn" value = "2018" onClick = {changeYear}>2018</button>
                 <button className = "stats-btn" value = "2019" onClick = {changeYear}>2019</button>
                 <button className = "stats-btn" value = "2020" onClick = {changeYear}>2020</button>
-                {todayms > button2021ms &&
                 <button className = "stats-btn" value = "2021" onClick = {changeYear}>2021</button>
-                }
             </div>
             {statsYear.statYear >= 2021 &&
             <div className = "stats-btn-container">

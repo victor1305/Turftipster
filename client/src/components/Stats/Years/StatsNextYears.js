@@ -2,6 +2,7 @@ import React, { Fragment, useState, useEffect } from 'react';
 import { Table } from 'react-bootstrap'
 import BetService from '../../../service/BetService'
 
+
 const StatsNextYears = (props) => {
 
     const betservice = new BetService()
@@ -332,40 +333,40 @@ const StatsNextYears = (props) => {
         <Fragment>
             <h2 className = "stats-title" id= "title">Stats {props.statYear}</h2>
             <div className = "table-stats-container">
-            <Table striped bordered hover variant="dark" size = "sm" className = "table" responsive = "md">
-                <thead>
-                    <tr>
-                    <th>Mes</th>
-                    <th>Apuestas</th>
-                    <th>Aciertos</th>
-                    <th>Fallos</th>
-                    <th>Nulos</th>
-                    <th>% Acierto</th>
-                    <th>Stake Medio</th>
-                    <th>Uds Jugadas</th>
-                    <th>Yield</th>
-                    <th>Uds Ganadas</th>
-                    </tr>
-                </thead>
-                
-                <tbody>
-                    {monthsTotalArray.map((item => (
-                    <tr key = {item.month}>
-                        <td>{item.month}</td>
-                        <td>{item.bets}</td>
-                        <td>{item.wins}</td>
-                        <td>{item.loss}</td>
-                        <td>{item.void}</td>
-                        <td>{item.percent !== "NaN" ? `${item.percent}%` : "N/A"}</td>
-                        <td>{item.averageStake === "NaN" ? "0.00" : item.averageStake}</td>
-                        <td>{item.totalUds}</td>
-                        <td className = {item.yield >= 0 ? "stats-green" : (item.yield < 0 ? "stats-red" : "stats-green")}>{item.yield !== "NaN" ? `${item.yield}%` : "N/A"}</td>
-                        <td className = {item.profitUds >= 0 ? "stats-green" : "stats-red"}>{item.profitUds}</td>
-                    </tr>
-                    )))}
-                </tbody>
-                
-            </Table>
+                <Table striped bordered hover variant="dark" size = "sm" className = "table" responsive = "md">
+                    <thead>
+                        <tr>
+                        <th>Mes</th>
+                        <th>Apuestas</th>
+                        <th>Aciertos</th>
+                        <th>Fallos</th>
+                        <th>Nulos</th>
+                        <th>% Acierto</th>
+                        <th>Stake Medio</th>
+                        <th>Uds Jugadas</th>
+                        <th>Yield</th>
+                        <th>Uds Ganadas</th>
+                        </tr>
+                    </thead>
+                    
+                    <tbody>
+                        {monthsTotalArray.map((item => (
+                        <tr key = {item.month}>
+                            <td>{item.month}</td>
+                            <td>{item.bets}</td>
+                            <td>{item.wins}</td>
+                            <td>{item.loss}</td>
+                            <td>{item.void}</td>
+                            <td>{item.percent !== "NaN" ? `${item.percent}%` : "N/A"}</td>
+                            <td>{item.averageStake === "NaN" ? "0.00" : item.averageStake}</td>
+                            <td>{item.totalUds}</td>
+                            <td className = {item.yield >= 0 ? "stats-green" : (item.yield < 0 ? "stats-red" : "stats-green")}>{item.yield !== "NaN" ? `${item.yield}%` : "N/A"}</td>
+                            <td className = {item.profitUds >= 0 ? "stats-green" : "stats-red"}>{item.profitUds}</td>
+                        </tr>
+                        )))}
+                    </tbody>
+                    
+                </Table>
             </div>
         </Fragment>
 

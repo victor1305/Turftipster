@@ -122,14 +122,15 @@ const BetDetail = (props) => {
             {props.loggedInUser && 
             <p><strong>Código: </strong>{betCode}</p> 
             }
-            <p className = {statusClass}>{statusClient}</p>
+            <p><strong>Estado: </strong><span className = {statusClass}>{statusClient}</span></p>
+
             {props.loggedInUser && 
             <BetModal {...betDetail} {...props}/>
             }
-            {props.loggedInUser.role === "admin" &&
+            {props.loggedInUser &&
                 <Button variant = "outline-danger" onClick = {deleteBet}>Borrar</Button>
             }
-            {props.loggedInUser.role === "admin" &&       
+            {props.loggedInUser &&       
             <div >
                 <Button
                     variant = "success"

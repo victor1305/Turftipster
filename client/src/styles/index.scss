@@ -127,6 +127,13 @@ body {
   margin-bottom: 0.5rem;
 }
 
+.card-p-limit-lines {
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;  
+  overflow: hidden;
+}
+
 .card-p-win {
   color: #03f73c;
   margin-bottom: 0.5rem;
@@ -192,6 +199,13 @@ body {
   box-sizing: border-box;
   min-height: 90vh;
 }
+
+// .bet-detail-subcontainer {
+//   width: 320px;
+//   margin: 0 auto;
+//   text-align: left;
+//   padding-left: 50px;
+// }
 
 .details-btn-container {
   margin-left: 1rem;
