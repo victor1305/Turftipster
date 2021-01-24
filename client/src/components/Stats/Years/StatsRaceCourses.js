@@ -2,6 +2,15 @@ import React, { useState, useEffect } from 'react';
 import { Table } from 'react-bootstrap'
 import BetService from '../../../service/BetService'
 
+import DotLoader from "react-spinners/DotLoader";
+import { css } from "@emotion/core";
+
+const override = css`
+  display: block;
+  margin: 0 auto;
+  border-color: red;
+`;
+
 const StatsRaceCourses = (props) => {
 
     const betservice = new BetService()
@@ -9,6 +18,8 @@ const StatsRaceCourses = (props) => {
     const [ betList, loadBetList ] = useState([])
 
     const [ racecourse, updateRacecourse ] = useState({})
+
+    const [ spinner, updateSpinner ] = useState(true)
 
     const racecoursesTotalArray = Object.values(racecourse)
     const racecoursesArray = racecoursesTotalArray.filter(elm => (elm.bets > 0))
@@ -23,7 +34,11 @@ const StatsRaceCourses = (props) => {
 
     useEffect(() => {
 
-        updateValues()       
+        updateValues()    
+        
+        setTimeout(() => {
+            updateSpinner(false)  
+        }, 3000)
 
     // eslint-disable-next-line
     }, [betList])
@@ -1056,40 +1071,53 @@ const StatsRaceCourses = (props) => {
         <>
             <h2 className = "stats-title" id= "title">Stats {props.statYear} por Hipódromo</h2>
             <div className = "table-stats-container">
-            <Table striped bordered hover variant="dark" size = "sm" className = "table" responsive = "md">    
-                <thead>
-                    <tr>
-                    <th>Hipódromo</th>
-                    <th>Apuestas</th>
-                    <th>Aciertos</th>
-                    <th>Fallos</th>
-                    <th>Nulos</th>
-                    <th>% Acierto</th>
-                    <th>Stake Medio</th>
-                    <th>Uds Jugadas</th>
-                    <th>Yield</th>
-                    <th>Uds Ganadas</th>
-                    </tr>
-                </thead>
-                
-                <tbody>
-                    {racecoursesArray.map((item => (
-                    <tr key = {item.racecourse}>
-                        <td>{item.racecourse}</td>
-                        <td>{item.bets}</td>
-                        <td>{item.wins}</td>
-                        <td>{item.loss}</td>
-                        <td>{item.void}</td>
-                        <td>{item.percent !== "NaN" ? `${item.percent}%` : "Sin datos"}</td>
-                        <td>{item.averageStake === "NaN" ? "Sin Datos" : item.averageStake}</td>
-                        <td>{item.totalUds}</td>
-                        <td className = {item.yield >= 0 ? "stats-green" : item.yield < 0 ? "stats-red" : ""}>{item.yield !== "NaN" ? `${item.yield}%` : "Sin datos"}</td>
-                        <td className = {item.profitUds >= 0 ? "stats-green" : "stats-red"}>{item.profitUds}</td>
-                    </tr>
-                    )))}
-                </tbody>
-                
-            </Table>
+            {spinner ?
+                <div className="sweet-loading spinner spinner-container">
+                    <DotLoader
+                        css={override}
+                            height={60}
+                            width={8}
+                        size = {80}
+                        color={"#38A700"}
+                        loading={spinner}
+                    />
+                </div>
+            :
+                <Table striped bordered hover variant="dark" size = "sm" className = "table" responsive = "md">    
+                    <thead>
+                        <tr>
+                        <th>Hipódromo</th>
+                        <th>Apuestas</th>
+                        <th>Aciertos</th>
+                        <th>Fallos</th>
+                        <th>Nulos</th>
+                        <th>% Acierto</th>
+                        <th>Stake Medio</th>
+                        <th>Uds Jugadas</th>
+                        <th>Yield</th>
+                        <th>Uds Ganadas</th>
+                        </tr>
+                    </thead>
+                    
+                    <tbody>
+                        {racecoursesArray.map((item => (
+                        <tr key = {item.racecourse}>
+                            <td>{item.racecourse}</td>
+                            <td>{item.bets}</td>
+                            <td>{item.wins}</td>
+                            <td>{item.loss}</td>
+                            <td>{item.void}</td>
+                            <td>{item.percent !== "NaN" ? `${item.percent}%` : "Sin datos"}</td>
+                            <td>{item.averageStake === "NaN" ? "Sin Datos" : item.averageStake}</td>
+                            <td>{item.totalUds}</td>
+                            <td className = {item.yield >= 0 ? "stats-green" : item.yield < 0 ? "stats-red" : ""}>{item.yield !== "NaN" ? `${item.yield}%` : "Sin datos"}</td>
+                            <td className = {item.profitUds >= 0 ? "stats-green" : "stats-red"}>{item.profitUds}</td>
+                        </tr>
+                        )))}
+                    </tbody>
+                    
+                </Table>
+            }
             </div>
         </>
     );

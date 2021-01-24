@@ -66,49 +66,31 @@ const Stats = (props) => {
             }
             <div className = "stats-table-container">
             {((statsYear.statYear >= 2021 && !statsYear.statType) || (statsYear.statYear >= 2021 && statsYear.statType === "months"))&&
-            <div data-aos="fade-right" data-aos-duration="1500" >
                 <StatsNextYears {...props}{...statsYear}/>
-            </div>
             }
             {(statsYear.statYear >= 2021 && statsYear.statType === "racecourses")&&
-            <div data-aos="fade-right" data-aos-duration="1500" >
                 <StatsRaceCourses {...props}{...statsYear}/>
-            </div>
             }
             {(statsYear.statYear >= 2021 && statsYear.statType === "category")&&
-            <div data-aos="fade-right" data-aos-duration="1500" >
                 <StatsCategory {...props}{...statsYear}/>
-            </div>
             }
             {(statsYear.statYear >= 2021 && statsYear.statType === "stakes")&&
-            <div data-aos="fade-right" data-aos-duration="1500" >
                 <StatsStakes {...props}{...statsYear}/>
-            </div>
             }
             {statsYear.statYear === 2020 &&
-            <div data-aos="fade-right" data-aos-duration="1500" >
                 <Stats2020/>
-            </div>
             }
             {statsYear.statYear === 2019 &&
-            <div data-aos="fade-right" data-aos-duration="1500" >
                 <Stats2019/>
-            </div>
             }
             {statsYear.statYear === 2018 &&
-            <div data-aos="fade-right" data-aos-duration="1500" >
                 <Stats2018/>
-            </div>
             }
             {statsYear.statYear === 2017 &&
-            <div data-aos="fade-right" data-aos-duration="1500" >
                 <Stats2017/>
-            </div>
             }
             {statsYear.statYear === 2016 &&
-            <div data-aos="fade-right" data-aos-duration="1500" >
                 <Stats2016/>
-            </div>
             }
             </div>
             {!statsYear.statYear &&

@@ -2,6 +2,15 @@ import React, { useState, useEffect } from 'react';
 import { Table } from 'react-bootstrap'
 import BetService from '../../../service/BetService'
 
+import DotLoader from "react-spinners/DotLoader";
+import { css } from "@emotion/core";
+
+const override = css`
+  display: block;
+  margin: 0 auto;
+  border-color: red;
+`;
+
 const StatsStakes = (props) => {
     
     const betservice = new BetService()
@@ -10,19 +19,26 @@ const StatsStakes = (props) => {
 
     const [ stakes, updateStake ] = useState({})
 
+    const [ spinner, updateSpinner ] = useState(true)
+
     const stakesTotalArray = Object.values(stakes)
     const stakesArray = stakesTotalArray.filter(elm => (elm.bets > 0))
 
     useEffect(() => {
 
-        loadData()       
+        loadData()      
 
     // eslint-disable-next-line
     }, [props])
 
     useEffect(() => {
 
-        updateValues()       
+        updateValues()  
+        
+        setTimeout(() => {
+            updateSpinner(false)  
+        }, 3000)
+         
 
     // eslint-disable-next-line
     }, [betList])
@@ -326,6 +342,18 @@ const StatsStakes = (props) => {
         <>
             <h2 className = "stats-title" id= "title">Stats {props.statYear} por Stake</h2>
             <div className = "table-stats-container">
+            {spinner ?
+                <div className="sweet-loading spinner spinner-container">
+                    <DotLoader
+                        css={override}
+                            height={60}
+                            width={8}
+                        size = {80}
+                        color={"#38A700"}
+                        loading={spinner}
+                    />
+                </div>
+            :
                 <Table striped bordered hover variant="dark" size = "sm" className = "table" responsive = "md">
                     <thead>
                         <tr>
@@ -357,6 +385,7 @@ const StatsStakes = (props) => {
                         )))}
                     </tbody>
                 </Table>
+            }
             </div>
         </>
     );

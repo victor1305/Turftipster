@@ -41,7 +41,7 @@ const HorseRaces = () => {
             </div>
             }
             {!horseRacesState.state &&
-            <Container>
+            <Container className = "horse-races-section-container">
                 <Row className = "horse-races-first-section">
                     <Col sm = {12} md = {{span: 6, order: 1}} className = "horse-races-image-container">
                         <img className = "horse-races-first-image" src = {startImage} alt = "start"/>
