@@ -228,18 +228,11 @@ body {
 }
 
 .bet-detail-container {
-  padding: 3%;
+  padding: 3% 3% 122px 3%;
   text-align: center;
   box-sizing: border-box;
   min-height: 90vh;
 }
-
-// .bet-detail-subcontainer {
-//   width: 320px;
-//   margin: 0 auto;
-//   text-align: left;
-//   padding-left: 50px;
-// }
 
 .details-btn-container {
   margin-left: 1rem;
@@ -289,7 +282,8 @@ body {
 }
 
 .detail-back-btn:hover { 
-  margin-bottom: 3px;
+  //margin-bottom: 3px;
+  margin-bottom: 3px;;
   border: 2px solid  #38A700;
 }
 
