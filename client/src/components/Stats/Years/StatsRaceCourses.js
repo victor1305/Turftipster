@@ -104,6 +104,7 @@ const StatsRaceCourses = (props) => {
         const sanlucarArray = betList.filter(elm => (elm.racecourse === "Sanlucar"))
         const senonnesPouanceArray = betList.filter(elm => (elm.racecourse === "Senonnes-Pouance"))
         const strasbourgArray = betList.filter(elm => (elm.racecourse === "Strasbourg"))
+        const tampaBayArray = betList.filter(elm => (elm.racecourse === "Tampa Bay"))
         const tarbesArray = betList.filter(elm => (elm.racecourse === "Tarbes"))
         const toulouseArray = betList.filter(elm => (elm.racecourse === "Toulouse"))
         const vichyArray = betList.filter(elm => (elm.racecourse === "Vichy"))
@@ -157,6 +158,7 @@ const StatsRaceCourses = (props) => {
         const sanlucarArrayWin = betList.filter(elm => (elm.racecourse === "Sanlucar") && (elm.status === "win"))
         const senonnesPouanceArrayWin = betList.filter(elm => (elm.racecourse === "Senonnes-Pouance") && (elm.status === "win"))
         const strasbourgArrayWin = betList.filter(elm => (elm.racecourse === "Strasbourg") && (elm.status === "win"))
+        const tampaBayArrayWin = betList.filter(elm => (elm.racecourse === "Tampa Bay") && (elm.status === "win"))
         const tarbesArrayWin = betList.filter(elm => (elm.racecourse === "Tarbes") && (elm.status === "win"))
         const toulouseArrayWin = betList.filter(elm => (elm.racecourse === "Toulouse") && (elm.status === "win"))
         const vichyArrayWin = betList.filter(elm => (elm.racecourse === "Vichy") && (elm.status === "win"))
@@ -210,6 +212,7 @@ const StatsRaceCourses = (props) => {
         const sanlucarArrayLoss = betList.filter(elm => (elm.racecourse === "Sanlucar") && (elm.status === "loss"))
         const senonnesPouanceArrayLoss = betList.filter(elm => (elm.racecourse === "Senonnes-Pouance") && (elm.status === "loss"))
         const strasbourgArrayLoss = betList.filter(elm => (elm.racecourse === "Strasbourg") && (elm.status === "loss"))
+        const tampaBayArrayLoss = betList.filter(elm => (elm.racecourse === "Tampa Bay") && (elm.status === "loss"))
         const tarbesArrayLoss = betList.filter(elm => (elm.racecourse === "Tarbes") && (elm.status === "loss"))
         const toulouseArrayLoss = betList.filter(elm => (elm.racecourse === "Toulouse") && (elm.status === "loss"))
         const vichyArrayLoss = betList.filter(elm => (elm.racecourse === "Vichy") && (elm.status === "loss"))
@@ -263,6 +266,7 @@ const StatsRaceCourses = (props) => {
         const sanlucarArrayVoid = betList.filter(elm => (elm.racecourse === "Sanlucar") && (elm.status === "void"))
         const senonnesPouanceArrayVoid = betList.filter(elm => (elm.racecourse === "Senonnes-Pouance") && (elm.status === "void"))
         const strasbourgArrayVoid = betList.filter(elm => (elm.racecourse === "Strasbourg") && (elm.status === "void"))
+        const tampaBayArrayVoid = betList.filter(elm => (elm.racecourse === "Tampa Bay") && (elm.status === "void"))
         const tarbesArrayVoid = betList.filter(elm => (elm.racecourse === "Tarbes") && (elm.status === "void"))
         const toulouseArrayVoid = betList.filter(elm => (elm.racecourse === "Toulouse") && (elm.status === "void"))
         const vichyArrayVoid = betList.filter(elm => (elm.racecourse === "Vichy") && (elm.status === "void"))
@@ -359,6 +363,8 @@ const StatsRaceCourses = (props) => {
         const senonnesPouanceArrayStake = senonnesPouanceArray.reduce((acc, elm) => {
             return acc + elm.stake},0)
         const strasbourgArrayStake = strasbourgArray.reduce((acc, elm) => {
+            return acc + elm.stake},0)
+        const tampaBayArrayStake = tampaBayArray.reduce((acc, elm) => {
             return acc + elm.stake},0)
         const tarbesArrayStake = tarbesArray.reduce((acc, elm) => {
             return acc + elm.stake},0)
@@ -461,6 +467,8 @@ const StatsRaceCourses = (props) => {
         const senonnesPouanceArrayProfit = senonnesPouanceArray.reduce((acc, elm) => {
             return acc + elm.profit},0)
         const strasbourgArrayProfit = strasbourgArray.reduce((acc, elm) => {
+            return acc + elm.profit},0)
+        const tampaBayArrayProfit = tampaBayArray.reduce((acc, elm) => {
             return acc + elm.profit},0)
         const tarbesArrayProfit = tarbesArray.reduce((acc, elm) => {
             return acc + elm.profit},0)
@@ -1002,6 +1010,18 @@ const StatsRaceCourses = (props) => {
                 profitUds: strasbourgArrayProfit.toFixed(2),
                 yield: ((strasbourgArrayProfit * 100) / strasbourgArrayStake).toFixed(2),
                 racecourse: "Strasbourg"
+            },
+            tampaBayObj : {
+                bets: tampaBayArray.length,
+                wins: tampaBayArrayWin.length,
+                loss: tampaBayArrayLoss.length,
+                void: tampaBayArrayVoid.length,
+                percent: ((tampaBayArrayWin.length / (tampaBayArrayLoss.length + tampaBayArrayWin.length)) * 100).toFixed(2),
+                averageStake: (tampaBayArrayStake / tampaBayArray.length).toFixed(2),
+                totalUds: tampaBayArrayStake.toFixed(2),
+                profitUds: tampaBayArrayProfit.toFixed(2),
+                yield: ((tampaBayArrayProfit * 100) / tampaBayArrayStake).toFixed(2),
+                racecourse: "Tampa Bay"
             },
             tarbesObj : {
                 bets: tarbesArray.length,

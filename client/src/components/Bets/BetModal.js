@@ -109,6 +109,7 @@ const BetModal = (props) => {
         'Sanlucar',
         'Senonnes-Pouance',
         'Strasbourg',
+        'Tampa Bay',
         'Tarbes',
         'Toulouse',
         'Vichy',
