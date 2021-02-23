@@ -74,6 +74,7 @@ const StatsRaceCourses = (props) => {
         const craonArray = betList.filter(elm => (elm.racecourse === "Craon"))
         const daxArray = betList.filter(elm => (elm.racecourse === "Dax"))
         const deauvilleArray = betList.filter(elm => (elm.racecourse === "Deauville"))
+        const deltaDownsArray = betList.filter(elm => (elm.racecourse === "Delta Downs"))
         const dieppeArray = betList.filter(elm => (elm.racecourse === "Dieppe"))
         const dosHermanasArray = betList.filter(elm => (elm.racecourse === "Dos Hermanas"))
         const evreuxArray = betList.filter(elm => (elm.racecourse === "Evreux"))
@@ -128,6 +129,7 @@ const StatsRaceCourses = (props) => {
         const craonArrayWin = betList.filter(elm => (elm.racecourse === "Craon") && (elm.status === "win"))
         const daxArrayWin = betList.filter(elm => (elm.racecourse === "Dax") && (elm.status === "win"))
         const deauvilleArrayWin = betList.filter(elm => (elm.racecourse === "Deauville") && (elm.status === "win"))
+        const deltaDownsArrayWin = betList.filter(elm => (elm.racecourse === "Delta Downs") && (elm.status === "win"))
         const dieppeArrayWin = betList.filter(elm => (elm.racecourse === "Dieppe") && (elm.status === "win"))
         const dosHermanasArrayWin = betList.filter(elm => (elm.racecourse === "Dos Hermanas") && (elm.status === "win"))
         const evreuxArrayWin = betList.filter(elm => (elm.racecourse === "Evreux") && (elm.status === "win"))
@@ -182,6 +184,7 @@ const StatsRaceCourses = (props) => {
         const craonArrayLoss = betList.filter(elm => (elm.racecourse === "Craon") && (elm.status === "loss"))
         const daxArrayLoss = betList.filter(elm => (elm.racecourse === "Dax") && (elm.status === "loss"))
         const deauvilleArrayLoss = betList.filter(elm => (elm.racecourse === "Deauville") && (elm.status === "loss"))
+        const deltaDownsArrayLoss = betList.filter(elm => (elm.racecourse === "Delta Downs") && (elm.status === "loss"))
         const dieppeArrayLoss = betList.filter(elm => (elm.racecourse === "Dieppe") && (elm.status === "loss"))
         const dosHermanasArrayLoss = betList.filter(elm => (elm.racecourse === "Dos Hermanas") && (elm.status === "loss"))
         const evreuxArrayLoss = betList.filter(elm => (elm.racecourse === "Evreux") && (elm.status === "loss"))
@@ -236,6 +239,7 @@ const StatsRaceCourses = (props) => {
         const craonArrayVoid = betList.filter(elm => (elm.racecourse === "Craon") && (elm.status === "void"))
         const daxArrayVoid = betList.filter(elm => (elm.racecourse === "Dax") && (elm.status === "void"))
         const deauvilleArrayVoid = betList.filter(elm => (elm.racecourse === "Deauville") && (elm.status === "void"))
+        const deltaDownsArrayVoid = betList.filter(elm => (elm.racecourse === "Delta Downs") && (elm.status === "void"))
         const dieppeArrayVoid = betList.filter(elm => (elm.racecourse === "Dieppe") && (elm.status === "void"))
         const dosHermanasArrayVoid = betList.filter(elm => (elm.racecourse === "Dos Hermanas") && (elm.status === "void"))
         const evreuxArrayVoid = betList.filter(elm => (elm.racecourse === "Evreux") && (elm.status === "void"))
@@ -289,6 +293,8 @@ const StatsRaceCourses = (props) => {
         const cagnesSurMerArrayStake = cagnesSurMerArray.reduce((acc, elm) => {
             return acc + elm.stake},0)
         const deauvilleArrayStake = deauvilleArray.reduce((acc, elm) => {
+            return acc + elm.stake},0)
+        const deltaDownsArrayStake = deltaDownsArray.reduce((acc, elm) => {
             return acc + elm.stake},0)
         const chantillyArrayStake = chantillyArray.reduce((acc, elm) => {
             return acc + elm.stake},0)
@@ -393,6 +399,8 @@ const StatsRaceCourses = (props) => {
         const cagnesSurMerArrayProfit = cagnesSurMerArray.reduce((acc, elm) => {
             return acc + elm.profit},0)
         const deauvilleArrayProfit = deauvilleArray.reduce((acc, elm) => {
+            return acc + elm.profit},0)
+        const deltaDownsArrayProfit = deltaDownsArray.reduce((acc, elm) => {
             return acc + elm.profit},0)
         const chantillyArrayProfit = chantillyArray.reduce((acc, elm) => {
             return acc + elm.profit},0)
@@ -650,6 +658,18 @@ const StatsRaceCourses = (props) => {
                 profitUds: deauvilleArrayProfit.toFixed(2),
                 yield: ((deauvilleArrayProfit * 100) / deauvilleArrayStake).toFixed(2),
                 racecourse: "Deauville"
+            },
+            deltaDownsObj : {
+                bets: deltaDownsArray.length,
+                wins: deltaDownsArrayWin.length,
+                loss: deltaDownsArrayLoss.length,
+                void: deltaDownsArrayVoid.length,
+                percent: ((deltaDownsArrayWin.length / (deltaDownsArrayLoss.length + deltaDownsArrayWin.length)) * 100).toFixed(2),
+                averageStake: (deltaDownsArrayStake / deltaDownsArray.length).toFixed(2),
+                totalUds: deltaDownsArrayStake.toFixed(2),
+                profitUds: deltaDownsArrayProfit.toFixed(2),
+                yield: ((deltaDownsArrayProfit * 100) / deltaDownsArrayStake).toFixed(2),
+                racecourse: "Delta Downs"
             },
             dieppeObj : {
                 bets: dieppeArray.length,

@@ -78,6 +78,7 @@ const BetModal = (props) => {
         'Craon',
         'Dax',
         'Deauville',
+        'Delta Downs',
         'Dieppe',
         'Dos Hermanas',
         'Evreux',
