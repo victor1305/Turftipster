@@ -64,7 +64,7 @@ const StatsRaceCourses = (props) => {
         const amiensArray = betList.filter(elm => (elm.racecourse === "Amiens"))
         const angersArray = betList.filter(elm => (elm.racecourse === "Angers"))
         const argentanArray = betList.filter(elm => (elm.racecourse === "Argentan"))
-        const bordeauxLeBouscatArray = betList.filter(elm => (elm.racecourse === "Bordeaux Le Bouscat"))
+        const bordeauxLeBouscatArray = betList.filter(elm => (elm.racecourse === "Bordeaux le Bouscat"))
         const cagnesSurMerArray = betList.filter(elm => (elm.racecourse === "Cagnes Sur Mer"))
         const chantillyArray = betList.filter(elm => (elm.racecourse === "Chantilly"))
         const chateaubriantArray = betList.filter(elm => (elm.racecourse === "Chateaubriant"))
@@ -79,7 +79,9 @@ const StatsRaceCourses = (props) => {
         const dosHermanasArray = betList.filter(elm => (elm.racecourse === "Dos Hermanas"))
         const evreuxArray = betList.filter(elm => (elm.racecourse === "Evreux"))
         const fontainebleauArray = betList.filter(elm => (elm.racecourse === "Fontainebleau"))
+        const gulfstreamArray = betList.filter(elm => (elm.racecourse === "Gulfstream Park"))
         const laTesteDeBuchArray = betList.filter(elm => (elm.racecourse === "La Teste de Buch"))
+        const leCroiseLarocheArray = betList.filter(elm => (elm.racecourse === "Le Croise Laroche"))
         const leliondangersArray = betList.filter(elm => (elm.racecourse === "Le Lion d'Angers"))
         const lemansArray = betList.filter(elm => (elm.racecourse === "Le Mans"))
         const letouquetArray = betList.filter(elm => (elm.racecourse === "Le Touquet"))
@@ -119,7 +121,7 @@ const StatsRaceCourses = (props) => {
         const amiensArrayWin = betList.filter(elm => (elm.racecourse === "Amiens") && (elm.status === "win"))
         const angersArrayWin = betList.filter(elm => (elm.racecourse === "Angers") && (elm.status === "win"))
         const argentanArrayWin = betList.filter(elm => (elm.racecourse === "Argentan") && (elm.status === "win"))
-        const bordeauxLeBouscatArrayWin = betList.filter(elm => (elm.racecourse === "Bordeaux Le Bouscat") && (elm.status === "win"))
+        const bordeauxLeBouscatArrayWin = betList.filter(elm => (elm.racecourse === "Bordeaux le Bouscat") && (elm.status === "win"))
         const cagnesSurMerArrayWin = betList.filter(elm => (elm.racecourse === "Cagnes Sur Mer") && (elm.status === "win"))
         const chantillyArrayWin = betList.filter(elm => (elm.racecourse === "Chantilly") && (elm.status === "win"))
         const chateaubriantArrayWin = betList.filter(elm => (elm.racecourse === "Chateaubriant") && (elm.status === "win"))
@@ -134,7 +136,9 @@ const StatsRaceCourses = (props) => {
         const dosHermanasArrayWin = betList.filter(elm => (elm.racecourse === "Dos Hermanas") && (elm.status === "win"))
         const evreuxArrayWin = betList.filter(elm => (elm.racecourse === "Evreux") && (elm.status === "win"))
         const fontainebleauArrayWin = betList.filter(elm => (elm.racecourse === "Fontainebleau") && (elm.status === "win"))
+        const gulfstreamArrayWin = betList.filter(elm => (elm.racecourse === "Gulfstream Park") && (elm.status === "win"))
         const laTesteDeBuchArrayWin = betList.filter(elm => (elm.racecourse === "La Teste de Buch") && (elm.status === "win"))
+        const leCroiseLarocheArrayWin = betList.filter(elm => (elm.racecourse === "Le Croise Laroche") && (elm.status === "win"))
         const leliondangersArrayWin = betList.filter(elm => (elm.racecourse === "Le Lion d'Angers") && (elm.status === "win"))
         const lemansArrayWin = betList.filter(elm => (elm.racecourse === "Le Mans") && (elm.status === "win"))
         const letouquetArrayWin = betList.filter(elm => (elm.racecourse === "Le Touquet") && (elm.status === "win"))
@@ -174,7 +178,7 @@ const StatsRaceCourses = (props) => {
         const amiensArrayLoss = betList.filter(elm => (elm.racecourse === "Amiens") && (elm.status === "loss"))
         const angersArrayLoss = betList.filter(elm => (elm.racecourse === "Angers") && (elm.status === "loss"))
         const argentanArrayLoss = betList.filter(elm => (elm.racecourse === "Argentan") && (elm.status === "loss"))
-        const bordeauxLeBouscatArrayLoss = betList.filter(elm => (elm.racecourse === "Bordeaux Le Bouscat") && (elm.status === "loss"))
+        const bordeauxLeBouscatArrayLoss = betList.filter(elm => (elm.racecourse === "Bordeaux le Bouscat") && (elm.status === "loss"))
         const cagnesSurMerArrayLoss = betList.filter(elm => (elm.racecourse === "Cagnes Sur Mer") && (elm.status === "loss"))
         const chantillyArrayLoss = betList.filter(elm => (elm.racecourse === "Chantilly") && (elm.status === "loss"))
         const chateaubriantArrayLoss = betList.filter(elm => (elm.racecourse === "Chateaubriant") && (elm.status === "loss"))
@@ -189,7 +193,9 @@ const StatsRaceCourses = (props) => {
         const dosHermanasArrayLoss = betList.filter(elm => (elm.racecourse === "Dos Hermanas") && (elm.status === "loss"))
         const evreuxArrayLoss = betList.filter(elm => (elm.racecourse === "Evreux") && (elm.status === "loss"))
         const fontainebleauArrayLoss = betList.filter(elm => (elm.racecourse === "Fontainebleau") && (elm.status === "loss"))
+        const gulfstreamArrayLoss = betList.filter(elm => (elm.racecourse === "Gulfstream Park") && (elm.status === "loss"))
         const laTesteDeBuchArrayLoss = betList.filter(elm => (elm.racecourse === "La Teste de Buch") && (elm.status === "loss"))
+        const leCroiseLarocheArrayLoss = betList.filter(elm => (elm.racecourse === "Le Croise Laroche") && (elm.status === "loss"))
         const leliondangersArrayLoss = betList.filter(elm => (elm.racecourse === "Le Lion d'Angers") && (elm.status === "loss"))
         const lemansArrayLoss = betList.filter(elm => (elm.racecourse === "Le Mans") && (elm.status === "loss"))
         const letouquetArrayLoss = betList.filter(elm => (elm.racecourse === "Le Touquet") && (elm.status === "loss"))
@@ -229,7 +235,7 @@ const StatsRaceCourses = (props) => {
         const amiensArrayVoid = betList.filter(elm => (elm.racecourse === "Amiens") && (elm.status === "void"))
         const angersArrayVoid = betList.filter(elm => (elm.racecourse === "Angers") && (elm.status === "void"))
         const argentanArrayVoid = betList.filter(elm => (elm.racecourse === "Argentan") && (elm.status === "void"))
-        const bordeauxLeBouscatArrayVoid = betList.filter(elm => (elm.racecourse === "Bordeaux Le Bouscat") && (elm.status === "void"))
+        const bordeauxLeBouscatArrayVoid = betList.filter(elm => (elm.racecourse === "Bordeaux le Bouscat") && (elm.status === "void"))
         const cagnesSurMerArrayVoid = betList.filter(elm => (elm.racecourse === "Cagnes Sur Mer") && (elm.status === "void"))
         const chantillyArrayVoid = betList.filter(elm => (elm.racecourse === "Chantilly") && (elm.status === "void"))
         const chateaubriantArrayVoid = betList.filter(elm => (elm.racecourse === "Chateaubriant") && (elm.status === "void"))
@@ -244,7 +250,9 @@ const StatsRaceCourses = (props) => {
         const dosHermanasArrayVoid = betList.filter(elm => (elm.racecourse === "Dos Hermanas") && (elm.status === "void"))
         const evreuxArrayVoid = betList.filter(elm => (elm.racecourse === "Evreux") && (elm.status === "void"))
         const fontainebleauArrayVoid = betList.filter(elm => (elm.racecourse === "Fontainebleau") && (elm.status === "void"))
+        const gulfstreamArrayVoid = betList.filter(elm => (elm.racecourse === "Gulfstream Park") && (elm.status === "void"))
         const laTesteDeBuchArrayVoid = betList.filter(elm => (elm.racecourse === "La Teste de Buch") && (elm.status === "void"))
+        const leCroiseLarocheArrayVoid = betList.filter(elm => (elm.racecourse === "Le Croise Laroche") && (elm.status === "void"))
         const leliondangersArrayVoid = betList.filter(elm => (elm.racecourse === "Le Lion d'Angers") && (elm.status === "void"))
         const lemansArrayVoid = betList.filter(elm => (elm.racecourse === "Le Mans") && (elm.status === "void"))
         const letouquetArrayVoid = betList.filter(elm => (elm.racecourse === "Le Touquet") && (elm.status === "void"))
@@ -318,7 +326,11 @@ const StatsRaceCourses = (props) => {
             return acc + elm.stake},0)
         const fontainebleauArrayStake = fontainebleauArray.reduce((acc, elm) => {
             return acc + elm.stake},0)
+        const gulfstreamArrayStake = gulfstreamArray.reduce((acc, elm) => {
+            return acc + elm.stake},0)
         const laTesteDeBuchArrayStake = laTesteDeBuchArray.reduce((acc, elm) => {
+            return acc + elm.stake},0)
+        const leCroiseLarocheArrayStake = leCroiseLarocheArray.reduce((acc, elm) => {
             return acc + elm.stake},0)
         const leliondangersArrayStake = leliondangersArray.reduce((acc, elm) => {
             return acc + elm.stake},0)
@@ -424,7 +436,11 @@ const StatsRaceCourses = (props) => {
             return acc + elm.profit},0)
         const fontainebleauArrayProfit = fontainebleauArray.reduce((acc, elm) => {
             return acc + elm.profit},0)
+        const gulfstreamArrayProfit = gulfstreamArray.reduce((acc, elm) => {
+            return acc + elm.profit},0)
         const laTesteDeBuchArrayProfit = laTesteDeBuchArray.reduce((acc, elm) => {
+            return acc + elm.profit},0)
+        const leCroiseLarocheArrayProfit = leCroiseLarocheArray.reduce((acc, elm) => {
             return acc + elm.profit},0)
         const leliondangersArrayProfit = leliondangersArray.reduce((acc, elm) => {
             return acc + elm.profit},0)
@@ -719,6 +735,18 @@ const StatsRaceCourses = (props) => {
                 yield: ((fontainebleauArrayProfit * 100) / fontainebleauArrayStake).toFixed(2),
                 racecourse: "Fontainebleau"
             },
+            gulfstreamObj : {
+                bets: gulfstreamArray.length,
+                wins: gulfstreamArrayWin.length,
+                loss: gulfstreamArrayLoss.length,
+                void: gulfstreamArrayVoid.length,
+                percent: ((gulfstreamArrayWin.length / (gulfstreamArrayLoss.length + gulfstreamArrayWin.length)) * 100).toFixed(2),
+                averageStake: (gulfstreamArrayStake / gulfstreamArray.length).toFixed(2),
+                totalUds: gulfstreamArrayStake.toFixed(2),
+                profitUds: gulfstreamArrayProfit.toFixed(2),
+                yield: ((gulfstreamArrayProfit * 100) / gulfstreamArrayStake).toFixed(2),
+                racecourse: "Gulfstream Park"
+            },
             laTesteDeBuchObj : {
                 bets: laTesteDeBuchArray.length,
                 wins: laTesteDeBuchArrayWin.length,
@@ -730,6 +758,18 @@ const StatsRaceCourses = (props) => {
                 profitUds: laTesteDeBuchArrayProfit.toFixed(2),
                 yield: ((laTesteDeBuchArrayProfit * 100) / laTesteDeBuchArrayStake).toFixed(2),
                 racecourse: "La Teste de Buch"
+            },
+            leCroiseLarocheObj : {
+                bets: leCroiseLarocheArray.length,
+                wins: leCroiseLarocheArrayWin.length,
+                loss: leCroiseLarocheArrayLoss.length,
+                void: leCroiseLarocheArrayVoid.length,
+                percent: ((leCroiseLarocheArrayWin.length / (leCroiseLarocheArrayLoss.length + leCroiseLarocheArrayWin.length)) * 100).toFixed(2),
+                averageStake: (leCroiseLarocheArrayStake / leCroiseLarocheArray.length).toFixed(2),
+                totalUds: leCroiseLarocheArrayStake.toFixed(2),
+                profitUds: leCroiseLarocheArrayProfit.toFixed(2),
+                yield: ((leCroiseLarocheArrayProfit * 100) / leCroiseLarocheArrayStake).toFixed(2),
+                racecourse: "Le Croise Laroche"
             },
             leliondangersObj : {
                 bets: leliondangersArray.length,
