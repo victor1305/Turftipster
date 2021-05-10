@@ -68,6 +68,7 @@ const BetModal = (props) => {
         'Amiens',
         'Angers',
         'Argentan',
+        'Auteil',
         'Bordeaux le Bouscat',
         'Cagnes Sur Mer',
         'Chantilly',
@@ -116,6 +117,7 @@ const BetModal = (props) => {
         'Toulouse',
         'Vichy',
         'Vittel',
+        'Will Rogers Downs',
         'Zarzuela'
     ]
 
