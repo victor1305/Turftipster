@@ -17,39 +17,39 @@ import Footer from './components/Footer/Footer'
 
 function App(props) {
 
-  const [ userState, updateUserState ] = useState({
-    loggedInUser: null
-  })
+  // const [ userState, updateUserState ] = useState({
+  //   loggedInUser: null
+  // })
 
-  const authService = new AuthService()
+  // const authService = new AuthService()
 
-  const { loggedInUser } = userState
+  // const { loggedInUser } = userState
 
-  useEffect (() => {
+  // useEffect (() => {
     
-    fetchUser()
-    // eslint-disable-next-line
-  }, [props])
+  //   fetchUser()
+  //   // eslint-disable-next-line
+  // }, [props])
 
-  const fetchUser = () => {
-    authService
-      .isLoggedIn()
-      .then(response => 
-        loggedInUser === null && updateUserState({
-          loggedInUser: response.data
-        }))
-      .catch(err => console.log(err.response.data.message))
-  }
+  // const fetchUser = () => {
+  //   authService
+  //     .isLoggedIn()
+  //     .then(response => 
+  //       loggedInUser === null && updateUserState({
+  //         loggedInUser: response.data
+  //       }))
+  //     .catch(err => console.log(err.response.data.message))
+  //}
 
   return (
     <Fragment>
-      <NavBar {...userState} {...props}/>
+      <NavBar  {...props}/>
       <Switch>
-        <Route exact path = "/" render = { props => <Home {...userState} {...props}/>} />
-        <Route path = "/iniciar-sesion-turftipster" render = { props => <Login fetchUser = {fetchUser} {...props}/>} />
+        <Route exact path = "/" render = { props => <Home  {...props}/>} />
+        <Route path = "/iniciar-sesion-turftipster" render = { props => <Login  {...props}/>} />
         {/* <Route path = "/registro" render = { props => <UserForm {...props} fetchUser = {fetchUser}/>} /> */}
-        <Route path = "/apuestas" render = { props => <Bets {...userState} {...props}/>} />
-        <Route path = "/detalle-apuesta/:id" render = { props => <BetDetail {...userState} {...props}/>} />
+        <Route path = "/apuestas" render = { props => <Bets  {...props}/>} />
+        <Route path = "/detalle-apuesta/:id" render = { props => <BetDetail  {...props}/>} />
         <Route path = "/carreras-de-caballos" render = { () => <HorseRaces />} />
         <Route path = "/stats" render = { props => <Stats {...props}/>} />
         <Route path = "/quienes-somos" render = { () => <AboutUs />} />

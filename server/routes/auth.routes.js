@@ -7,7 +7,7 @@ const passport = require("passport")
 // const bcrypt = require("bcrypt")
 
 
-// router.post("/registro", (req, res, next) => {
+// router.post('/registro', (req, res, next) => {
 
 //     const { username, password, name, lastName, email, phone, role } = req.body
   
@@ -76,48 +76,37 @@ const passport = require("passport")
 //   });
 
 
-router.post("/iniciar-sesion-turftipster", (req, res, next) => {
-    passport.authenticate("local", (err, theUser, failureDetails) => {
+router.post('/iniciar-sesion-turftipster', (req, res, next) => {
+    passport.authenticate('local', (err, theUser, failureDetails) => {
         if (err) {
-        res
-            .status(500)
-            .json({ message: "Hubo un problema durante el proceso de autenticación del usuario." });
-        return;
-        }
-
-        if (!theUser) {
-        // "failureDetails" contains the error messages
-        // from our logic in "LocalStrategy" { message: '...' }.
-        res.status(401).json(failureDetails);
-        return;
-        }
-
-        // save user in session
-        req.login(theUser, (err) => {
-        if (err) {
-            res.status(500).json({ message: "No se pudo guardar la sesión." });
+            res.status(500).json({ message: 'Something went wrong authenticating user' })
             return;
         }
+        if (!theUser) {
+            res.status(401).json(failureDetails)
+            return;
+        }
+        req.login(theUser, (err) => {
+            if (err) {
+                res.status(500).json({ message: 'Session save went bad.' })
+                return;
+            }
+            res.status(200).json(theUser)
+        })
+    })(req, res, next)
+})
 
-        // We are now logged in (that's why we can also send req.user)
-        res.status(200).json(theUser);
-        });
-    })(req, res, next);
-});
-
-
-router.post("/cerrar-sesion", (req, res, next) => {
-    // req.logout() is defined by passport
+router.post('/cerrar-sesion', (req, res, next) => {
     req.logout();
-    res.status(200).json({ message: "Sesión cerrada con éxito." });
-});
+    res.status(200).json({ message: 'Sesión cerrada' })
+})
 
-router.get("/loggedin", (req, res, next) => {
+router.get('/loggedin', (req, res, next) => {
     if (req.isAuthenticated()) {
-      res.status(200).json(req.user);
-      return;
+        res.status(200).json(req.user)
+        return;
     }
-    res.status(403).json({ message: "No autorizado." });
-});
+    res.status(403).json({ message: 'No Autorizado' })
+})
 
 module.exports = router

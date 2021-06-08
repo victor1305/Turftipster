@@ -1,0 +1,21 @@
+.home-container {
+  display: flex;
+}
+
+.button-home {
+  padding: 10px 15px;
+  font-size: 20px;
+  background-color: transparent;
+  cursor: pointer;
+  border-radius: 5px;
+  border: 2px solid green;
+}
+
+.home-section {
+  width: 50%;
+}
+
+.button-home-container {
+  text-align: center;
+  margin-top: 150px;
+}

@@ -31,6 +31,8 @@ const Home = (props) => {
 
     useEffect(() => {
 
+        console.log('Hola')
+
         betservice
             .getHomeBets()
             .then(response => {

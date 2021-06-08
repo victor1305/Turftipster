@@ -35,9 +35,7 @@ const Login = (props) => {
         authService
             .login(user)
             .then((response) => {
-                updateUser(response.data)
-                props.fetchUser()
-                props.history.push('/')
+                console.log(response)
             })
             .catch(err => updateError({
                 errorMessage: err.response.data.message
