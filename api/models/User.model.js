@@ -26,6 +26,12 @@ const userSchema = new Schema({
         type: String,
         default: "user"
     },
+    receipts: [
+        {
+            type: mongoose.ObjectId,
+            ref: "PayInfo"
+        }
+    ]
 }, {
     timestamps: true
 })

@@ -1,5 +1,5 @@
 import React from 'react';
-import Modal from '../../Modal/Modal';
+import Modal from './Modal';
 
 const ConfirmationModal = ({ show, handleClose, ask, value, confirmBtn }) => {
 

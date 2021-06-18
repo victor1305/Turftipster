@@ -2,12 +2,12 @@ import React, { useEffect, useState } from 'react';
 
 import Modal from '../../Modal/Modal'
 import axios from 'axios'
-import ConfirmationModal from './ConfirmationModal';
-import ErrorModal from './ErrorModal'
+import ConfirmationModal from '../../Modal/ConfirmationModal';
+import ErrorModal from '../../Modal/ErrorModal'
 
 const BETS_BASE_URL = 'http://localhost:3030/api/apuestas/'
 
-const ParameterModal = ({ show, handleClose, showSpinner }) => {
+const ParameterModal = ({ show, handleClose, showSpinner, reloadBets }) => {
   // HOOKS
   const [ parameter, addParameter ] = useState({
     value: '',
@@ -60,6 +60,7 @@ const ParameterModal = ({ show, handleClose, showSpinner }) => {
       showSpinner(true)
       showParameterModal(false)
       await axios.post(`${BETS_BASE_URL}crear-parametro`, parameter)
+      await reloadBets() 
       showSpinner(false)
       
     } catch (error) {
@@ -109,7 +110,7 @@ const ParameterModal = ({ show, handleClose, showSpinner }) => {
         ask = {`¿Quieres añadir este ${ parameter.type }`}
         value = { parameter.value }
         confirmBtn = { saveParameter }
-        handleClose = { closeConfirmationModal}/>
+        handleClose = { closeConfirmationModal }/>
 
       <ErrorModal 
         show = { modalError }

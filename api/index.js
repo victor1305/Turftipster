@@ -35,10 +35,12 @@ app.use(cors(corsOptions));
 // import routes
 const authRoutes = require('./routes/user.routes')
 const betsRoutes = require('./routes/bets.routes')
+const clientsRoutes = require('./routes/client.routes')
 
 // route middlewares
 app.use('/api', authRoutes)
 app.use('/api/apuestas', betsRoutes)
+app.use('/api/clientes', clientsRoutes)
 
 // iniciar server
 const PORT = process.env.PORT || 3030;

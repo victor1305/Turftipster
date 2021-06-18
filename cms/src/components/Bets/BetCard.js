@@ -4,7 +4,7 @@ import './bets.css'
 import BetModal from './Modals/BetModal';
 
 import axios from 'axios'
-import ConfirmationModal from './Modals/ConfirmationModal';
+import ConfirmationModal from '../Modal/ConfirmationModal';
 
 const BETS_BASE_URL = 'http://localhost:3030/api/apuestas/'
 

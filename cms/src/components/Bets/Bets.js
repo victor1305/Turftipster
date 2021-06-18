@@ -134,7 +134,7 @@ const Bets = (props) => {
   return (
     <div className = "bets-page-container">
       <h1>Gestión de Apuestas</h1>
-      
+
       <BetModal 
         show = { modalBets } 
         handleClose = { closeModalBets } 
@@ -149,9 +149,10 @@ const Bets = (props) => {
       <ParameterModal 
         show = { modalParameter } 
         handleClose = { closeModalParameter } 
-        showSpinner = { showSpinner }/>
+        showSpinner = { showSpinner }
+        reloadBets = { reloadBets } />
 
-      {spinner ?
+      { spinner ?
         <div className = "spinnerContainer">
         <DotLoader 
           color={"#136F63"} 

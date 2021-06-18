@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import Modal from '../../Modal/Modal'
-
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 import axios from 'axios'
-import ErrorModal from './ErrorModal';
+import ErrorModal from '../../Modal/ErrorModal';
+import { setDefaultLocale } from  "react-datepicker";
+setDefaultLocale('es')
 
 const BETS_BASE_URL = 'http://localhost:3030/api/apuestas/'
 
@@ -11,8 +14,13 @@ const BetModal = ( props ) => {
   // HOOKS
   const [ bet, addBetState ] = useState({})
   const [ modalError, showModalError ] = useState(false)
+  const [ startDate, setStartDate ] = useState(new Date())
   const [ errors, saveErrors ] = useState({})
   let validation = {}
+
+  let hour = ''
+  let date = ''
+  let isoDate = ''
 
   useEffect(() => {
     addBetState({
@@ -27,12 +35,42 @@ const BetModal = ( props ) => {
       date: props.date,
       betCode: props.betCode      
     })
+
+    if(props.date) {
+      setStartDate(new Date (props.date.split("T")[0]) )
+    }
+
     if(props.deleteErrors){
       saveErrors({})
     }
   }, [props])
 
+  useEffect(() => {
+
+    async function modifyDate() {
+
+      await getTime()
+      await setDate()
+    }
+
+    modifyDate()
+    // eslint-disable-next-line
+  }, [startDate])
+
   // FUNCTIONS
+
+  const getTime = () => {
+    hour = new Date().toISOString().slice(11)
+    date = startDate.toISOString().slice(0,11)
+    isoDate = `${date}${hour}`
+  }
+
+  const setDate = () => {
+    addBetState({
+      ...bet,
+      date: isoDate
+    })    
+  }
 
   const updateBetState = e => {
     addBetState({
@@ -92,6 +130,7 @@ const BetModal = ( props ) => {
       await axios.post(`${BETS_BASE_URL}crear-apuesta`, bet)
       await props.reloadBets()
       deleteInputs()
+      setStartDate( new Date() )
       props.showSpinner(false)
 
     } catch (error) {
@@ -109,6 +148,7 @@ const BetModal = ( props ) => {
       await axios.put(`${BETS_BASE_URL}detalle-apuesta/${props._id}/edit`, bet)
       await props.reloadBets()
       deleteInputs()
+      setStartDate( new Date() )
       props.showSpinner(false)
 
     } catch (error) {
@@ -190,13 +230,15 @@ const BetModal = ( props ) => {
             { errors.betCode && <p className = "form-error">{errors.betCode}</p> }
           </div>      
 
-          {/* LA FECHA SOLO SE MUESTRA PARA EDITAR, SI HAY BET ID ES QUE ES PARA UPDATE*/}
-          { props._id &&
-            <div className = "form-group">
-              <label className = "form-label">Fecha:</label>
-              <input className = "form-input" name="date" onChange = {updateBetState} defaultValue = {bet.date}/>
-            </div>
-          }
+          <div className = "form-group">
+            <label className = "form-label">Fecha:</label>
+            <DatePicker 
+              className = "form-input" 
+              dateFormat="dd/MM/yyyy" 
+              selected={ startDate } 
+              onChange={ (date) => setStartDate(date) } 
+              showPopperArrow={false}/>
+          </div>
 
           <div className = "form-group">
             <label className = "form-label">Posición:</label>
