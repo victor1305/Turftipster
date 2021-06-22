@@ -23,6 +23,12 @@ const ClientDetail = (props) => {
   let year = ''
   let monthNumber = ''
 
+  let monthMap = ''
+  let yearMap = ''
+  let monthNumberMap = ''  
+
+  let beneficiaryName = ''
+
   if (clientInfo.registerDate) {
     monthNumber = clientInfo.registerDate.slice(5,7)
     year = clientInfo.registerDate.slice(0,4)
@@ -67,18 +73,69 @@ const ClientDetail = (props) => {
       }
     }
     loadClient ()
+    // eslint-disable-next-line
   }, [])
 
   useEffect(() => {
     updateDateFormated(`${month}-${year}`)
-    
+    // eslint-disable-next-line
   }, [clientInfo])
+
+  const formatDate = (date) => {
+    monthNumberMap = date.slice(5,7)
+    yearMap = date.slice(0,4)
+    monthMap = ''
+
+    if (monthNumberMap === '01') {
+      monthMap = 'Enero'
+    } else if (monthNumberMap === '02') {
+      monthMap = 'Febrero'
+    } else if (monthNumberMap === '03') {
+      monthMap = 'Marzo'
+    } else if (monthNumberMap === '04') {
+      monthMap = 'Abril'
+    } else if (monthNumberMap === '05') {
+      monthMap = 'Mayo'
+    } else if (monthNumberMap === '06') {
+      monthMap = 'Junio'
+    } else if (monthNumberMap === '07') {
+      monthMap = 'Julio'
+    } else if (monthNumber === '08') {
+      monthMap = 'Agosto'
+    } else if (monthNumberMap === '09') {
+      monthMap = 'Septiembre'
+    } else if (monthNumberMap === '10') {
+      monthMap = 'Octubre'
+    } else if (monthNumberMap === '11') {
+      monthMap = 'Noviembre'
+    } else {
+      monthMap = 'Diciembre'
+    }
+
+    return `${monthMap}-${yearMap}`
+
+  }
+
+  const formatUser = (id) => {
+    if ( id === '5fc8d746cd27b1586f3806f8') {
+      beneficiaryName = 'Víctor'
+    
+    } else if (id === '60c78af70d2c7d19af2e6590') {
+      beneficiaryName = 'Antonio'
+    
+    } else {
+      beneficiaryName = 'Eduardo'
+    }
+
+    return beneficiaryName
+  }
 
 
 
   return (
 
     <div>
+      <h1>Detalles de Cliente</h1>
       { spinner ?
       
         <div className = "spinnerContainer">
@@ -90,15 +147,51 @@ const ClientDetail = (props) => {
         </div>
     
       :
-        <div>
-          <h1>Detalles de Cliente</h1>
-          <div className = "client-info">
-            <p>Nombre: <span>{ clientInfo.name }</span></p>
-            <p>Teléfono: <span>{ clientInfo.phone }</span></p>
-            <p>Fecha de Registro: <span>{ dateFormated }</span></p>
-            <p>Recomendado por: <span>{ clientInfo.referred }</span></p>
+        <div className = "client-detail-container">
+          <div className = "titles-container-detail">
+            <h4 className = "titles-container-detail-h4">Historial de Pagos</h4>
+            <h4 className = "titles-container-detail-h4">Detalle de Cliente</h4>
           </div>
+          
           <div className = "payments-history">
+
+            <div className = "table-client-detail-container">
+              <table className = "table-client-detail">
+                <thead>
+                  <tr className = "clients-table-tr">
+                    <th>#</th>
+                    <th>Fecha</th>
+                    <th>Cantidad</th>
+                    <th>Método</th>
+                    <th>Estado</th>
+                    <th>Recibe</th>
+                    <th>Notas</th>
+                  </tr>
+                </thead>
+
+                <tbody>            
+                  { clientInfo.payments && (clientInfo.payments).length > 0 && (clientInfo.payments).map((item, index) => (
+                    <tr key = {item._id}>
+                      <td>{ index + 1 }</td>
+                      <td>{ formatDate(item.date) }</td>
+                      <td>{ item.price }€</td>
+                      <td>{ item.type === 'Paysafecard' ? 'PSC' : item.type }</td>
+                      <td><div className = { item.status === 'Pagado' ?  "pay-status status-green" : item.status === 'Impago' ? "pay-status status-red" : "pay-status status-orange"}></div></td>
+                      <td>{ formatUser(item.beneficiary) }</td>
+                      <td>{ item.information }</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+
+            </div>
+
+            <div className = "client-detail-info-container">
+              <p>Nombre: <span>{ clientInfo.name }</span></p>
+              <p>Teléfono: <span>{ clientInfo.phone }</span></p>
+              <p>Fecha de Registro: <span>{ dateFormated }</span></p>
+              <p>Recomendado por: <span>{ clientInfo.referred ? clientInfo.referred : 'Sin recomendación' }</span></p>
+            </div>
 
           </div>
         </div>

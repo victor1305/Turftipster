@@ -1,6 +1,7 @@
 const Client = require('../models/Client.model')
 const User = require('../models/User.model')
 const PayInfo = require('../models/PayStatus.model')
+const mongoose = require('mongoose');
 
 exports.saveClient = async (req, res, next) => {
 
@@ -192,6 +193,49 @@ exports.getClientInfo = async (req, res, next) => {
 
     res.json({
       data: client
+    })
+
+  } catch (error) {
+    res.status(400).json(error)
+  }
+}
+
+exports.getPaymentsListProfile = async (req, res, next) => {
+  const id = mongoose.Types.ObjectId(req.params.id)
+  const month = req.params.month
+  const year = req.params.year
+
+  try {
+    const paymentList = await PayInfo.aggregate([
+      {
+        $match: {
+          beneficiary: id,
+          date: { $gte: new Date(`${year}-${month}-01T00:00:00.720Z`), $lt: new Date(`${year}-${month}-28T00:00:00.720Z`) } 
+        }
+      },
+      {
+        $lookup: {
+          from: 'clients',
+          localField: 'client',
+          foreignField: '_id',
+          as: 'client',
+        }
+      },
+      {
+        $addFields: {
+          clientId: "$client._id",
+          client: "$client.name",
+        }
+      },
+      {
+        $sort: {
+          'client': 1
+        }
+      }
+    ])
+
+    res.json({
+      data: paymentList
     })
 
   } catch (error) {

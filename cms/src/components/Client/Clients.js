@@ -8,6 +8,7 @@ import PayModal from './Modals/PayModal'
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import ConfirmationModal from '../Modal/ConfirmationModal'
+import ErrorModal from '../Modal/ErrorModal'
 
 import './clients.css'
 
@@ -27,7 +28,9 @@ const Clients = (props) => {
   const [ modalPay, showModalPay ] = useState(false)
   const [ modalEditPay, showModalEditPay ] = useState(false)
   const [ confirmationModal, showConfirmationModal ] = useState(false)
+  const [ modalError, showModalError ] = useState(false)
   const [ errors, deleteErrors ] = useState(false)
+  const [ errorMsg, updateErrorMsg ] = useState('')
   const [ spinner, showSpinner ] = useState(false)
   const [ clientsList, loadClientsList ] = useState([])
   const [ adminsList, loadAdminsList ] = useState([])
@@ -86,8 +89,6 @@ const Clients = (props) => {
     month = 'Diciembre'
   }
 
-
-
   useEffect(() => {
     async function loadData() {
       try {
@@ -125,11 +126,13 @@ const Clients = (props) => {
     }
 
     updatePaysByMonth()
+    // eslint-disable-next-line
   }, [startDate])
 
   // FUNCTIONS
 
   const openModalClient = () => {
+    document.getElementById('client-form').reset()
     showModalClient(true)
 
   }
@@ -167,6 +170,18 @@ const Clients = (props) => {
     }
   }
 
+  const reloadClientList = async () => {
+    try {
+      showSpinner(true)
+      const resClients = await axios.get(`${CLIENTS_BASE_URL}lista-clientes`)
+      loadClientsList(resClients.data)
+      showSpinner(false)
+    } catch (error) {
+      console.log(error)
+      showSpinner(false)
+    }
+  }
+
   const editPay = (e) => {
     loadPayInfo(JSON.parse(e.target.value))
     showModalEditPay(true)
@@ -185,19 +200,34 @@ const Clients = (props) => {
     try {
       showSpinner(true)
       closeConfirmationModal()
-      await axios.delete(`${CLIENTS_BASE_URL}borrar-pago/${payInfo._id}/${payInfo.clientId}/${payInfo.beneficiaryId}`)
+      await axios.delete(`${CLIENTS_BASE_URL}borrar-pago/${payInfo._id}/${payInfo.clientId}/${payInfo.beneficiaryId}`, {
+        headers: {
+          'auth-token': props.tokenId
+        }
+      })
       await reloadPayList()
       showSpinner(false)
 
     } catch (error) {
       console.log(error)
       showSpinner(false)
+      updateErrorMsg(error.response.data ? error.response.data.error : 'Hubo un error al conectar con la Base de Datos')
+      showModalError(true)
     }
   }
 
+  const closeModalError = () => {
+    showModalError(false)
+  }
+
   return (
-    <div>
+    <div className = "clients-container">
       <h1>Gestión de Clientes</h1>
+
+      <ErrorModal 
+        show = { modalError }
+        handleClose = { closeModalError }
+        msg = { errorMsg }/>
 
       <ConfirmationModal 
         show = { confirmationModal }
@@ -211,6 +241,7 @@ const Clients = (props) => {
         handleClose = { closeModalClients }
         deleteErrors = { errors }
         showSpinner = { showSpinner }
+        reloadClientList = { reloadClientList }
         { ...props }/>
 
       <PayModal 
@@ -237,105 +268,117 @@ const Clients = (props) => {
       { spinner ?
       
         <div className = "spinnerContainer">
-        <DotLoader 
-          color={"#136F63"} 
-          loading={spinner} 
-          css={override} 
-          size={150} />
+          <DotLoader 
+            color={"#3860fb"} 
+            loading={spinner} 
+            css={override} 
+            size={150} />
         </div>
       
       :
         <div>
           <div className = "btns-container">
             <div className = "principal-button-container">
+              <button className = "principal-button" onClick = { openModalClient }>Nuevo Cliente</button>
+            </div>
+            <div className = "principal-button-container">
               <button className = "principal-button" onClick = { openModalPay }>Añadir Pago</button>
-            </div>
-            <div>
-              <Link to = '/index'><button className = "logo-button"/></Link>
-            </div>
-            <div className = "aux-button-container">
-              <button className = "aux-button" onClick = { openModalClient }>Nuevo Cliente</button>
             </div>
           </div>
 
           <div className = "payments-container">
-            <h4>Estado Pagos { month } { year }</h4>
+            <h4 className = "payments-month">Estado Pagos { month } { year }
+              <span>Selecciona otro mes:<DatePicker 
+                className = "date-input" 
+                dateFormat="MM/yyyy"
+                showMonthYearPicker
+                showFullMonthYearPicker
+                selected={ startDate } 
+                onChange={ (date) => setStartDate(date) } 
+                showPopperArrow={false}/></span>
+            </h4>
 
-            <DatePicker 
-              className = "form-input" 
-              dateFormat="MM/yyyy"
-              showMonthYearPicker
-              showFullMonthYearPicker
-              selected={ startDate } 
-              onChange={ (date) => setStartDate(date) } 
-              showPopperArrow={false}/>
+            { paysList.length > 0 ?
+              <div className = "tables-container">
 
-            <table>
-              <thead>
-                <tr>
-                  <th>#</th>
-                  <th>Cliente</th>
-                  <th>Estado</th>
-                  <th>Método</th>
-                  <th>Cantidad</th>
-                  <th>Recibe</th>
-                  <th>Notas</th>
-                </tr>
-              </thead>
+                <table className = "table-clients">
+                  <thead>
+                    <tr className = "clients-table-tr">
+                      <th>#</th>
+                      <th>Cliente</th>
+                      <th>Estado</th>
+                      <th>Método</th>
+                      <th>Cantidad</th>
+                      <th>Recibe</th>
+                      <th>Notas</th>
+                      <th></th>
+                      <th></th>
+                    </tr>
+                  </thead>
 
-              <tbody>
-                {paysList.length > 0 && paysList.map((item, index) => (
-                  <tr key = { item._id }>
-                    <td>{ index + 1 }</td>
-                    <td><Link to = { `/detalle-cliente/${item.clientId}` }>{ item.client[0] }</Link></td>
-                    <td>{ item.status }</td>
-                    <td>{ item.type }</td>
-                    <td>{ item.price } €</td>
-                    <td>{ item.beneficiary[0] }</td>
-                    <td>{ item.information }</td>
-                    <td><button onClick = { editPay } value = { JSON.stringify(item) }>Editar</button></td>
-                    <td><button onClick = { openDeleteModal } value = { JSON.stringify(item) }>Borrar</button></td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+                  <tbody>
+                    {paysList.length > 0 && paysList.map((item, index) => (
+                      <tr key = { item._id }>
+                        <td>{ index + 1 }</td>
+                        <td className = "td-name"><Link to = { `/detalle-cliente/${item.clientId}` }>{ item.client[0] }</Link></td>
+                        <td><div className = { item.status === 'Pagado' ?  "pay-status status-green" : item.status === 'Impago' ? "pay-status status-red" : "pay-status status-orange"}></div></td>
+                        <td>{ item.type === 'Paysafecard' ? 'PSC' : item.type }</td>
+                        <td>{ item.price } €</td>
+                        <td>{ item.beneficiary[0] }</td>
+                        <td>{ item.information }</td>
+                        <td><button onClick = { editPay } value = { JSON.stringify(item) } className = "table-client-btn edit-client-btn"/></td>
+                        <td><button onClick = { openDeleteModal } value = { JSON.stringify(item) } className = "table-client-btn delete-client-btn"/></td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
 
-            <div>
-              <p>Total recaudación { month } { year }: <span>{ totalPayments }€</span></p>
+                <div className = "table-admins-container">
+                  <p className = "total-resume">Total recaudación { month } { year }: <span>{ totalPayments }€</span></p>
 
-              <h5>Reparto Pagos:</h5>
-              <table>
-                <thead>
-                  <tr>
-                    <th>Nombre</th>
-                    <th>Recibido</th>
-                    <th>Objetivo</th>
-                    <th>Diferencia</th>
-                  </tr>
-                </thead>
+                  <h5 className = "admins-table-title">Reparto Pagos</h5>
+                  <table className = "table-admins">
+                    <thead>
+                      <tr className = "clients-table-tr">
+                        <th>Nombre</th>
+                        <th>Recibido</th>
+                        <th>Objetivo</th>
+                        <th>Diferencia</th>
+                      </tr>
+                    </thead>
 
-                <tbody>
-                  <tr>
-                    <td>Antonio</td>
-                    <td>{ paymentsAntonio }</td>
-                    <td>{ totalPayments * 0.25 }</td>
-                    <td>{ paymentsAntonio - totalPayments * 0.25 }</td>
-                  </tr>
-                  <tr>
-                    <td>Eduardo</td>
-                    <td>{ paymentsEdu }</td>
-                    <td>{ totalPayments * 0.45 }</td>
-                    <td>{ paymentsEdu - totalPayments * 0.45 }</td>
-                  </tr>
-                  <tr>
-                    <td>Víctor</td>
-                    <td>{ paymentsVictor }</td>
-                    <td>{ totalPayments * 0.3 }</td>
-                    <td>{ paymentsVictor - totalPayments * 0.3 }</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
+                    <tbody>
+                      <tr>
+                        <td>Antonio</td>
+                        <td>{ paymentsAntonio }</td>
+                        <td>{ totalPayments * 0.25 }</td>
+                        <td>{paymentsAntonio - totalPayments * 0.3 > 0 ? 'Sobran' : 'Faltan'} { Math.abs(paymentsAntonio - totalPayments * 0.25) }€</td>
+                      </tr>
+                      <tr>
+                        <td>Eduardo</td>
+                        <td>{ paymentsEdu }</td>
+                        <td>{ totalPayments * 0.45 }</td>
+                        <td>{paymentsEdu - totalPayments * 0.3 > 0 ? 'Sobran' : 'Faltan'} { Math.abs(paymentsEdu - totalPayments * 0.45) }€</td>
+                      </tr>
+                      <tr>
+                        <td>Víctor</td>
+                        <td>{ paymentsVictor }</td>
+                        <td>{ totalPayments * 0.3 }</td>
+                        <td>{paymentsVictor - totalPayments * 0.3 > 0 ? 'Sobran' : 'Faltan'} { Math.abs(paymentsVictor - totalPayments * 0.3) }€</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+
+              </div>
+
+            :
+            
+              <div>
+                <p className = "clients-msg">No hay pagos que mostrar para {`${month}-${year}`}</p>
+              </div>
+
+            }
 
           </div>
         </div>

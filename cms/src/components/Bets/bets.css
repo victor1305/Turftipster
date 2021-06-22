@@ -2,6 +2,13 @@ h1 {
   text-align: center;
   margin: 0;
   padding-top: 25px;
+  color:#fff;
+  font-size: 26px;
+}
+
+.bets-page-container {
+  background-color: rgb(23, 23, 26) !important;
+  background: linear-gradient(rgb(34, 37, 49) 0%, rgba(34, 37, 49, 0) 460px);
 }
 
 .btns-container {
@@ -25,16 +32,16 @@ h1 {
 .principal-button {
   padding: 10px 15px;
   font-size: 18px;
-  background-color: transparent;
+  background-color: #3860fb;
   cursor: pointer;
   border-radius: 5px;
-  border: 2px solid #136F63;
+  border: 1px solid #3860fb;
   margin: 10px;
   width: 200px;
+  color: #fff;
 }
 .principal-button:hover {
-  background-color: #136F63;
-  color: #e8eddf;
+  background-color: #476cf8;
 }
 
 .logo-button {
@@ -53,48 +60,57 @@ h1 {
   background-color: transparent;
   cursor: pointer;
   border-radius: 5px;
-  border: 2px solid #F34213;
+  border: 1px solid #3860fb;
   margin: 10px;
   width: 200px;
+  color: #fff
 }
 .aux-button:hover {
-  background-color: #F34213;
-  color: #e8eddf;
+  background-color: #476cf8;
+  color: #fff;
+}
+
+.bet-page-span {
+  color: #fff;
+  font-weight: bold;
 }
 
 .bet-list-header {
   display: flex;
   justify-content: center;
   margin-bottom: 10px;
-  color: #242423;
+  background-color: #17171a;
+  padding: 10px;
+  border-bottom: 1px solid rgb(34, 37, 49);
 }
 
 .bet-list-container {
-  margin: 25px 50px;
-  padding: 20px;
+  margin: 20px 40px 0px;
   border-radius: 5px;
-  border: 2px solid #136F63;
+  border: 2px solid #222531;
+  padding-bottom: 10px;
 }
 
 .bets-list {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
 }
 
 .card-container {
   border-radius: 5px;
-  margin-bottom: 10px;
   padding: 20px;
   width: 210px;
-  margin: 10px auto;
-  background-color: #242423;
+  margin: 15px;
+  background-color: rgb(23, 23, 26) !important;
+  background: linear-gradient(rgb(34, 37, 49) 0%, rgba(34, 37, 49, 0) 200px);
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
   transition: 0.3s;
-  color: #e8eddf;
+  color: #fff;
 }
 
 .card-container:hover {
-  box-shadow: 8px 8px 16px 0 rgba(0,0,0,0.8);
+  box-shadow: 8px 8px 16px 0 rgba(255,255,255, 0.2);
 }
 
 .delete-btn-container {
@@ -125,7 +141,7 @@ h1 {
 .card-title {
   font-size: 16px;
   padding-bottom: 5px;
-  border-bottom: 1px solid #e8eddf;
+  border-bottom: 1px solid #fff;
 }
 
 .card-p {
@@ -144,23 +160,20 @@ h1 {
   justify-content: center;
   margin-top: 6px;
   margin-bottom: 20px;
-  border-bottom: 1px solid #e8eddf;
+  border-bottom: 1px solid #fff;
 }
 
 .card-btn {
   width: 75px;
   cursor: pointer;
-  background-color: #e8eddf;
+  background-color: #323546;
   padding: 5px 10px;
-  border: 1px solid #136F63;
-  color: #242423;
+  border: 1px solid #323546;
+  color: #fff;
   border-radius: 5px;
 }
-
 .card-btn:hover {
-  background-color: #136F63;
-  border-color: #136F63;
-  color: #e8eddf;
+  background-color: #476cf8;
 }
 
 .color-win {
@@ -278,12 +291,15 @@ h1 {
 
 .bet-detail-container {
   padding: 20px;
+  height: 100%;
 }
 
 .detail-container {
   margin-top: 100px;
-  text-align: center;
+  text-align: left;
   padding-bottom: 50px;
+  color: #fff;
+  padding-left: 840px;
 }
 
 .detail-status-pending {
@@ -313,11 +329,11 @@ h1 {
 
 .form-title {
   font-size: 20px;
-  font-weight: 400;
+  font-weight: bold;
   padding: 0 15px 20px ;
   border-bottom: 1px solid #495057;
   margin-bottom: 0;
-  color: #136F63
+  color: #3860fb
 }
 
 .form-group {
@@ -357,15 +373,14 @@ h1 {
   width: 100px;
   font-size: 16px;
   cursor: pointer;
-  background-color: #fff;
+  background-color: #3860fb;
   padding: 5px 10px;
-  border: 1px solid #136F63;
-  color: #136F63;
+  border: 1px solid #3860fb;
+  color: #fff;
   border-radius: 5px;  
 }
 .form-btn:hover {
-  background-color: #136F63;  
-  color: #fff;
+  background-color: #476cf8;  
 }
 
 .delete-modal-title {
@@ -386,16 +401,17 @@ h1 {
 .delete-confirm-btn-modal {
   padding: 10px 15px;
   font-size: 14px;
-  background-color: transparent;
+  background-color: #3860fb;
   cursor: pointer;
   border-radius: 5px;
-  border: 2px solid #136F63;
+  border: 2px solid #3860fb;
   margin: 10px;
   width: 120px;
+  color: #fff;
+  font-weight: bold;
 }
 .delete-confirm-btn-modal:hover {
-  background-color: #136F63;
-  color: #e8eddf;
+  background-color: #476cf8;
 }
 
 .delete-cancel-btn-modal {
@@ -404,19 +420,21 @@ h1 {
   background-color: transparent;
   cursor: pointer;
   border-radius: 5px;
-  border: 2px solid #F34213;
+  border: 2px solid red;
   margin: 10px;
   width: 120px;
+  
 }
 .delete-cancel-btn-modal:hover {
-  background-color: #F34213;
-  color: #e8eddf;
+  background-color: red;
+  color: #fff;
+  font-weight: bold;
 }
 
 .confirm-modal-value {
   font-size: 16px;
   text-align: center;
-  color: #136F63;
+  color: #3860fb;
   font-weight: bold;
 }
 

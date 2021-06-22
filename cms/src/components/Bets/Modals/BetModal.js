@@ -16,6 +16,8 @@ const BetModal = ( props ) => {
   const [ modalError, showModalError ] = useState(false)
   const [ startDate, setStartDate ] = useState(new Date())
   const [ errors, saveErrors ] = useState({})
+  const [ errorMsg, updateErrorMsg ] = useState('')
+
   let validation = {}
 
   let hour = ''
@@ -80,6 +82,7 @@ const BetModal = ( props ) => {
   }
 
   const validateForm = () => {
+    console.log(bet)
     validation = {}
     if (!bet.bookie) {
       validation.bookie = 'Se te olvidó el nombre de la Bookie!'
@@ -127,9 +130,13 @@ const BetModal = ( props ) => {
     try {
       props.handleClose()
       props.showSpinner(true)
-      await axios.post(`${BETS_BASE_URL}crear-apuesta`, bet)
+      await axios.post(`${BETS_BASE_URL}crear-apuesta`, bet, {
+        headers: {
+          'auth-token': props.tokenId
+        }
+      })
       await props.reloadBets()
-      deleteInputs()
+      //deleteInputs()
       setStartDate( new Date() )
       props.showSpinner(false)
 
@@ -137,6 +144,7 @@ const BetModal = ( props ) => {
       console.log(error)
       props.handleClose()
       props.showSpinner(false)
+      updateErrorMsg((error.response && error.response.data && error.response.data.error) ? error.response.data.error : 'Hubo un error al conectar con la Base de Datos')
       showModalError(true)
     }
   }
@@ -145,7 +153,11 @@ const BetModal = ( props ) => {
     try {
       props.handleClose()
       props.showSpinner(true)
-      await axios.put(`${BETS_BASE_URL}detalle-apuesta/${props._id}/edit`, bet)
+      await axios.put(`${BETS_BASE_URL}detalle-apuesta/${props._id}/edit`, bet, {
+        headers: {
+          'auth-token': props.tokenId
+        }
+      })
       await props.reloadBets()
       deleteInputs()
       setStartDate( new Date() )
@@ -155,6 +167,7 @@ const BetModal = ( props ) => {
       console.log(error)
       props.handleClose()
       props.showSpinner(false)
+      updateErrorMsg((error.response && error.response.data && error.response.data.error) ? error.response.data.error : 'Hubo un error al conectar con la Base de Datos')
       showModalError(true)
     }
   }
@@ -175,7 +188,13 @@ const BetModal = ( props ) => {
 
           <div className = "form-group">
             <label className = "form-label">Bookie *:</label>
-            <input className = "form-input" type="text" name="bookie" onChange = {updateBetState} defaultValue = {bet.bookie}/>
+            <select className = "form-input" name="bookie" onChange = {updateBetState} value = {bet.bookie}>
+              <option>--- Selecciona una Bookie ---</option>
+              <option>Bet365</option>
+              <option>Betfair</option>
+              <option>Sportium</option>
+              <option>William Hill</option>
+            </select>
             { errors.bookie && <p className = "form-error">{errors.bookie}</p> }
           </div>
 
@@ -265,7 +284,7 @@ const BetModal = ( props ) => {
       <ErrorModal 
         show = { modalError }
         handleClose = { closeModalError }
-        msg = { 'Ha habido un error al guardar los datos' }/>
+        msg = { errorMsg }/>
     </div>
   );
 }

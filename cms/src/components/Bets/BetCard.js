@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom'
 import './bets.css'
 import BetModal from './Modals/BetModal';
+import ErrorModal from '../Modal/ErrorModal'
 
 import axios from 'axios'
 import ConfirmationModal from '../Modal/ConfirmationModal';
@@ -15,6 +16,8 @@ const BetCard = (props) => {
 
   const [ modalBets, showModalBets ] = useState(false)
   const [ modalDeleteBet, showModalDeleteBet ] = useState(false)
+  const [ modalError, showModalError ] = useState(false)
+  const [ errorMsg, updateErrorMsg ] = useState('')
 
   let bet = {
     _id: _id,
@@ -83,12 +86,18 @@ const BetCard = (props) => {
   const updateBetStatus = async () => {
     try {
       props.showSpinner(true)
-      await axios.put(`${BETS_BASE_URL}detalle-apuesta/${props._id}/edit-status`, bet)
+      await axios.put(`${BETS_BASE_URL}detalle-apuesta/${props._id}/edit-status`, bet, {
+        headers: {
+          'auth-token': props.tokenId
+        }
+      })
       await props.reloadBets()
       props.showSpinner(false)      
 
     } catch (error) {
       console.log(error)
+      updateErrorMsg((error.response && error.response.data && error.response.data.error) ? error.response.data.error : 'Hubo un error al conectar con la Base de Datos')
+      showModalError(true)
       props.showSpinner(false)
     }
   }
@@ -96,19 +105,30 @@ const BetCard = (props) => {
   const deleteBet = async () => {
     try {
       props.showSpinner(true)
-      await axios.delete(`${BETS_BASE_URL}detalle-apuesta/${props._id}/delete`)
+      await axios.delete(`${BETS_BASE_URL}detalle-apuesta/${props._id}/delete`, {
+        headers: {
+          'auth-token': props.tokenId
+        }
+      })
       await props.reloadBets()
       props.showSpinner(false)
       
-    } catch (error) {
+    } catch (error) { 
       console.log(error)
       props.showSpinner(false)
+      showModalError(true)
+      updateErrorMsg(error.response.data ? error.response.data.error : 'Hubo un error al conectar con la Base de Datos')         
     }
+  }
+
+  const closeModalError = () => {
+    showModalError(false)
   }
 
 
   return (
     <div className = {`card-container ${border}`}>
+
       <div className = "delete-btn-container">
         <p className = "card-date">{dateFormated}</p> 
         <button className = "delete-btn" onClick = { openDeleteModal }/>
@@ -131,13 +151,21 @@ const BetCard = (props) => {
         <button className = "card-btn" onClick = { openModal }>Editar</button>
         <Link to={`/detalle-apuesta/${_id}`} className = "card-a"><button className = "card-btn">Detalles</button></Link>
       </div>
+
       <BetModal show = { modalBets } handleClose = {closeModalBets} {...props}/>
+
       <ConfirmationModal 
         show = { modalDeleteBet } 
         handleClose = { closeDeleteModal } 
         confirmBtn = { deleteBet } 
         ask = '¿Estás seguro de que quieres borrar esta apuesta?' 
         value = { betName } />
+
+      <ErrorModal
+        show = { modalError }
+        handleClose = { closeModalError }
+        msg = { errorMsg } />
+
     </div>
   );
 }

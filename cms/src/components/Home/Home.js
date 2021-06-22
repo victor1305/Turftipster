@@ -2,20 +2,31 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import './home.css'
 
+import logo from '../../images/LogoTT.png'
+
 const Home = () => {
   return (
     <div className = "home-container">
-      <div className = "home-section">
+
+      <div className = "title-container-login">
+        <img className = "login-logo-container" src = { logo } alt = "TT-logo"/>
+        <h4>CMS <span>TurfTipster</span></h4>
+      </div>
+
+      <div className = "home-buttons-container">
         <div className = "button-home-container">
           <Link to="/apuestas">
-            <button className = "button-home">Gestión Apuestas</button>
+            <button className = "principal-button">Gestión Apuestas</button>
           </Link>
         </div>
-      </div>
-      <div className = "home-section">
         <div className = "button-home-container">
           <Link to="/clientes">
-            <button className = "button-home">Gestión Clientes</button>
+            <button className = "principal-button">Gestión Clientes</button>
+          </Link>
+        </div>
+        <div className = "button-home-container">
+          <Link to="/perfil">
+            <button className = "principal-button">Mi Perfil</button>
           </Link>
         </div>
       </div>

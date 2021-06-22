@@ -11,6 +11,7 @@ const ClientModal = (props) => {
 
   // HOOKS ----------------------------------
   const [ modalError, showModalError ] = useState(false)
+  const [ errorMsg, updateErrorMsg ] = useState('')
   const [ errors, saveErrors ] = useState({})
   const [ startDate, setStartDate ] = useState(new Date())
   const [ clientState, addClientState ] = useState({})
@@ -79,8 +80,12 @@ const ClientModal = (props) => {
     try {
       props.handleClose()
       props.showSpinner(true)
-      await axios.post(`${CLIENTS_BASE_URL}crear-cliente`, clientState)
-      //actualizar lista clientes
+      await axios.post(`${CLIENTS_BASE_URL}crear-cliente`, clientState, {
+        headers: {
+          'auth-token': props.tokenId
+        }
+      })
+      props.reloadClientList()
       addClientState({})
       deleteInputs()
       props.showSpinner(false)
@@ -89,6 +94,7 @@ const ClientModal = (props) => {
       console.log(error)
       props.handleClose()
       props.showSpinner(false)
+      updateErrorMsg(error.response.data ? error.response.data.error : 'Hubo un error al conectar con la Base de Datos')
       showModalError(true)
     }
   }
@@ -106,7 +112,7 @@ const ClientModal = (props) => {
       <ErrorModal
         show = { modalError }
         handleClose = { closeModalError }
-        msg = { 'Ha habido un error al guardar los datos' }/>
+        msg = { errorMsg }/>
 
       <Modal show = { props.show } handleClose = { props.handleClose }>
         <h4 className = "form-title">Añadir Cliente</h4>

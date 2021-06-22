@@ -11,6 +11,7 @@ const PayModal = (props) => {
 
   // HOOKS ----------------------------------
   const [ modalError, showModalError ] = useState(false)
+  const [ errorMsg, updateErrorMsg ] = useState('')
   const [ errors, saveErrors ] = useState({})
   const [ startDate, setStartDate ] = useState(new Date())
   const [ payState, addPayState ] = useState({})
@@ -92,7 +93,11 @@ const PayModal = (props) => {
     try {
       props.handleClose()
       props.showSpinner(true)
-      await axios.post(`${CLIENTS_BASE_URL}crear-informacion-pago`, payState)
+      await axios.post(`${CLIENTS_BASE_URL}crear-informacion-pago`, payState, {
+        headers: {
+          'auth-token': props.tokenId
+        }
+      })
       await props.reloadPayList()
       addPayState({})
       deleteInputs()
@@ -102,6 +107,7 @@ const PayModal = (props) => {
       console.log(error)
       props.handleClose()
       props.showSpinner(false)
+      updateErrorMsg(error.response.data ? error.response.data.error : 'Hubo un error al conectar con la Base de Datos')
       showModalError(true)
     }
   }
@@ -111,7 +117,11 @@ const PayModal = (props) => {
     try {
       props.handleClose()
       props.showSpinner(true)
-      await axios.put(`${CLIENTS_BASE_URL}editar-informacion-pago/${props.payInfo._id}/${props.payInfo.beneficiaryId[0]}`, payState)
+      await axios.put(`${CLIENTS_BASE_URL}editar-informacion-pago/${props.payInfo._id}/${props.payInfo.beneficiaryId[0]}`, payState, {
+        headers: {
+          'auth-token': props.tokenId
+        }
+      })
       await props.reloadPayList()
       addPayState({})
       deleteInputs()
@@ -121,6 +131,7 @@ const PayModal = (props) => {
       console.log(error)
       props.handleClose()
       props.showSpinner(false)
+      updateErrorMsg(error.response.data ? error.response.data.error : 'Hubo un error al conectar con la Base de Datos')
       showModalError(true)
     }
   }
@@ -138,7 +149,7 @@ const PayModal = (props) => {
       <ErrorModal
         show = { modalError }
         handleClose = { closeModalError }
-        msg = { 'Ha habido un error al guardar los datos' }/>
+        msg = { errorMsg }/>
 
       <Modal show = { props.show } handleClose = { props.handleClose }>
         <h4 className = "form-title">

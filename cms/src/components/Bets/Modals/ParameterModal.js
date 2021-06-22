@@ -7,7 +7,7 @@ import ErrorModal from '../../Modal/ErrorModal'
 
 const BETS_BASE_URL = 'http://localhost:3030/api/apuestas/'
 
-const ParameterModal = ({ show, handleClose, showSpinner, reloadBets }) => {
+const ParameterModal = ({ show, handleClose, showSpinner, reloadBets, tokenId }) => {
   // HOOKS
   const [ parameter, addParameter ] = useState({
     value: '',
@@ -15,6 +15,7 @@ const ParameterModal = ({ show, handleClose, showSpinner, reloadBets }) => {
   })
   const [ parameterModal, showParameterModal ] = useState(false)
   const [ modalError, showModalError ] = useState(false)
+  const [ errorMsg, updateErrorMsg ] = useState('')
   const [ errors, updateError ] = useState('')
 
   useEffect(() => {
@@ -59,7 +60,11 @@ const ParameterModal = ({ show, handleClose, showSpinner, reloadBets }) => {
     try {
       showSpinner(true)
       showParameterModal(false)
-      await axios.post(`${BETS_BASE_URL}crear-parametro`, parameter)
+      await axios.post(`${BETS_BASE_URL}crear-parametro`, parameter, {
+        headers: {
+          'auth-token': tokenId
+        }
+      })
       await reloadBets() 
       showSpinner(false)
       
@@ -67,6 +72,7 @@ const ParameterModal = ({ show, handleClose, showSpinner, reloadBets }) => {
       console.log(error)
       showParameterModal(false)
       showSpinner(false)
+      updateErrorMsg(error.response.data ? error.response.data.error : 'Hubo un error al conectar con la Base de Datos')
       showModalError(true)
     } 
   }
@@ -115,7 +121,7 @@ const ParameterModal = ({ show, handleClose, showSpinner, reloadBets }) => {
       <ErrorModal 
         show = { modalError }
         handleClose = { closeModalError }
-        msg = { 'Ha habido un error al guardar los datos' }/>
+        msg = { errorMsg }/>
     </div>
   );
 }

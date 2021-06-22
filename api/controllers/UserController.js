@@ -6,7 +6,7 @@ const User = require('../models/User.model')
 exports.registro = async (req, res) => {
   const testUser = await User.findOne({ username: req.body.username })
 
-  if (testUser) return res.status(400).json({ error: true, message: 'El Usuario ya existe' })
+  if (testUser) return res.status(400).json({ error: 'El Usuario ya existe' })
 
   // hash contraseña
   const salt = await bcrypt.genSalt(10);
@@ -37,22 +37,19 @@ exports.registro = async (req, res) => {
 
 exports.login = async (req, res) => {
   const user = await User.findOne({ username: req.body.username })
-  if(!user) return res.status(400).json({ error: true, message: 'Usuario o contraseña erroneo' })
+  if(!user) return res.status(400).json({ error: 'Usuario o contraseña erroneo' })
 
   const validatePassword = await bcrypt.compare(req.body.password, user.password)
-  if(!validatePassword) return res.status(400).json({ error: true, message: 'Usuario o contraseña erroneo' })
-
-  console.log(user)
+  if(!validatePassword) return res.status(400).json({ error: 'Usuario o contraseña erroneo' })
 
   // JWT
   const token = jwt.sign({
-    name: user.username,
-    id: user._id,
-    role: user.role
-  }, process.env.TOKEN_SECRET)
+      name: user.name,
+      id: user._id,
+      role: user.role
+    }, process.env.TOKEN_SECRET,
+    {expiresIn: process.env.TOKEN_EXPIRES_IN}
+  )
 
-  res.header('auth-token', token).json({
-    error: null,
-    data: {token}
-  })
+  res.header('auth-token', token).json({token})
 }

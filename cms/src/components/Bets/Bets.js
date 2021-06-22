@@ -6,7 +6,6 @@ import DotLoader from "react-spinners/DotLoader";
 import BetCard from './BetCard'
 import BetModal from './Modals/BetModal'
 import ParameterModal from './Modals/ParameterModal'
-import { Link } from 'react-router-dom';
 import axios from 'axios'
 
 const BETS_BASE_URL = 'http://localhost:3030/api/apuestas/'
@@ -150,12 +149,13 @@ const Bets = (props) => {
         show = { modalParameter } 
         handleClose = { closeModalParameter } 
         showSpinner = { showSpinner }
-        reloadBets = { reloadBets } />
+        reloadBets = { reloadBets }
+        tokenId = { props.tokenId } />
 
       { spinner ?
         <div className = "spinnerContainer">
         <DotLoader 
-          color={"#136F63"} 
+          color={"#3860fb"} 
           loading={spinner} 
           css={override} 
           size={150} />
@@ -163,14 +163,11 @@ const Bets = (props) => {
       :
         <div>
           <div className = "btns-container">
+            <div className = "aux-button-container">
+              <button className = "principal-button" onClick = { openModalParameter }>Añadir Parámetro</button>
+            </div>
             <div className = "principal-button-container">
               <button className = "principal-button" onClick = { openModalBets }>Crear Apuesta</button>
-            </div>
-            <div>
-              <Link to = '/index'><button className = "logo-button"/></Link>
-            </div>
-            <div className = "aux-button-container">
-              <button className = "aux-button" onClick = { openModalParameter }>Añadir Parámetro</button>
             </div>
           </div>
           <div className = "bet-list-container">
@@ -179,7 +176,7 @@ const Bets = (props) => {
                 <button onClick={previousPage} className = "previous-page"/>
               }
               {totalPage > 0 &&
-                <span>Página {page + 1} de {totalPage + 1}</span>
+                <span className = "bet-page-span">Página {page + 1} de {totalPage + 1}</span>
               }
               {page < totalPage &&
                 <button onClick={nextPage} className = "next-page"/> 
