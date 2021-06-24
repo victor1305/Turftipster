@@ -5,7 +5,7 @@ import axios from 'axios'
 import ConfirmationModal from '../../Modal/ConfirmationModal';
 import ErrorModal from '../../Modal/ErrorModal'
 
-const BETS_BASE_URL = 'http://localhost:3030/api/apuestas/'
+const BETS_BASE_URL = 'https://api-tt-cms.herokuapp.com/api/apuestas/'
 
 const ParameterModal = ({ show, handleClose, showSpinner, reloadBets, tokenId }) => {
   // HOOKS

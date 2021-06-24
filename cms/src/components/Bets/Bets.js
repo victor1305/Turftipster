@@ -8,7 +8,7 @@ import BetModal from './Modals/BetModal'
 import ParameterModal from './Modals/ParameterModal'
 import axios from 'axios'
 
-const BETS_BASE_URL = 'http://localhost:3030/api/apuestas/'
+const BETS_BASE_URL = 'https://api-tt-cms.herokuapp.com/api/apuestas/'
 
 const override = css`
   display: block;
@@ -198,6 +198,7 @@ const Bets = (props) => {
               }
             </div>
           </div>
+          <div className = "margin-bottom-box"></div>
         </div>
       }
     </div>

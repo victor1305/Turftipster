@@ -4,7 +4,7 @@
 }
 
 .profile-container {
-  margin: 20px 40px;
+  margin: 20px 40px 0;
   border-radius: 5px;
   border: 2px solid #222531;
   color: #fff
@@ -57,4 +57,39 @@
   font-weight: bold;
   margin-top: 0;
   text-align: center;
+}
+
+@media screen and (max-width: 1024px) {
+  .profile-big-container {
+    padding-top: 70px
+  }
+
+  .profile-name {
+    text-align: center;
+    margin: 0;
+    padding: 20px 0 10px;
+  }
+
+  .profile-container {
+    width: 370px;
+    margin: 0 auto;
+  }
+
+  .profile-title {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .profile-title > span {
+    padding-top: 10px;
+  }
+
+  .table-container {
+    flex-direction: column;
+  }
+
+  .profile-table {
+    width: 340px;
+    font-size: 14px;
+  }
 }

@@ -2,8 +2,9 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios'
 import DotLoader from "react-spinners/DotLoader";
 import { css } from "@emotion/react";
+import { useMediaQuery } from 'react-responsive'
 
-const CLIENTS_BASE_URL = 'http://localhost:3030/api/clientes/'
+const CLIENTS_BASE_URL = 'https://api-tt-cms.herokuapp.com/api/clientes/'
 
 const override = css`
   display: block;
@@ -17,6 +18,7 @@ const ClientDetail = (props) => {
   const [ spinner, showSpinner ] = useState(false)
   const [ dateFormated, updateDateFormated ] = useState('')
 
+  const isDesktop = useMediaQuery({ query: '(max-width: 1024px)' })
   let id = props.match.params.id
 
   let month = ''
@@ -134,7 +136,7 @@ const ClientDetail = (props) => {
 
   return (
 
-    <div>
+    <div className = "client-detail-body">
       <h1>Detalles de Cliente</h1>
       { spinner ?
       
@@ -149,23 +151,31 @@ const ClientDetail = (props) => {
       :
         <div className = "client-detail-container">
           <div className = "titles-container-detail">
-            <h4 className = "titles-container-detail-h4">Historial de Pagos</h4>
+            { !isDesktop &&
+            <h4 className = "titles-container-detail-h4">Historial de Pagos</h4>}
             <h4 className = "titles-container-detail-h4">Detalle de Cliente</h4>
           </div>
           
           <div className = "payments-history">
 
             <div className = "table-client-detail-container">
+            { isDesktop &&
+            <div className = "titles-container-detail titles-container-detail-mobile">
+              <h4 className = "titles-container-detail-h4">Historial de Pagos</h4>
+            </div>}
               <table className = "table-client-detail">
                 <thead>
                   <tr className = "clients-table-tr">
                     <th>#</th>
                     <th>Fecha</th>
                     <th>Cantidad</th>
-                    <th>Método</th>
+                    { !isDesktop &&
+                    <th>Método</th>}
                     <th>Estado</th>
-                    <th>Recibe</th>
-                    <th>Notas</th>
+                    { !isDesktop &&
+                    <th>Recibe</th>}
+                    { !isDesktop &&
+                    <th>Notas</th>}
                   </tr>
                 </thead>
 
@@ -175,10 +185,13 @@ const ClientDetail = (props) => {
                       <td>{ index + 1 }</td>
                       <td>{ formatDate(item.date) }</td>
                       <td>{ item.price }€</td>
-                      <td>{ item.type === 'Paysafecard' ? 'PSC' : item.type }</td>
+                      { !isDesktop &&
+                      <td>{ item.type === 'Paysafecard' ? 'PSC' : item.type }</td>}
                       <td><div className = { item.status === 'Pagado' ?  "pay-status status-green" : item.status === 'Impago' ? "pay-status status-red" : "pay-status status-orange"}></div></td>
-                      <td>{ formatUser(item.beneficiary) }</td>
-                      <td>{ item.information }</td>
+                      { !isDesktop &&
+                      <td>{ formatUser(item.beneficiary) }</td>}
+                      { !isDesktop &&
+                      <td>{ item.information }</td>}
                     </tr>
                   ))}
                 </tbody>
@@ -196,6 +209,7 @@ const ClientDetail = (props) => {
           </div>
         </div>
       }
+      <div className = "margin-bottom-box"></div>
     </div>
   );
 }

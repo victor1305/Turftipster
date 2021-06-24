@@ -9,10 +9,11 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import ConfirmationModal from '../Modal/ConfirmationModal'
 import ErrorModal from '../Modal/ErrorModal'
+import { useMediaQuery } from 'react-responsive'
 
 import './clients.css'
 
-const CLIENTS_BASE_URL = 'http://localhost:3030/api/clientes/'
+const CLIENTS_BASE_URL = 'https://api-tt-cms.herokuapp.com/api/clientes/'
 
 const override = css`
   display: block;
@@ -39,6 +40,8 @@ const Clients = (props) => {
   const [ startDate, setStartDate ] = useState(new Date())
 
   // VARIABLES
+
+  const isDesktop = useMediaQuery({ query: '(max-width: 1024px)' })
 
   const monthNumber = startDate.getMonth()
   let monthFormated = monthNumber + 1
@@ -307,10 +310,14 @@ const Clients = (props) => {
                       <th>#</th>
                       <th>Cliente</th>
                       <th>Estado</th>
-                      <th>Método</th>
-                      <th>Cantidad</th>
-                      <th>Recibe</th>
-                      <th>Notas</th>
+                      {!isDesktop &&
+                      <th>Método</th>}
+                      {!isDesktop &&
+                      <th>Cantidad</th>}
+                      {!isDesktop &&
+                      <th>Recibe</th>}
+                      {!isDesktop &&
+                      <th>Notas</th>}
                       <th></th>
                       <th></th>
                     </tr>
@@ -322,10 +329,14 @@ const Clients = (props) => {
                         <td>{ index + 1 }</td>
                         <td className = "td-name"><Link to = { `/detalle-cliente/${item.clientId}` }>{ item.client[0] }</Link></td>
                         <td><div className = { item.status === 'Pagado' ?  "pay-status status-green" : item.status === 'Impago' ? "pay-status status-red" : "pay-status status-orange"}></div></td>
-                        <td>{ item.type === 'Paysafecard' ? 'PSC' : item.type }</td>
-                        <td>{ item.price } €</td>
-                        <td>{ item.beneficiary[0] }</td>
-                        <td>{ item.information }</td>
+                        {!isDesktop &&
+                        <td>{ item.type === 'Paysafecard' ? 'PSC' : item.type }</td>}
+                        {!isDesktop &&
+                        <td>{ item.price } €</td>}
+                        {!isDesktop &&
+                        <td>{ item.beneficiary[0] }</td>}
+                        {!isDesktop &&
+                        <td>{ item.information }</td>}
                         <td><button onClick = { editPay } value = { JSON.stringify(item) } className = "table-client-btn edit-client-btn"/></td>
                         <td><button onClick = { openDeleteModal } value = { JSON.stringify(item) } className = "table-client-btn delete-client-btn"/></td>
                       </tr>
@@ -351,20 +362,20 @@ const Clients = (props) => {
                       <tr>
                         <td>Antonio</td>
                         <td>{ paymentsAntonio }</td>
-                        <td>{ totalPayments * 0.25 }</td>
-                        <td>{paymentsAntonio - totalPayments * 0.3 > 0 ? 'Sobran' : 'Faltan'} { Math.abs(paymentsAntonio - totalPayments * 0.25) }€</td>
+                        <td>{ Math.round(totalPayments * 0.25) }</td>
+                        <td>{paymentsAntonio - totalPayments * 0.3 > 0 ? 'Sobran' : 'Faltan'} { Math.abs(Math.round(paymentsAntonio - totalPayments * 0.25)) }€</td>
                       </tr>
                       <tr>
                         <td>Eduardo</td>
                         <td>{ paymentsEdu }</td>
-                        <td>{ totalPayments * 0.45 }</td>
-                        <td>{paymentsEdu - totalPayments * 0.3 > 0 ? 'Sobran' : 'Faltan'} { Math.abs(paymentsEdu - totalPayments * 0.45) }€</td>
+                        <td>{ Math.round(totalPayments * 0.45) }</td>
+                        <td>{paymentsEdu - totalPayments * 0.3 > 0 ? 'Sobran' : 'Faltan'} { Math.abs(Math.round(paymentsEdu - totalPayments * 0.45)) }€</td>
                       </tr>
                       <tr>
                         <td>Víctor</td>
                         <td>{ paymentsVictor }</td>
-                        <td>{ totalPayments * 0.3 }</td>
-                        <td>{paymentsVictor - totalPayments * 0.3 > 0 ? 'Sobran' : 'Faltan'} { Math.abs(paymentsVictor - totalPayments * 0.3) }€</td>
+                        <td>{ Math.round(totalPayments * 0.3) }</td>
+                        <td>{paymentsVictor - totalPayments * 0.3 > 0 ? 'Sobran' : 'Faltan'} { Math.abs(Math.round(paymentsVictor - totalPayments * 0.3)) }€</td>
                       </tr>
                     </tbody>
                   </table>
@@ -381,6 +392,7 @@ const Clients = (props) => {
             }
 
           </div>
+          <div className = "margin-bottom-box"></div>
         </div>
       
       }

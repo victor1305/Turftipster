@@ -11,7 +11,7 @@ const override = css`
   border-color: red;
 `
 
-const BETS_BASE_URL = 'http://localhost:3030/api/apuestas/'
+const BETS_BASE_URL = 'https://api-tt-cms.herokuapp.com/api/apuestas/'
 
 const BetDetail = (props) => {
 

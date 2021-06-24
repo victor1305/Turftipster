@@ -6,7 +6,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid rgb(34, 37, 49);
+  border-bottom: 2px solid rgb(34, 37, 49);
   font-weight: bold;
   font-size: 14px;
 }
@@ -48,13 +48,14 @@
 
 @media only screen and (max-width: 500px) {
   .navbar {
-    position: relative;
+    position: fixed;
+    z-index: 2;
   }
 
   .nav-links {
     display: flex;
     flex-direction: column;
-    position: absolute;
+    position: fixed;
     text-align: center;
     width: 100%;
     top: 80px;
@@ -62,21 +63,30 @@
     transition: 0.5s all;
     padding-left: 0px;
     margin: 0;
+    overflow-y: overlay
   }
 
   .nav-links.active {
     background: #17171a !important;
     left: 0;
     z-index: 2;
+    top: 71px;
+    height: calc(100vh - 112px);
+    padding-top: 50px;
   }
 
   .nav-item {
-    padding: 10px 0;
-    border-top: 1px solid green;
-    border-bottom: 1px solid pink
+    padding: 20px 0;
+    font-size: 18px;
   }
 
   .nav-icon {
     display: flex;
+    margin-right: 20px;
   }
+
+  .nav-logo {
+    margin-left: 25px;
+  }
+
 }

@@ -5,7 +5,7 @@ import Modal from '../../Modal/Modal';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
-const CLIENTS_BASE_URL = 'http://localhost:3030/api/clientes/'
+const CLIENTS_BASE_URL = 'https://api-tt-cms.herokuapp.com/api/clientes/'
 
 const PayModal = (props) => {
 

@@ -6,7 +6,7 @@ import './login.css'
 
 import logo from '../../images/LogoTT.png'
 
-const USERS_BASE_URL = 'http://localhost:3030/api/'
+const USERS_BASE_URL = 'https://api-tt-cms.herokuapp.com/api/'
 
 const override = css`
   display: block;

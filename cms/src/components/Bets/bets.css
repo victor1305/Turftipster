@@ -125,6 +125,7 @@ h1 {
   background-color: transparent;
   background-image: url('../../images/delete.png');
   background-size: contain;
+  background-repeat: no-repeat;
   border: none;
   cursor: pointer;
 }
@@ -274,6 +275,7 @@ h1 {
   background-image: url('../../images/back.png');
   background-position: center;
   background-size: contain;
+  background-repeat: no-repeat;
   margin-right: 1rem;
   cursor: pointer;
 }
@@ -285,6 +287,7 @@ h1 {
   background-image: url('../../images/next.png');
   background-position: center;
   background-size: contain;
+  background-repeat: no-repeat;
   margin-left: 1rem;
   cursor: pointer;
 }
@@ -295,11 +298,10 @@ h1 {
 }
 
 .detail-container {
-  margin-top: 100px;
+  margin: 100px auto 50px auto;
   text-align: left;
-  padding-bottom: 50px;
   color: #fff;
-  padding-left: 840px;
+  width: 360px;
 }
 
 .detail-status-pending {
@@ -443,4 +445,36 @@ h1 {
   text-align: center;
   color: red;
   padding-top: 25px;
+}
+
+@media screen and (max-width: 1024px){
+  .bets-page-container {
+    padding-top: 70px
+  }
+
+  .btns-container {    
+    justify-content: center;
+  }
+
+  .principal-button-container {
+    margin: 2px;
+  }
+
+  .principal-button {
+    width: 150px;
+    padding: 8px 10px;
+    font-size: 16px;
+  }
+
+  .detail-container {
+    margin-top: 50px;
+  }
+
+  .spinnerContainer {
+    margin-top: 200px
+  }
+
+  .bet-detail-container {
+    padding-top: 70px
+  }
 }

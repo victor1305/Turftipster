@@ -7,7 +7,7 @@ import ErrorModal from '../../Modal/ErrorModal';
 import { setDefaultLocale } from  "react-datepicker";
 setDefaultLocale('es')
 
-const BETS_BASE_URL = 'http://localhost:3030/api/apuestas/'
+const BETS_BASE_URL = 'https://api-tt-cms.herokuapp.com/api/apuestas/'
 
 const BetModal = ( props ) => {
 
@@ -68,6 +68,7 @@ const BetModal = ( props ) => {
   }
 
   const setDate = () => {
+    !props.date &&
     addBetState({
       ...bet,
       date: isoDate
@@ -82,7 +83,6 @@ const BetModal = ( props ) => {
   }
 
   const validateForm = () => {
-    console.log(bet)
     validation = {}
     if (!bet.bookie) {
       validation.bookie = 'Se te olvidó el nombre de la Bookie!'
@@ -136,7 +136,7 @@ const BetModal = ( props ) => {
         }
       })
       await props.reloadBets()
-      //deleteInputs()
+      deleteInputs()
       setStartDate( new Date() )
       props.showSpinner(false)
 
